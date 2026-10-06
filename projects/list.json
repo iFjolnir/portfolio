@@ -1,0 +1,36 @@
+{
+  "disciplines": [
+    {
+      "key": "identity",
+      "label": "Brand identity"
+    },
+    {
+      "key": "editorial",
+      "label": "Editorial"
+    },
+    {
+      "key": "print",
+      "label": "Print"
+    },
+    {
+      "key": "web",
+      "label": "Web design"
+    },
+    {
+      "key": "app",
+      "label": "App design"
+    },
+    {
+      "key": "objects",
+      "label": "Product design"
+    }
+  ],
+  "projects": [
+    "khadija-s-kitchen",
+    "me-promotie",
+    "streamer",
+    "kreola",
+    "unera",
+    "sweet-sor"
+  ]
+}

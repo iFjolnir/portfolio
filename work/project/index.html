@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Project — Faina Iasen</title>
+  <meta name="description" content="Graphic designer and design educator based in Busan.">
+  <meta property="og:title" content="Faina Iasen — Graphic designer">
+  <meta property="og:description" content="Graphic designer and design educator based in Busan.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='5' y='5' width='6' height='6' fill='%23121212'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard-std/dist/web/variable/pretendardvariable-std-dynamic-subset.css">
+  <link rel="stylesheet" href="../../assets/style.css">
+</head>
+<!--
+  THE project template. Every project page is this one file, filled in from
+  projects/<folder>/project.json. Change the layout here and all projects follow.
+  Address: /work/project/?p=<folder-name>
+-->
+<body data-root="../../" data-page="work" data-template="project">
+  <header class="bar">
+    <a class="bar__name" href="../../">Faina Iasen</a>
+    <nav class="bar__nav" aria-label="Main">
+      <a href="../../" data-nav="home">Home</a>
+      <a href="../../work/" data-nav="work">Work</a>
+      <a href="../../info/" data-nav="info">Info</a>
+    </nav>
+    <div class="bar__end">
+      <p class="bar__time" data-clock>Busan</p>
+      <a class="bar__cta" href="mailto:hello@fainaiasen.com">Say hello</a>
+    </div>
+  </header>
+
+  <div class="frame">
+
+    <!-- LEFT: title, cover, facts -->
+    <aside class="col col--side col--left">
+      <h1 class="t-display" data-field="title"></h1>
+      <figure class="project-thumb">
+        <div class="media"><img data-field="cover" alt=""></div>
+        <figcaption class="t-small grey" data-field="category"></figcaption>
+      </figure>
+      <dl class="lines facts t-small">
+        <div data-optional><dt>Year</dt><dd data-field="year"></dd></div>
+        <div data-optional><dt>Client</dt><dd data-field="client"></dd></div>
+        <div data-optional><dt>Service</dt><dd data-field="service"></dd></div>
+        <div data-optional><dt>Live</dt><dd data-field="link"></dd></div>
+      </dl>
+    </aside>
+
+    <!-- MIDDLE: the intro stays put; images scroll up over it -->
+    <main class="col col--mid">
+      <p class="t-lead prose project-intro" data-field="intro"></p>
+
+      <div class="project-over">
+        <!-- first image is separate so phones can place it before the brief -->
+        <div class="project-images" data-render="images-first"></div>
+        <div class="project-images project-images--rest" data-render="images"></div>
+
+        <!-- phones only: next project at the end of the images -->
+        <a class="next next--phone" data-render="next" href="../">
+          <span class="t-small grey">Next project</span>
+          <span class="next__title t-lead"></span>
+        </a>
+
+      <footer class="sign-off">
+        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com">Say hello.</a>
+        <div class="sign-off__base t-meta">
+          <span>&copy; 2026 Faina Iasen</span>
+          <span>Busan, South Korea</span>
+        </div>
+      </footer>
+      </div>
+    </main>
+
+    <!-- RIGHT: brief and approach; next project at the bottom -->
+    <aside class="col col--side col--right">
+      <div class="project-notes">
+        <section data-optional>
+          <h2 class="t-head">Brief</h2>
+          <div class="t-body prose" data-field="brief"></div>
+        </section>
+        <section data-optional>
+          <h2 class="t-head">What I did</h2>
+          <div class="t-body prose" data-field="did"></div>
+        </section>
+      </div>
+      <a class="next-side" data-render="next" href="../">
+        <span class="t-head ink">Next project</span>
+        <span class="next__title t-small grey"></span>
+      </a>
+    </aside>
+
+  </div>
+
+  <script src="../../assets/site.js"></script>
+</body>
+</html>

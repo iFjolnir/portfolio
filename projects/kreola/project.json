@@ -1,0 +1,22 @@
+{
+  "title": "KREOLA",
+  "category": "Packaging system",
+  "discipline": ["identity", "print"],
+  "year": 2021,
+  "selected": true,
+  "client": "KREOLA chocolate workshop",
+  "service": "Identity, packaging, die-lines, prepress",
+  "intro": "Identity and packaging for a small luxury chocolatier making handmade truffles and bars from premium chocolate, sold through chain stores. <span class=\"fade\">Twenty-plus flavours, one tile pattern holding them all together.</span>",
+  "brief": "KREOLA had been running for a few years on simple craft packaging: plain cardboard boxes and kraft bags with a logo sticker on top. As they moved into chain retail, they needed a complete brand identity, packaging for several product lines, and every piece prepared for production. It had to feel premium and handmade at once, and stand out on a shelf full of bigger brands.",
+  "did": [
+    "Developed together with Monica Ramilison. After several proposals, the client chose a modern art deco direction: clean colours and artwork drawn in a single line width. We built a modular tile pattern from that, with each tile nodding to chocolate and its ingredients, from cocoa pods and citrus slices to star anise and leaves. Each flavour has its own colour, so the pattern stays constant while the range stays easy to tell apart.",
+    "The real test was scale. The system had to work across several packaging types, from windowed truffle boxes to slim bar sleeves, each with a custom die-line, and across a range of more than twenty flavours. Every one had to stay visually consistent, match the supplied copy exactly, and meet commercial retail regulations for labelling, so the ingredient panels, nutrition data, barcodes and certification marks were designed in as part of the layout rather than squeezed in at the end."
+  ],
+  "coverAlt": "Square KREOLA truffle box with a window showing four chocolate domes, wrapped in a line-drawn art deco tile pattern",
+  "images": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg"
+  ]
+}

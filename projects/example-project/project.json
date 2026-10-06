@@ -1,0 +1,37 @@
+{
+  "title": "Example project",
+  "category": "Brand identity",
+  "discipline": "identity",
+  "year": 2026,
+  "selected": true,
+  "client": "Client name",
+  "service": "Identity, print",
+  "link": {
+    "text": "example.com",
+    "url": "https://example.com/"
+  },
+  "intro": "One or two sentences about the project: what it was, who it was for, <span class=\"fade\">and the idea that holds it together.</span>",
+  "brief": "What the client needed, and any constraints worth knowing about.",
+  "did": [
+    "Your approach and the decisions that shaped the result.",
+    "A second paragraph, if you need one."
+  ],
+  "coverAlt": "Example project cover",
+  "images": [
+    "01.jpg",
+    {
+      "src": "02.jpg",
+      "alt": "A tall image, to show heights follow each picture"
+    },
+    {
+      "src": "03.jpg",
+      "alt": "Example with text",
+      "title": "Optional title under an image",
+      "text": "Any image can carry a title, a short text and a link. Leave them out and it's just the picture.",
+      "link": {
+        "text": "Optional link",
+        "url": "https://example.com/"
+      }
+    }
+  ]
+}

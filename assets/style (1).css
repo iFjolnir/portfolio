@@ -1,0 +1,564 @@
+/* ==========================================================================
+   fainaiasen.com — shared stylesheet
+   Edit the tokens in :root first; almost everything else reads from them.
+   ========================================================================== */
+
+:root {
+  /* ---------- TWEAKERS: play with these ---------- */
+
+  /* Body text weight: every .t-body paragraph and list, incl. Brief / What I did,
+     project descriptions, Experience / Education descriptions */
+  --weight-body: 400;
+
+  /* Info page section headings: "Experience", "Education", "Tools" */
+  --info-head-weight: 500;
+
+  /* Experience + Education rows (Info page) */
+  --rows-title-weight: 500;     /* "Freelance graphic designer" */
+  --rows-detail-weight: 500;    /* "Hideout International, Busan / 20XX – present" */
+
+  /* Phones: project page spacing */
+  --m-cover-gap: 0px;           /* category label → cover image (0 = touching) */
+  --m-facts-gap: 0px;           /* cover image → Year / Client / Service list (0 = touching) */
+  --m-intro-gap: 100px;          /* that list → project description */
+
+  /* Phones: home page */
+  --m-disciplines-dim: 1;       /* opacity of "Brand identity · Editorial · …" (1 = full, 0.4 = faint) */
+
+  /* ---------- end of tweakers ---------- */
+
+  /* colour */
+  --ink: #121212;        /* main text: a soft black */
+  --grey: #737373;       /* secondary text (passes contrast on white) */
+  --grey-dark: #5e5e5e;  /* small secondary text */
+  --rule: #e3e3e3;       /* every hairline */
+  --panel: #f6f6f6;      /* image placeholders, quiet fills */
+  --paper: #ffffff;
+  --green: #1f9d55;      /* "available" marker */
+
+  /* type */
+  --font: "Pretendard Variable", "Pretendard Std Variable", Pretendard, -apple-system, BlinkMacSystemFont,
+          "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", system-ui, sans-serif;
+  --weight: 500;
+  --weight-strong: 600;
+
+  --size-statement: 80px;  /* sign-off "Say hello." */
+  --size-display: 56px;    /* page titles */
+  --size-lead: 26px;       /* intro sentences */
+  --size-head: 18px;       /* section heads */
+  --size-body: 16px;       /* lists, paragraphs */
+  --size-small: 14px;      /* header, captions */
+  --size-meta: 12px;       /* counts, tiny labels */
+
+  /* layout */
+  --bar: 44px;             /* header height */
+  --pad: 20px;             /* inner column padding */
+  --top: 96px;             /* space above the first line in each column */
+  --cols: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr);
+}
+
+@media (max-width: 1199px) {
+  :root {
+    --size-statement: 74px;
+    --size-display: 48px;
+    --size-lead: 22px;
+    --top: 72px;
+  }
+}
+
+@media (max-width: 809px) {
+  :root {
+    --size-statement: 56px;
+    --size-display: 40px;
+    --size-lead: 21px;
+    --size-head: 17px;
+    --size-body: 15px;
+    --pad: 16px;
+    --top: 40px;
+  }
+}
+
+/* ---------- base ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--bar) + 16px);
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-weight: var(--weight);
+  font-size: var(--size-body);
+  line-height: 1.45;
+  letter-spacing: -0.03em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hangul looks cramped with Latin-style tracking, so loosen it */
+:lang(ko) { letter-spacing: -0.01em; }
+
+h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+h1, h2, h3 { font-weight: var(--weight); }
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
+
+[hidden] { display: none !important; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- type roles ---------- */
+
+.t-statement { font-size: var(--size-statement); line-height: 1; letter-spacing: -0.04em; }
+.t-display   { font-size: var(--size-display);   line-height: 1; letter-spacing: -0.05em; }
+.t-lead      { font-size: var(--size-lead);      line-height: 1.12; letter-spacing: -0.04em; }
+.t-head      { font-size: var(--size-head);      line-height: 1.4; }
+.t-body      { font-size: var(--size-body);      line-height: 1.45; color: var(--grey); font-weight: var(--weight-body); }
+.t-small     { font-size: var(--size-small);     line-height: 1.4; }
+.t-meta      { font-size: var(--size-meta);      line-height: 1.4; color: var(--grey); }
+
+.ink  { color: var(--ink); }
+.grey { color: var(--grey); }
+
+/* the two-tone sentence: wrap the quieter half in <span class="fade"> */
+.fade { color: var(--grey); }
+
+.prose { max-width: 36em; }
+.prose p + p { margin-top: 0.9em; }
+
+/* ---------- header bar ---------- */
+
+.bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  height: var(--bar);
+  display: grid;
+  grid-template-columns: var(--cols);
+  align-items: center;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  font-size: var(--size-small);
+}
+
+.bar > * { padding-inline: var(--pad); }
+.bar__name { font-weight: var(--weight-strong); }
+
+.bar__nav a { color: var(--grey); font-weight: var(--weight-strong); }
+.bar__nav a[aria-current="page"] { color: var(--ink); }
+.bar__nav a:not(:last-child)::after { content: ","; color: var(--grey); }
+.bar__nav a + a { margin-left: 0.25em; }
+
+.bar__end { display: flex; justify-content: space-between; gap: 1em; }
+.bar__time { color: var(--grey); font-variant-numeric: tabular-nums; }
+.bar__cta { font-weight: var(--weight-strong); }
+
+/* ---------- three-column frame ---------- */
+
+.frame {
+  display: grid;
+  grid-template-columns: var(--cols);
+  min-height: 100vh;
+  padding-top: var(--bar);
+}
+
+.col { padding: var(--top) var(--pad) var(--pad); min-width: 0; }
+
+/* side columns stay put while the middle scrolls */
+.col--side {
+  position: sticky;
+  top: var(--bar);
+  height: calc(100vh - var(--bar));
+  overflow-y: auto;
+  scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 48px;
+}
+.col--side::-webkit-scrollbar { display: none; }
+
+.col--mid {
+  border-inline: 1px solid var(--rule);
+  padding-inline: 16px;
+  padding-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.col--right { text-align: right; }
+
+/* ---------- hairline lists ---------- */
+
+.lines > li,
+.lines > div { border-bottom: 1px solid var(--rule); }
+/* rules only between items, never after the last one */
+.lines > :last-child { border-bottom: 0; }
+.lines > li > a,
+.lines > li > span,
+.lines > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; padding: 5px 0 6px; }
+
+.lines--grey > li > a { color: var(--grey); }
+.lines--grey > li > a[aria-current="true"],
+.lines--grey > li > a:hover { color: var(--ink); text-decoration: none; }
+.lines--grey .ink { color: var(--ink); }
+
+.facts > div { text-align: left; }
+.facts dt { color: var(--grey); }
+.facts dd { text-align: right; }
+
+/* ---------- section heading row ---------- */
+
+.section { margin-top: 120px; }
+.section:first-child { margin-top: 0; }
+
+.section__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 10px;
+}
+.section__head--ruled { border-bottom: 1px solid var(--rule); }
+
+/* ---------- media & placeholders ---------- */
+
+.media {
+  position: relative;
+  background: var(--panel);
+  overflow: hidden;
+}
+.media img { width: 100%; height: 100%; object-fit: cover; }
+.media--4x3  { aspect-ratio: 4 / 3; }
+.media--3x4  { aspect-ratio: 3 / 4; }
+.media--16x9 { aspect-ratio: 16 / 9; }
+.media--1x1  { aspect-ratio: 1 / 1; }
+
+/* ---------- project lists ---------- */
+
+.work-list { display: grid; gap: 28px; }
+.work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 16px; }
+
+.card { display: block; }
+.card:hover { text-decoration: none; }
+.card__caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1em;
+  padding-top: 8px;
+  font-size: var(--size-small);
+}
+.card__title { color: var(--ink); }
+.card__cat { color: var(--grey); margin-left: 0.45em; }
+.card__year { color: var(--grey); font-variant-numeric: tabular-nums; }
+.card:hover .card__title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+
+.empty { color: var(--grey); padding: 24px 0; }
+
+/* ---------- greeting: Faye / 해인 / Фаина ---------- */
+
+.hello {
+  --names-dim: 0.2;            /* opacity of 해인 and Фаина */
+  --hello-ko-weight: 600;      /* Pretendard's Hangul reads lighter at the same weight */
+  --hello-ko-scale: 1;         /* 1 = same size as the Latin; try 0.96 or 1.04 */
+  --hello-ko-tracking: -0.02em;
+  --hello-ko-shift: 0em;       /* nudge 해인 up (negative) or down (positive) */
+  --hello-phone-size: min(var(--size-display), 9.4vw); /* phones: small enough for one line */
+}
+
+/* the stack sits on the "I'm" line: an inline grid's baseline is its first row */
+.hello .names { display: inline-grid; justify-items: start; }
+.hello .names > :not(:first-child) { opacity: var(--names-dim); }
+
+.hello [lang="ko"] {
+  font-weight: var(--hello-ko-weight);
+  font-size: calc(1em * var(--hello-ko-scale));
+  letter-spacing: var(--hello-ko-tracking);
+  position: relative;
+  top: var(--hello-ko-shift);
+}
+
+/* ---------- home portrait ---------- */
+
+.portrait { width: min(180px, 60%); margin: 24px 0 0 auto; }
+
+/* ---------- home: right column ---------- */
+
+.intro-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;   /* status and photo share a top line */
+  gap: 16px;
+}
+.intro-card__top .portrait { margin: 0; flex: none; }
+.intro-card__caption { margin-top: 28px; }
+.col--right .contact { text-align: left; }
+
+/* ---------- info: left column (title / photo / contact) ---------- */
+
+.info-photo { width: min(200px, 70%); }
+.info-contact { display: flex; justify-content: space-between; align-items: center; gap: 1em; }
+.icons { display: flex; gap: 12px; }
+.icons a { display: block; width: 18px; height: 18px; color: var(--ink); }
+.icons a:hover { color: var(--grey); }
+.icons svg { display: block; width: 100%; height: 100%; }
+
+/* ---------- availability marker ---------- */
+
+.status { display: inline-flex; align-items: center; gap: 8px; font-size: var(--size-small); }
+.status::before {
+  content: "";
+  width: 6px; height: 6px;
+  background: var(--ink);
+}
+.status { line-height: 1; padding-top: 2px; }
+.status--on::before { background: var(--green); }
+
+/* ---------- row blocks (experience, project write-ups) ---------- */
+
+.rows > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  gap: 16px 24px;
+  padding: 18px 0 22px;
+  border-bottom: 1px solid var(--rule);
+}
+.rows > div:first-child { border-top: 1px solid var(--rule); }
+.rows h3 { font-size: var(--size-head); line-height: 1.3; font-weight: var(--rows-title-weight); }
+.rows h3 + p { font-weight: var(--rows-detail-weight); }
+body[data-page="info"] .section__head h2 { font-weight: var(--info-head-weight); }
+.rows .t-body { margin-top: 0; }
+
+/* ---------- project page ---------- */
+
+.project-images { display: grid; gap: 16px; margin-top: 40px; }
+/* every image runs full width; its height follows its own proportions */
+.project-image img { width: 100%; height: auto; background: var(--panel); }
+
+/* optional text under an image (title / text / link in project.json) */
+.project-image.has-caption { margin-bottom: 40px; }
+.project-caption { padding-top: 12px; display: grid; gap: 6px; }
+.project-caption__title { font-size: var(--size-head); line-height: 1.3; font-weight: var(--weight); }
+.project-caption__link { margin-top: 2px; }
+
+.next {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1em;
+  padding: 18px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.next:hover { text-decoration: none; }
+.next:hover .next__title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.12em; }
+
+/* ---------- sign-off footer (end of middle column) ---------- */
+
+.sign-off {
+  margin-top: auto;
+  padding-top: 160px;
+}
+.sign-off__link { display: inline-block; padding: 0 0 24px; }
+.sign-off__link:hover { text-decoration: none; color: var(--grey); }
+.sign-off__base {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 14px 0 18px;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------- tablet ---------- */
+
+@media (max-width: 1199px) {
+  :root { --cols: minmax(0, 1fr) minmax(0, 1.8fr) minmax(0, 1fr); }
+  .work-grid { grid-template-columns: minmax(0, 1fr); }
+  .rows > div { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+}
+
+/* ---------- phone: one column, nothing sticky ---------- */
+
+@media (max-width: 809px) {
+  .bar { grid-template-columns: auto 1fr; }
+  .bar__nav { text-align: right; }
+  .bar__end { display: none; }
+
+  .frame { display: flex; flex-direction: column; }
+  .col--left  { order: 1; }
+  .col--right { order: 2; }
+  .col--mid   { order: 3; }
+  .col { padding: var(--top) var(--pad) 0; }
+  .col--side {
+    position: static;
+    height: auto;
+    overflow: visible;
+    gap: 32px;
+  }
+  .col--mid { border-inline: 0; padding-inline: var(--pad); }
+  .col--right { text-align: left; padding-bottom: var(--pad); }
+  .col--right .facts dd { text-align: right; }
+  .portrait { margin-left: 0; }
+
+  /* home greeting: "I'm Faye, 해인, Фаина." on one line */
+  .hello { font-size: var(--hello-phone-size); white-space: nowrap; }
+  .hello .names { display: inline; }
+
+  /* home right column: photo on the right edge, status under it, caption dropped */
+  .intro-card__top { flex-direction: column; align-items: flex-end; gap: 12px; }
+  .intro-card__top .status { order: 2; }
+  .intro-card__caption { display: none; }
+
+  .section { margin-top: 80px; }
+  .sign-off { padding-top: 96px; }
+
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bar__nav a, .lines--grey a, .sign-off__link { transition: color 0.2s ease; }
+}
+
+/* ==========================================================================
+   Project page
+   ========================================================================== */
+
+/* left: title / cover / facts, spread top to bottom */
+.project-thumb { width: min(220px, 62%); }
+.project-thumb figcaption { text-align: right; padding-top: 10px; }
+.project-thumb .media img { aspect-ratio: 4 / 3; }
+
+/* middle: the intro sticks; everything after it slides up and covers it */
+.project-intro {
+  position: sticky;
+  top: calc(var(--bar) + var(--top));
+  z-index: 0;
+}
+.project-over {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-top: clamp(160px, 32vh, 340px);
+  background: var(--paper);   /* hides the intro between and after images */
+}
+.project-over .project-images { margin-top: 0; }
+.project-images--rest:not(:empty) { margin-top: 16px; }
+
+/* right: brief + what I did, next project at the bottom */
+.project-notes { text-align: left; display: grid; gap: 48px; }
+.project-notes h2 { padding-bottom: 6px; border-bottom: 1px solid var(--rule); margin-bottom: 12px; }
+
+.next-side { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.next-side:hover { text-decoration: none; }
+.next-side:hover .next__title { color: var(--ink); }
+
+.next--phone { display: none; }
+
+@media (max-width: 809px) {
+  /* Project pages on phones: the columns dissolve and the pieces are re-ordered:
+     title, category + cover, facts, intro, first image, brief / what I did,
+     the rest of the images, next project, sign-off. */
+  body[data-template="project"] .col--left,
+  body[data-template="project"] .col--mid,
+  body[data-template="project"] .col--right,
+  body[data-template="project"] .project-over { display: contents; }
+
+  body[data-template="project"] .frame > * > *,
+  body[data-template="project"] .project-over > * { margin-inline: var(--pad); }
+
+  body[data-template="project"] .col--left h1    { order: 1; margin-top: var(--top); }
+  body[data-template="project"] .project-thumb   { order: 2; width: auto; margin-top: 16px;
+                                                    display: flex; flex-direction: column-reverse; gap: var(--m-cover-gap); }
+  body[data-template="project"] .project-thumb figcaption { text-align: left; padding-top: 0; font-size: var(--size-head); }
+  body[data-template="project"] .facts           { order: 3; margin-top: var(--m-facts-gap); }
+  body[data-template="project"] .project-intro   { order: 4; position: static; margin-top: var(--m-intro-gap); }
+  body[data-template="project"] [data-render="images-first"] { order: 5; margin-top: 32px; }
+  body[data-template="project"] .project-notes   { order: 6; margin-top: 48px; }
+  body[data-template="project"] .project-images--rest { order: 7; margin-top: 48px; }
+  body[data-template="project"] .next--phone     { order: 8; display: flex; margin-top: 48px; }
+  body[data-template="project"] .sign-off        { order: 9; }
+  body[data-template="project"] .next-side       { display: none; }
+}
+
+/* project template: stay invisible until the content has loaded, so nothing flashes */
+body[data-template="project"] .frame { opacity: 0; }
+body[data-template="project"].is-ready .frame { opacity: 1; transition: opacity 0.25s ease; }
+
+.notice { color: var(--grey); }
+.notice code { color: var(--ink); font-size: 0.9em; }
+
+/* ==========================================================================
+   Desktop: side columns run almost to the bottom edge
+   ========================================================================== */
+@media (min-width: 810px) {
+  .col--side { padding-bottom: 10px; }
+}
+
+/* ---------- social icons ---------- */
+.icons a { color: var(--grey); }
+.icons a:hover { color: var(--ink); }
+.icons--stack { flex-direction: column; gap: 14px; }
+
+/* one-line discipline list: phones only */
+.disciplines-inline { display: none; }
+
+/* ==========================================================================
+   Phone-only page tweaks
+   ========================================================================== */
+@media (max-width: 809px) {
+
+  /* Home: disciplines as a single line instead of the ruled list */
+  body[data-page="home"] [data-render="disciplines"] { display: none; }
+  body[data-page="home"] .disciplines-inline { display: block; opacity: var(--m-disciplines-dim); }
+
+  /* Work: the filter list already says which category is showing */
+  body[data-page="work"]:not([data-template]) .col--mid > .section__head { display: none; }
+
+  /* Home: greeting, intro, work. The right column and the icons go. */
+  body[data-page="home"] .col--right,
+  body[data-page="home"] .icons { display: none; }
+
+  /* Info: title, then icons + photo on one row; no email, no "Also" line */
+  body[data-page="info"] .col--left {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    grid-template-areas: "title title" "icons photo";
+    gap: 20px 16px;
+  }
+  body[data-page="info"] .col--left h1 { grid-area: title; }
+  body[data-page="info"] .info-photo   { grid-area: photo; width: 100%; }
+  body[data-page="info"] .info-contact { display: contents; }
+  body[data-page="info"] .info-contact > a[href^="mailto"],
+  body[data-page="info"] .also { display: none; }
+  body[data-page="info"] .icons { grid-area: icons; align-self: end; gap: 10px; }
+  body[data-page="info"] .icons a { width: 26px; height: 26px; }
+
+  /* Work list: no index; filters become a plain list beside the title */
+  body[data-page="work"]:not([data-template]) .col--right { display: none; }
+  body[data-page="work"]:not([data-template]) .col--left {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  body[data-page="work"]:not([data-template]) [data-render="filters"] > li { border: 0; }
+  body[data-page="work"]:not([data-template]) [data-render="filters"] > li > a {
+    padding: 1px 0;
+    font-size: var(--size-small);
+  }
+  body[data-page="work"]:not([data-template]) [data-render="filters"] > li > a > span:last-child { display: none; }
+}

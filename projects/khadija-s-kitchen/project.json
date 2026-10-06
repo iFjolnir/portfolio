@@ -1,0 +1,22 @@
+{
+  "title": "Khadija's Kitchen",
+  "category": "Brand identity & packaging",
+  "discipline": ["identity", "print"],
+  "year": 2022,
+  "selected": true,
+  "client": "Кухня от Хадижы",
+  "service": "Identity, packaging, menu design",
+  "intro": "A full identity for a small family-run kitchen selling traditional Dagestani food, from the shop sign down to the dumpling boxes. <span class=\"fade\">Clean enough to grow with them, warm enough to still feel like someone's home.</span>",
+  "brief": "A popular local kitchen was expanding its menu and its line of homemade semi-finished foods, and planning a proper storefront. They needed one identity to carry the products, the shop and their social media, clean without losing the warmth of food made by hand. The packaging came with a practical constraint: it had to print cheaply, through the suppliers they already worked with.",
+  "did": [
+    "I built the logo around the idea of home. The name is stacked into a compact, slightly irregular block of letters, with a small house tucked into the Д, set inside a warm circular frame with dumplings resting at its base. Earthy browns and simple, hand-made shapes keep it approachable rather than corporate.",
+    "From there the system rolled out across everything a customer touches: exterior signage, the interior, promotional materials, staff uniforms and the food packaging. For the packaging I designed within what their existing suppliers could print affordably, so the identity had to hold up in flat, simple applications instead of leaning on expensive finishes."
+  ],
+  "coverAlt": "Hanging round shop sign with the Khadija's Kitchen logo: stacked Cyrillic lettering in brown inside a circular frame, with dumplings at its base",
+  "images": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg"
+  ]
+}
