@@ -4,70 +4,92 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Faina Iasen — Graphic designer</title>
-  <meta name="description" content="Portfolio of Faina Iasen, graphic designer based in Busan. Coming soon.">
+  <meta name="description" content="Graphic designer and design educator based in Busan.">
+  <meta property="og:title" content="Faina Iasen — Graphic designer">
+  <meta property="og:description" content="Graphic designer and design educator based in Busan.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='5' y='5' width='6' height='6' fill='%23121212'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <style>
-:root{--ink:#121212;--grey:#737373;--rule:#e3e3e3;--paper:#fff;--pad:20px;
---font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Segoe UI",system-ui,sans-serif}
-*,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--paper);color:var(--ink);font-family:var(--font);font-weight:500;font-size:16px;line-height:1.45;letter-spacing:-.03em;-webkit-font-smoothing:antialiased}
-:lang(ko){letter-spacing:-.01em}
-h1,p,ul{margin:0;padding:0}ul{list-style:none}h1{font-weight:500}
-a{color:inherit;text-decoration:none}
-a:hover{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
-:focus-visible{outline:1px solid var(--ink);outline-offset:3px}
-.bar{display:flex;justify-content:space-between;align-items:center;gap:1em;height:44px;padding:0 var(--pad);border-bottom:1px solid var(--rule);font-size:14px}
-.bar b{font-weight:600}
-.grey{color:var(--grey)}
-.time{font-variant-numeric:tabular-nums}
-main{flex:1;width:100%;max-width:760px;padding:96px var(--pad) 0}
-.display{font-size:56px;line-height:1;letter-spacing:-.05em}
-.lead{font-size:26px;line-height:1.12;letter-spacing:-.04em;max-width:30em}
-footer{display:flex;justify-content:space-between;gap:1em;padding:14px var(--pad) 18px;border-top:1px solid var(--rule);font-size:12px;color:var(--grey);margin-top:96px}
-@media (max-width:809px){:root{--pad:16px}main{padding-top:48px}.display{font-size:40px}.lead{font-size:21px}}
-
-.links{margin-top:56px;border-top:1px solid var(--rule)}
-.links li{border-bottom:1px solid var(--rule)}
-.links a{display:flex;justify-content:space-between;gap:1em;padding:6px 0 7px}
-.links a span:last-child{color:var(--grey)}
-.links a:hover{text-decoration:none}
-.links a:hover span:first-child{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
-  </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard-std/dist/web/variable/pretendardvariable-std-dynamic-subset.css">
+  <link rel="stylesheet" href="./assets/style.css">
 </head>
-<body>
+<body data-root="./" data-page="home">
   <header class="bar">
-    <b>Faina Iasen</b>
-    <span class="time grey" data-clock>Busan</span>
+    <a class="bar__name" href="./">Faina Iasen</a>
+    <nav class="bar__nav" aria-label="Main">
+      <a href="./" data-nav="home">Home</a>
+      <a href="./work/" data-nav="work">Work</a>
+      <a href="./info/" data-nav="info">Info</a>
+    </nav>
+    <div class="bar__end">
+      <p class="bar__time" data-clock>Busan</p>
+      <a class="bar__cta" href="mailto:hello@fainaiasen.com">Say hello</a>
+    </div>
   </header>
 
-  <main>
-    <h1 class="display">Under<br>construction.</h1>
-    <!-- EDIT: the grey half is inside <span class="grey"> -->
-    <p class="lead" style="margin-top:40px">A graphic designer based in Busan, building this site as we speak. <span class="grey">The full portfolio is on its way.</span></p>
+  <div class="frame">
 
-    <ul class="links">
-      <!-- EDIT: change the email if it's different, or add a line for Instagram/Behance -->
-      <li><a href="mailto:hello@fainaiasen.com"><span>Email</span><span>hello@fainaiasen.com</span></a></li>
-      <li><a href="https://apps.fainaiasen.com/"><span>Web App Collection</span><span>apps.fainaiasen.com</span></a></li>
-    </ul>
-  </main>
+    <aside class="col col--side col--left">
+      <!-- Three names as an identity stamp. Tweak them in style.css under "Greeting".
+           Stacked on desktop, one line on phones. -->
+      <h1 class="t-display hello">Hello!<br>I'm <span class="names"><span>Faye,</span> <span lang="ko">해인,</span> <span lang="ru">Фаина.</span></span></h1>
+      <!-- EDIT: your profile links (same as on the Info page). Hidden on phones. -->
+      <nav class="icons icons--stack" aria-label="Profiles">
+          <a href="https://www.linkedin.com/in/faina-iasen/" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="7.6" cy="7.7" r="1.25" fill="currentColor"/><path d="M7.6 10.6v6.8M11.4 17.4v-6.8M11.4 13.6c0-1.9 1.2-3.1 2.8-3.1s2.5 1 2.5 3v3.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+          <a href="https://www.instagram.com/faina.iasen/" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4.3" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+          </a>
+      </nav>
+      <!-- Disciplines come from projects/list.json and link to the filtered work page -->
+      <ul class="lines t-body ink" data-render="disciplines" aria-label="Disciplines"></ul>
+      <!-- phones: the same disciplines as one line -->
+      <p class="t-small disciplines-inline" data-render="disciplines-inline"></p>
+    </aside>
 
-  <footer>
-    <span>&copy; 2026 Faina Iasen</span>
-    <span>Busan, South Korea</span>
-  </footer>
+    <main class="col col--mid">
+      <!-- EDIT: your intro. The part inside <span class="fade"> is the grey half. -->
+      <p class="t-lead prose">A graphic designer and design educator, now based in Busan <span class="fade">&mdash; making identities, publications, websites and objects, and lately small web tools for learning Korean.</span></p>
 
-  <script>
-  (function () {
-    var el = document.querySelector("[data-clock]");
-    if (!el || !window.Intl) return;
-    var f = new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Seoul", hour: "numeric", minute: "2-digit", hour12: true });
-    function tick() { el.textContent = "Busan, " + f.format(new Date()).replace(/\s?([ap])\.?m\.?/i, function (_, a) { return " " + a.toLowerCase() + "m"; }); }
-    tick(); setInterval(tick, 15000);
-  })();
-  </script>
+      <section class="section" aria-labelledby="work-head">
+        <div class="section__head">
+          <h2 class="t-head" id="work-head">Selected work</h2>
+          <span class="t-meta" data-count="selected"></span>
+        </div>
+        <ul class="work-list" data-render="selected"></ul>
+        <noscript><p class="t-body">Turn on JavaScript to see the project list.</p></noscript>
+        <p class="t-small" style="margin-top:24px"><a href="./work/">See all work</a></p>
+      </section>
+
+      <footer class="sign-off">
+        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com">Say hello.</a>
+        <div class="sign-off__base t-meta">
+          <span>&copy; 2026 Faina Iasen</span>
+          <span>Busan, South Korea</span>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="col col--side col--right">
+      <div class="intro-card">
+        <div class="intro-card__top">
+          <!-- EDIT: "status--on" = green marker. Remove that class (or the whole line) when you're not taking work. -->
+          <p class="status status--on">Available for freelance</p>
+          <div class="media media--3x4 portrait">
+            <img src="./assets/img/portrait.jpg" alt="Portrait of Faina Iasen">
+          </div>
+        </div>
+        <!-- desktop only -->
+        <p class="t-small intro-card__caption">Graphic designer<br>Based in Busan<br><span class="grey">Designing since 20XX</span></p>
+      </div>
+      <div class="t-small contact">
+        <a href="mailto:hello@fainaiasen.com">hello@fainaiasen.com</a>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="./assets/site.js"></script>
 </body>
 </html>
