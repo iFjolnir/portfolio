@@ -1,0 +1,29 @@
+{
+  "title": "Tanovo",
+  "category": "Brand identity & app assets",
+  "discipline": "identity",
+  "year": 2026,
+  "selected": true,
+  "selection": "#e7cfa0",
+  "client": "Tanovo",
+  "service": "Identity, app icon, launch asset package",
+  "link": {
+    "text": "tanovo.ca",
+    "url": "https://tanovo.ca/"
+  },
+  "intro": "Brand identity for Tanovo, a Canadian platform where models, photographers and other creatives find each other, plan shoots and build their portfolios. <span class=\"fade\">A logo, a colourway, and everything a new app needs to go live.</span>",
+  "brief": "Tanovo was preparing to launch on the App Store and Google Play and needed an identity built for a home screen: instantly recognisable, and accessible at every size and on every background. The client set two firm constraints. The logo had to be built from the letter T, a dot(s), and an arch, and the brand colours, a deep navy and a warm gold, were already trademarked, so the identity had to work within an existing palette instead of creating its own.",
+  "did": [
+    "I started with a broad exploration: nine directions that each interpreted the T and the arch differently, from open geometric outlines to dense, dotted forms. Every one was shown as a real app icon on blue, light and dark backgrounds and placed in phone home-screen mockups, so the client could judge them at the size people would actually see them, not just as logos on a page.",
+    "The chosen direction reduces the T and the arch to a few bold, simple shapes and a single dot, so it stays legible even at favicon size. I built it on a consistent construction geometry, paired it with a framed wordmark set in Noto Sans for clear, neutral readability, and developed horizontal and vertical lockups. The emblem comes in a main gradient version, a light alternative and high-contrast monochrome versions, so it holds up in dark mode, light mode and anywhere colour isn't available.",
+    "The final handover was a complete asset package for development and launch: splash screens, colour and gradient system with developer tokens, vector and raster files, and dedicated app icon versions sized to the stores' requirements, plus everything needed for App Store and Google Play approval. Every artboard and folder is documented in a branding guide, so the team can find the right file without having to ask."
+  ],
+  "coverAlt": "Tanovo branding guide: the black T-and-arch emblem, framed TANOVO wordmark, lockups, colour variations, splash screens and construction geometry",
+  "images": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg"
+  ]
+}
