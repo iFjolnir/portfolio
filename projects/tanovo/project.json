@@ -1,12 +1,12 @@
 {
   "title": "Tanovo",
-  "category": "Brand identity & app assets",
-  "discipline": "identity",
+  "category": "Brand identity",
+  "discipline": ["identity", "web"],
   "year": 2026,
   "selected": true,
   "selection": "#e7cfa0",
   "client": "Tanovo",
-  "service": "Identity, app icon, launch asset package",
+  "service": "Identity, web launch assets",
   "link": {
     "text": "tanovo.ca",
     "url": "https://tanovo.ca/"
