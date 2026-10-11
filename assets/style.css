@@ -23,7 +23,17 @@
   --m-intro-gap: 100px;          /* that list → project description */
 
   /* Phones: home page */
-  --m-disciplines-dim: 0.3;       /* opacity of "Brand identity · Editorial · …" (1 = full, 0.4 = faint) */
+  --m-disciplines-dim: 1;       /* opacity of "Brand identity · Editorial · …" (1 = full, 0.4 = faint) */
+
+  /* Full-screen image viewer */
+  --viewer-margin: 12px;        /* space around the picture on desktop (0 = edge to edge) */
+  --viewer-margin-phone: 0px;   /* same, on phones */
+  --viewer-backdrop: rgba(255, 255, 255, 0.97);  /* behind the picture */
+
+  /* Text selection (when someone highlights text). Projects can override this
+     with "selection" in their project.json */
+  --selection-bg: #121212;
+  --selection-ink: #ffffff;
 
   /* ---------- end of tweakers ---------- */
 
@@ -156,6 +166,8 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 }
 
 .bar > * { padding-inline: var(--pad); }
+/* the header can't be text-selected by accident */
+.bar { -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent; }
 .bar__name { font-weight: var(--weight-strong); }
 
 .bar__nav a { color: var(--grey); font-weight: var(--weight-strong); }
@@ -347,8 +359,13 @@ body[data-page="info"] .section__head h2 { font-weight: var(--info-head-weight);
 
 .project-images { display: grid; gap: 16px; margin-top: 40px; }
 /* every image runs full width; its height follows its own proportions */
-.project-image { background: var(--panel); }
-.project-image img { width: 100%; height: auto; }
+.project-image img { width: 100%; height: auto; background: var(--panel); }
+
+/* optional text under an image (title / text / link in project.json) */
+.project-image.has-caption { margin-bottom: 40px; }
+.project-caption { padding-top: 12px; display: grid; gap: 6px; }
+.project-caption__title { font-size: var(--size-head); line-height: 1.3; font-weight: var(--weight); }
+.project-caption__link { margin-top: 2px; }
 
 .next {
   display: flex;
@@ -557,3 +574,95 @@ body[data-template="project"].is-ready .frame { opacity: 1; transition: opacity 
   }
   body[data-page="work"]:not([data-template]) [data-render="filters"] > li > a > span:last-child { display: none; }
 }
+
+/* ==========================================================================
+   Image viewer (project pages)
+   ========================================================================== */
+
+.is-zoomable { cursor: zoom-in; }
+.is-zoomable:focus,
+.viewer button:focus { outline: none; }
+html.viewer-open { overflow: hidden; }
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--viewer-backdrop);
+  opacity: 0;
+}
+.viewer.is-open { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .viewer { transition: opacity 0.2s ease; }
+}
+
+/* the picture: as big as it can be, minus the margin */
+.viewer__stage {
+  position: absolute;
+  inset: var(--viewer-margin);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.viewer__img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* the controls: a box laid exactly over the picture */
+.viewer__frame { position: fixed; pointer-events: none; }
+.viewer__ctl {
+  position: absolute;
+  pointer-events: auto;
+  color: #121212;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.55));
+}
+.viewer__ctl.on-dark {
+  color: #ffffff;
+  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.45));
+}
+
+.viewer button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+}
+.viewer button svg { width: 22px; height: 22px; }
+.viewer button:hover { opacity: 0.6; }
+
+.viewer__close { top: 2px; right: 2px; }
+.viewer__prev  { bottom: 2px; left: 2px; }
+.viewer__next  { bottom: 2px; right: 2px; }
+.viewer__meta {
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 44px;
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  max-width: calc(100% - 110px);
+  white-space: nowrap;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.viewer__title { overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 809px) {
+  .viewer__stage { inset: var(--viewer-margin-phone); }
+}
+
+/* text selection colours (set in the tweakers) */
+::selection { background: var(--selection-bg); color: var(--selection-ink); }

@@ -4,6 +4,7 @@
   "discipline": ["identity", "print"],
   "year": 2020,
   "selected": true,
+  "selection": "#c5cb73",
   "client": "Sweet Sorceress",
   "service": "Identity, packaging, illustration",
   "intro": "Identity and packaging for a small US confectioner making premium, fully handmade chocolate-covered dragée. <span class=\"fade\">A little bit of magic, built to be assembled at a kitchen table.</span>",

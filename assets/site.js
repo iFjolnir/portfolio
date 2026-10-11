@@ -44,6 +44,15 @@
     return d ? d.label : key;
   }
 
+  // black or white text, whichever reads better on a given hex colour
+  function inkFor(hex) {
+    var h = String(hex).replace("#", "");
+    if (h.length === 3) h = h.replace(/./g, "$&$&");
+    var r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+    if (isNaN(r + g + b)) return "#ffffff";
+    return (0.2126 * r + 0.7152 * g + 0.0722 * b) > 150 ? "#121212" : "#ffffff";
+  }
+
   function getJSON(url) {
     return fetch(url, { cache: "no-cache" }).then(function (r) {
       if (!r.ok) throw new Error(r.status + " — " + url);
@@ -253,6 +262,18 @@
 
     document.title = (p.title || slug) + " \u2014 Faina Iasen";
 
+    // optional per-project selection colour:
+    //   "selection": "#c08a5b"                              (text colour picked automatically)
+    //   "selection": { "bg": "#c08a5b", "ink": "#ffffff" }  (both chosen by you)
+    if (p.selection) {
+      var selBg = typeof p.selection === "string" ? p.selection : p.selection.bg;
+      var selInk = typeof p.selection === "object" ? p.selection.ink : null;
+      if (selBg) {
+        document.documentElement.style.setProperty("--selection-bg", selBg);
+        document.documentElement.style.setProperty("--selection-ink", selInk || inkFor(selBg));
+      }
+    }
+
     // text fields
     var fields = {
       title: p.title || slug,
@@ -327,6 +348,183 @@
       if (t) t.textContent = next.title || next.slug;
     });
 
+    setupViewer();
     body.classList.add("is-ready");
+  }
+
+  /* ---------- image viewer: tap an image to see it almost full screen ----------
+     Arrows / swipe to move between images, × / Esc / swipe down / browser Back to close.
+     The controls sit on top of the picture and turn black or white depending on
+     what's underneath them. */
+
+  function setupViewer() {
+    var imgs = all("[data-render='images-first'] img, [data-render='images'] img");
+    if (!imgs.length) return;
+
+    var ICON = {
+      close: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
+      prev:  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>',
+      next:  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
+    };
+
+    var box = el("div", { "class": "viewer", role: "dialog", "aria-modal": "true", "aria-label": "Image viewer", hidden: "" });
+    box.innerHTML =
+      '<div class="viewer__stage"><img class="viewer__img" alt=""></div>' +
+      '<div class="viewer__frame">' +
+        '<button class="viewer__close viewer__ctl" type="button" aria-label="Close">' + ICON.close + '</button>' +
+        '<button class="viewer__prev viewer__ctl" type="button" aria-label="Previous image">' + ICON.prev + '</button>' +
+        '<p class="viewer__meta viewer__ctl t-small"><span class="viewer__count"></span><span class="viewer__title"></span></p>' +
+        '<button class="viewer__next viewer__ctl" type="button" aria-label="Next image">' + ICON.next + '</button>' +
+      '</div>';
+    document.body.appendChild(box);
+
+    var stage = box.querySelector(".viewer__stage");
+    var frame = box.querySelector(".viewer__frame");
+    var big = box.querySelector(".viewer__img");
+    var count = box.querySelector(".viewer__count");
+    var title = box.querySelector(".viewer__title");
+    var prevBtn = box.querySelector(".viewer__prev");
+    var nextBtn = box.querySelector(".viewer__next");
+    var closeBtn = box.querySelector(".viewer__close");
+    var ctls = all(".viewer__ctl");
+    var current = -1, opener = null, pushed = false;
+
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext && canvas.getContext("2d", { willReadFrequently: true });
+
+    function captionOf(img) {
+      var fig = img.closest("figure");
+      var t = fig && fig.querySelector(".project-caption__title");
+      return t ? t.textContent : "";
+    }
+
+    // lay the controls over the picture itself, wherever it ends up on screen
+    function placeFrame() {
+      var r = big.getBoundingClientRect();
+      frame.style.left = r.left + "px";
+      frame.style.top = r.top + "px";
+      frame.style.width = r.width + "px";
+      frame.style.height = r.height + "px";
+    }
+
+    // read how light the picture is under each control: dark -> white controls
+    function setTones() {
+      ctls.forEach(function (c) { c.classList.remove("on-dark"); });
+      if (!ctx || !big.naturalWidth) return;
+      try {
+        var w = 96, h = Math.max(1, Math.round(96 * big.naturalHeight / big.naturalWidth));
+        canvas.width = w; canvas.height = h;
+        ctx.drawImage(big, 0, 0, w, h);
+        var ir = big.getBoundingClientRect();
+        ctls.forEach(function (c) {
+          if (c.style.visibility === "hidden") return;
+          var cr = c.getBoundingClientRect();
+          var x0 = Math.max(0, Math.floor((cr.left - ir.left) / ir.width * w));
+          var y0 = Math.max(0, Math.floor((cr.top - ir.top) / ir.height * h));
+          var x1 = Math.min(w, Math.ceil((cr.right - ir.left) / ir.width * w));
+          var y1 = Math.min(h, Math.ceil((cr.bottom - ir.top) / ir.height * h));
+          if (x1 <= x0 || y1 <= y0) return;
+          var d = ctx.getImageData(x0, y0, x1 - x0, y1 - y0).data, sum = 0, n = 0;
+          for (var k = 0; k < d.length; k += 4) {
+            sum += 0.2126 * d[k] + 0.7152 * d[k + 1] + 0.0722 * d[k + 2]; n++;
+          }
+          if (n && sum / n < 140) c.classList.add("on-dark");
+        });
+      } catch (e) { /* image can't be read: controls stay black, with their soft halo */ }
+    }
+
+    function refresh() { placeFrame(); setTones(); }
+    big.addEventListener("load", function () { if (current > -1) refresh(); });
+    window.addEventListener("resize", function () { if (current > -1) refresh(); });
+
+    function show(i) {
+      if (i < 0 || i >= imgs.length) return;
+      current = i;
+      big.src = imgs[i].currentSrc || imgs[i].src;
+      big.alt = imgs[i].alt || "";
+      count.textContent = (i + 1) + " / " + imgs.length;
+      var t = captionOf(imgs[i]);
+      title.textContent = t;
+      title.hidden = !t;
+      prevBtn.style.visibility = i > 0 ? "visible" : "hidden";
+      nextBtn.style.visibility = i < imgs.length - 1 ? "visible" : "hidden";
+      if (big.complete && big.naturalWidth) refresh();
+      [i - 1, i + 1].forEach(function (k) { if (imgs[k]) { var pre = new Image(); pre.src = imgs[k].src; } });
+    }
+
+    function open(i) {
+      opener = imgs[i];
+      box.hidden = false;
+      document.documentElement.classList.add("viewer-open");
+      show(i);
+      requestAnimationFrame(function () { box.classList.add("is-open"); refresh(); });
+      // so the phone's Back gesture closes the viewer instead of leaving the page
+      try { history.pushState({ viewer: true }, ""); pushed = true; } catch (e) { pushed = false; }
+      closeBtn.focus({ preventScroll: true });
+    }
+
+    function hide() {
+      box.classList.remove("is-open");
+      box.hidden = true;
+      document.documentElement.classList.remove("viewer-open");
+      current = -1;
+      if (opener) opener.focus({ preventScroll: true });
+    }
+
+    function close() {
+      if (current < 0) return;
+      if (pushed) { pushed = false; history.back(); }   // popstate below does the hiding
+      else hide();
+    }
+
+    window.addEventListener("popstate", function () {
+      if (current > -1) { pushed = false; hide(); }
+    });
+
+    imgs.forEach(function (img, i) {
+      img.classList.add("is-zoomable");
+      img.setAttribute("tabindex", "0");
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", "Enlarge image" + (img.alt ? ": " + img.alt : ""));
+      img.addEventListener("click", function () { open(i); });
+      img.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); }
+      });
+    });
+
+    closeBtn.addEventListener("click", close);
+    prevBtn.addEventListener("click", function () { show(current - 1); });
+    nextBtn.addEventListener("click", function () { show(current + 1); });
+
+    // tap the empty space around the picture to close
+    stage.addEventListener("click", function (e) { if (e.target !== big) close(); });
+
+    document.addEventListener("keydown", function (e) {
+      if (current < 0) return;
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") show(current - 1);
+      else if (e.key === "ArrowRight") show(current + 1);
+      else if (e.key === "Tab") {           // keep keyboard focus inside the viewer
+        var f = [closeBtn, prevBtn, nextBtn].filter(function (b) { return b.style.visibility !== "hidden"; });
+        var k = f.indexOf(document.activeElement);
+        e.preventDefault();
+        f[(k + (e.shiftKey ? -1 : 1) + f.length) % f.length].focus();
+      }
+    });
+
+    // swipe: left / right to move, down to close
+    var sx = 0, sy = 0, tracking = false;
+    box.addEventListener("touchstart", function (e) {
+      if (e.touches.length !== 1) { tracking = false; return; }
+      tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY;
+    }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (!tracking) return;
+      tracking = false;
+      var dx = e.changedTouches[0].clientX - sx;
+      var dy = e.changedTouches[0].clientY - sy;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
+      else if (dy > 90 && Math.abs(dy) > Math.abs(dx)) close();
+    });
   }
 })();

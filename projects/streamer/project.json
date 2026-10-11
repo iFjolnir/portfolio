@@ -4,6 +4,7 @@
   "discipline": "identity",
   "year": 2021,
   "selected": false,
+  "selection": "#7e5cb0",
   "client": "Tristan (TYAVA69)",
   "service": "Identity, merch, 3D stream scenes, emotes, subscriber badges",
   "intro": "A complete identity for a Twitch channel on its way to becoming a full-time job, from the logo to the emotes to fully 3D stream scenes. <span class=\"fade\">Retro-futurist nostalgia, built to feel sleek rather than dated.</span>",
@@ -19,7 +20,6 @@
     "02.jpg",
     "03.jpg",
     "04.jpg",
-    "05.jpg",
-    "06.jpg"
+    "05.jpg"
   ]
 }

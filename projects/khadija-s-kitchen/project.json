@@ -4,6 +4,7 @@
   "discipline": ["identity", "print"],
   "year": 2022,
   "selected": true,
+"selection": { "bg": "#a07a58", "ink": "#f4efe6" },
   "client": "Кухня от Хадижы",
   "service": "Identity, packaging, menu design",
   "intro": "A full identity for a small family-run kitchen selling traditional Dagestani food, from the shop sign down to the dumpling boxes. <span class=\"fade\">Clean enough to grow with them, warm enough to still feel like someone's home.</span>",

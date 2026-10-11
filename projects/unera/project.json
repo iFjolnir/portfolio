@@ -4,6 +4,7 @@
   "discipline": ["identity", "print"],
   "year": 2021,
   "selected": true,
+  "selection": "#cfc5d0",
   "client": "unera",
   "service": "Identity, stationery",
   "intro": "Brand identity and stationery for an educational social network start-up entering a crowded online-learning market. <span class=\"fade\">Five letters, five shapes, and a palette everyone can read.</span>",

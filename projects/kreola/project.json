@@ -4,6 +4,7 @@
   "discipline": ["identity", "print"],
   "year": 2021,
   "selected": true,
+  "selection": { "bg": "#f1e8d7", "ink": "#53271e" },
   "client": "KREOLA chocolate workshop",
   "service": "Identity, packaging, die-lines, prepress",
   "intro": "Identity and packaging for a small luxury chocolatier making handmade truffles and bars from premium chocolate, sold through chain stores. <span class=\"fade\">Twenty-plus flavours, one tile pattern holding them all together.</span>",
