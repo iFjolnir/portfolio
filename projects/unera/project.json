@@ -1,10 +1,10 @@
 {
   "title": "unera",
-  "category": "Brand identity & stationery",
+  "category": "Brand identity",
   "discipline": ["identity", "print"],
   "year": 2021,
   "selected": true,
-  "selection": "#cfc5d0",
+  "selection": "#dccfe2",
   "client": "unera",
   "service": "Identity, stationery",
   "intro": "Brand identity and stationery for an educational social network start-up entering a crowded online-learning market. <span class=\"fade\">Five letters, five shapes, and a palette everyone can read.</span>",
@@ -19,7 +19,7 @@
     "02.jpg",
     "03.jpg",
     "04.jpg",
-    "05.jpg",
-    "06.jpg"
+    "06.jpg",
+    "05.jpg"
   ]
 }

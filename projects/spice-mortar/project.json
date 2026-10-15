@@ -1,0 +1,44 @@
+{
+  "title": "Spice + Mortar",
+  "category": "Modular storage system",
+  "discipline": ["objects", "app"],
+  "year": 2020,
+  "selected": true,
+  "client": "Graduation project, BA (Hons) Product Design",
+  "service": "Product design, prototyping, packaging",
+  "intro": "A modular spice storage system, designed as my graduation project. <span class=\"fade\">Small details, big changes.</span>",
+  "brief": "Spices travel halfway around the world to reach our kitchens, then end up in storage full of small, everyday irritations. The aim was a system that removes them quietly: easy to reach and use with one hand, compact on the wall, and flexible enough to suit any kitchen and any cook.",
+  "did": [
+    "Through rounds of prototyping and user testing, the spice unit became a slim container that works with one hand and guides itself back into place. For crushing, I chose a mortar over a mill, so a single module works for every spice and keeps the cook involved in the process.",
+    "The system follows what I call limited customisation: enough choice to fit any kitchen, not so much that it overwhelms the buyer or complicates production. Set-ups are built in a four-step online configurator, and every one gets a code that can be shared or reordered."
+  ],
+  "coverAlt": "Spice + Mortar modular spice storage system",
+  "images": [
+    "01.jpg",
+    "shot.jpg",
+      {
+      "src": "folds.jpg",
+      "alt": "Five prototype versions of the spice container",
+      "text": "I have tested over 10 versions of containers and lids, and the testers chose the sliding lid unanimously, and the shaker opening closes itself as the lid opens."
+    },
+    {
+      "src": "full.jpg",
+      "alt": "Spice + Mortar packaging",
+      "title": "Packaging & branding",
+      "text": "Nothing printed, everything embossed. The gilded part of the logo shows what's inside, and every box opens the same way: push, and it slides out."
+    },
+    "spice.jpg",
+    "mortar.jpg",
+    {
+      "src": "app.jpg",
+      "alt": "Configurator interface",
+      "title": "Configurator",
+      "text": "The configurator guides the buyer through a four-step process, and generates a code for every set-up that can be shared or reordered."
+    },
+        {
+      "src": "posters.jpg",
+      "title": "Exhibition posters"
+    },
+    "07.jpg"
+  ]
+}
