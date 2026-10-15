@@ -1,0 +1,52 @@
+{
+  "title": "Web novel covers",
+  "category": "Book covers",
+  "discipline": "editorial",
+  "year": 2026,
+  "selected": true,
+  "service": "Cover design",
+  "intro": "Covers for a collection of original web novels, from a lonely lighthouse to an archaeological dig in Laos. <span class=\"fade\">Each one hints at the story without giving it away.</span>",
+  "brief": "Six very different stories, each needing a cover that sets its genre and mood at a glance, without revealing what happens inside.",
+  "did": [
+    "Every cover as its own piece, built around a single nod to the story's subject: enough to draw a reader in, never enough to spoil the plot."
+  ],
+  "coverAlt": "A selection of covers for original web novels",
+  "images": [
+    {
+      "src": "01.jpg",
+      "alt": "Cover of Ultramarine Blue",
+      "title": "Ultramarine Blue",
+      "text": "A priest in a small Irish town questions his calling, and the way out of the clergy. Ongoing since 2025."
+    },
+    {
+      "src": "02.jpg",
+      "alt": "Cover of 11 Degrees",
+      "title": "11 Degrees",
+      "text": "A mystery that unfolds when the archive of a 400-year-old estate floods just as it goes up for sale, and a paper conservator is called in to salvage it."
+    },
+    {
+      "src": "03.jpg",
+      "alt": "Cover of Raking Light",
+      "title": "Raking Light",
+      "text": "Racing the end of the season, a crew on a dig in Laos uncovers what could be ancient writing."
+    },
+    {
+      "src": "04.jpg",
+      "alt": "Cover of Magpie's Tail",
+      "title": "Magpie's Tail",
+      "text": "A spy thriller about a network smuggling documents through small bookshops."
+    },
+    {
+      "src": "05.jpg",
+      "alt": "Cover of 7 Seconds",
+      "title": "7 Seconds",
+      "text": "A short story: solitude on one of the last manned lighthouses on the Irish coast, interrupted by a shipwreck."
+    },
+    {
+      "src": "06.jpg",
+      "alt": "Cover of Unlikely Roommates",
+      "title": "Unlikely Roommates",
+      "text": "Slice of life: two people forced to share a home after a flat floods."
+    }
+  ]
+}
