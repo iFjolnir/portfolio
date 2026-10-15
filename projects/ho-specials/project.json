@@ -1,22 +1,23 @@
 {
-  "title": "Hideout monthly specials",
-  "category": "Monthly menu series",
-  "discipline": "print",
+  "title": "Monthly Specials",
+  "category": "Menus & event posters",
+  "discipline": ["print", "editorial"],
   "year": 2026,
-  "selected": true,
-  "client": "Hideout International, Busan",
-  "service": "Menu design, typography, bilingual layout, AI-assisted image editing",
-  "intro": "A new specials menu every month for an international bar in Busan. <span class=\"fade\">One visual voice, a different theme each month, in two languages.</span>",
-  "brief": "Hideout's owners create new signature cocktails every month, each time around a different theme: a flavour, a mood or a technique. Every menu needs an English and a Korean version, and each month has to feel distinct while clearly belonging to the same bar.",
+  "selected": false,
+  "client": "Hideout",
+  "service": "Menu & poster design, typography, layout",
+  "intro": "Ongoing design for an international bar in Busan: a new specials menu every month, plus posters for its events. <span class=\"fade\">One visual voice, a different theme every time.</span>",
+  "brief": "Hideout's owners create new signature cocktails every month, each around a different theme: a flavour, a mood or a technique. Alongside them, the bar runs special events of every kind. Each piece needs to feel distinct and bring its theme forward, while clearly belonging to the same bar, and the menus need both an English and a Korean version.",
   "did": [
-    "I built the series around a fixed core: the same structure, type hierarchy and way of presenting each drink, so guests always know where to look. Everything around it shifts to bring that month's theme forward.",
-    "Each menu is then laid out twice. Korean and English differ a lot in length and rhythm, so each version is rebalanced instead of just translated in place.",
-    "There's no budget for a studio shoot every month, so the drinks are photographed on a phone at the bar, then reworked in Photoshop with AI-assisted editing until they hold up as menu imagery."
+    "I treat it all as one series with a consistent structure, type hierarchy and voice, so guests recognise Hideout at a glance. Everything around that core shifts to fit the month or the event.",
+    "Each menu is laid out twice. Korean and English differ a lot in length and rhythm, so each version is rebalanced instead of just translated in place.",
+    "There's no budget for a studio shoot every time, so the drinks are photographed on a phone at the bar, then reworked in Photoshop with AI-assisted editing until they hold up as menu imagery."
   ],
-  "coverAlt": "Hideout monthly specials menus",
+  "coverAlt": "Hideout monthly specials menus and event posters",
   "images": [
     "01.jpg",
     "02.jpg",
-    "03.jpg"
+    "03.jpg",
+    "cover.jpg"
   ]
 }
