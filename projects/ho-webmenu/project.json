@@ -6,19 +6,19 @@
   "selected": true,
   "selection": { "bg": "#e6155a", "ink": "#ffffff" },
   "client": "Hideout",
-  "service": "UI/UX, front-end development<br>photography and editing ",
+  "service": "UI/UX, front-end development<br>photography and editing",
   "link": {
     "text": "Live demo",
     "url": "https://apps.fainaiasen.com/hideout-menu/"
   },
-  "intro": "A mobile web menu for an international bar in Busan that opens                                                 from a QR code at the table. <span class=\"fade\">Designed around how the bar actually runs, for the people ordering and the people pouring.</span>",
-  "brief": "Hideout is an international bar, so on any given night the guests, and the staff, might be reading in English or Korean. The goal wasn't just to put the menu on a phone. It was to improve the whole flow of ordering for both sides of the bar: easier for guests to browse and decide, clearer for staff to take orders from, and simple for the team to keep up to date without a designer every time a cocktail changes.",
+  "intro": "A mobile web menu for an international bar in Busan that opens from a QR code at the table. <span class=\"fade\">Designed around how the bar actually runs, for the people ordering and the people pouring.</span>",
+  "brief": "On any given night, Hideout's guests come from all over the globe. The goal wasn't just to put the menu on a phone, but to improve ordering for both sides of the bar: easier for guests to browse, clearer for staff to take orders from, and simple to update without a designer every time a cocktail changes.",
   "did": [
-    "I designed the full experience, from structure and interaction to the light, cream-toned visual style, and shot the photography for the drinks myself. Guests can browse in two ways, a swipeable carousel for discovering drinks visually or a compact list for when they already know what they want, and switch the whole menu between English and Korean.",
-    "The ordering flow is built around the bar's operations. Guests add drinks to an order on their own phone, and the waiter view always shows that order in English, whichever language the guest was browsing in, so staff can read it at a glance without translating.",
-    "On the build side, the menu, specials and events all live in simple data files that sit apart from the design, so the bar can update prices, swap in a seasonal special or announce an event without touching the layout. A caching layer keeps the menu loading quickly, even on a busy night."
+    "I designed the full experience, from structure and interaction to visual style, and shot the drink photography myself. Guests can discover drinks in a swipeable carousel or use a compact list when they already know what they want, and switch the whole menu between English, Korean and Spanish.",
+    "Guests build their order on their own phone, and the waiter view always shows it in English, so staff can read it at a glance on a busy night.",
+    "The menu, specials and events live in simple data files apart from the design, so the bar can change prices or announce an event without touching the layout."
   ],
-  "coverAlt": "Phone showing the Hideout bar menu: a photographed cocktail in a swipeable carousel on a light cream background",
+  "coverAlt": "Hideout web menu on a phone",
   "images": [
     "01.jpg",
     "02.jpg",

@@ -8,13 +8,13 @@
   "client": "Tristan (TYAVA69)",
   "service": "Identity, merch, 3D stream scenes<br>emotes, subscriber badges",
   "intro": "A complete identity for a Twitch channel on its way to becoming a full-time job, from the logo to the emotes to fully 3D stream scenes. <span class=\"fade\">Retro-futurist nostalgia, built to feel sleek rather than dated.</span>",
-  "brief": "Tristan wanted to level up his streaming as a step towards making it his career. He needed a unique, memorable style that reflected his love of retro-futurism and classic vintage games, while still feeling sleek and modern. It also had to be flexible enough to stretch across every kind of media, from streaming assets to merch.",
+  "brief": "Tristan wanted a style rooted in his love of retro-futurism and vintage games, flexible enough to stretch from stream assets to merch. His initials, TYA, had to be in the logo, but not too obviously.",
   "did": [
-    "The logo started from his initials, TYA, which he wanted present but not too obvious. After working through several variations, we landed on a single continuous stroke that runs through all three letters. Turned vertical, it reads almost like a hieroglyph, which gave the channel a second, more compact mark. A tight palette of near-black, white, a soft purple and a honey yellow, plus a stepped line motif taken from the logo's curve, tie everything else together.",
-    "Because the channel lives on its community, a lot of the work went into the things viewers carry around in chat. The subscriber badges tell a small story: a single honeycomb cell at one month grows into a full comb, a jar, a pot, a hive and finally bees, so loyalty is something you can watch evolve. The emotes give regulars a shared language of inside jokes, and a reason to subscribe that directly supports the streamer.",
-    "For the stream itself, I designed starting, intermission and ending scenes using 3D modelling alongside graphic design, so that switching between games and activities feels smooth instead of abrupt. A vintage CRT computer, glitching pop-up windows and synthwave wireframe landscapes carry the retro-futurist mood all the way through to the final drive into the sunset."
+    "The logo runs through all three initials in a single continuous stroke. Turned vertical, it becomes a second, compact mark, and a motif taken from its curve ties the rest of the system together.",
+    "Because the channel lives on its community, much of the work went into what viewers carry around in chat. The subscriber badges grow from a single honeycomb cell to a full hive, so loyalty is something you can watch evolve, and the emotes give regulars a shared language of inside jokes and a reason to subscribe.",
+    "The starting, intermission and ending stream scenes combine 3D modelling with graphic design, so switching between games and activities feels smooth instead of abrupt."
   ],
-  "coverAlt": "Stream scene screens",
+  "coverAlt": "TYAVA69 stream scenes",
   "images": [
     "01.jpg",
     "02.jpg",
