@@ -300,20 +300,30 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 
 .empty { color: var(--grey); padding: 24px 0; }
 
-/* ---------- greeting: Faye / 해인 / Фаина ---------- */
+/* ---------- greeting: Faye / 해인 / Фаина ----------
+   The names are the language switch. Each greeting line ("Hello!", "I'm") holds
+   all three languages in one spot and only the active one shows.
+   Behaviour (hover preview, the arrival moment) is in index.html, under the greeting. */
 
 .hello {
-  --names-dim: 0.2;            /* opacity of 해인 and Фаина */
+  --names-dim: 0.2;            /* opacity of the names not in use */
+  --hello-phone-size: min(var(--size-display), 9.4vw); /* phones: small enough for one line */
+
+  /* the name 해인 */
   --hello-ko-weight: 600;      /* Pretendard's Hangul reads lighter at the same weight */
   --hello-ko-scale: 1;         /* 1 = same size as the Latin; try 0.96 or 1.04 */
   --hello-ko-tracking: -0.02em;
   --hello-ko-shift: 0em;       /* nudge 해인 up (negative) or down (positive) */
-  --hello-phone-size: min(var(--size-display), 9.4vw); /* phones: small enough for one line */
+
+  /* the Korean greeting words: 안녕하세요! / 저는 / 입니다. */
+  --hello-ko-say-weight: 650;       /* thickness: 400 regular, 500 medium, 600 semibold, 700 bold */
+  --hello-ko-say-scale: 0.95;       /* size: 1 = same as the English; try 0.9 or 0.94 */
+  --hello-ko-say-tracking: -0.02em; /* letter spacing */
+  --hello-ko-say-shift: 0em;        /* nudge up (negative) or down (positive) */
 }
 
 /* the stack sits on the "I'm" line: an inline grid's baseline is its first row */
 .hello .names { display: inline-grid; justify-items: start; }
-.hello .names > :not(:first-child) { opacity: var(--names-dim); }
 
 .hello [lang="ko"] {
   font-weight: var(--hello-ko-weight);
@@ -322,11 +332,65 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
   position: relative;
   top: var(--hello-ko-shift);
 }
+.hello .say > [lang="ko"],
+.hello .names > .names__end {
+  font-weight: var(--hello-ko-say-weight);
+  font-size: calc(1em * var(--hello-ko-say-scale));
+  letter-spacing: var(--hello-ko-say-tracking);
+  top: var(--hello-ko-say-shift);
+}
+
+/* the greeting lines: three languages stacked in one spot */
+.say { display: inline-grid; }
+.say--end { justify-items: end; }   /* "I'm" / 저는 / Я sit right up against the name */
+.say > * {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(0.18em);
+  pointer-events: none;
+}
+.say > .is-on { opacity: 1; transform: none; }
+
+/* the names are buttons */
+.hello .names > button {
+  font: inherit; color: inherit; letter-spacing: inherit; line-height: inherit;
+  background: none; border: 0; padding: 0; margin: 0;
+  text-align: left; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+/* (the reset above would wipe 해인's own tweakers: put them back) */
+.hello .names > button[lang="ko"] {
+  font-weight: var(--hello-ko-weight);
+  font-size: calc(1em * var(--hello-ko-scale));
+  letter-spacing: var(--hello-ko-tracking);
+}
+.hello .names > button:not(.is-on) { opacity: var(--names-dim); }
+.hello .names > button:focus:not(:focus-visible) { outline: none; }
+
+/* Korean only: "입니다." on its own line under Фаина (which drops its full stop).
+   The line always keeps its space, so switching language never moves anything. */
+.hello .names > .names__end { opacity: 0; transform: translateY(0.18em); pointer-events: none; }
+.hello[data-showing="ko"] .names > .names__end { opacity: 1; transform: none; }
+.hello[data-showing="ko"] .names__dot { display: none; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hello.is-live .say > *,
+  .hello.is-live .names > button,
+  .hello.is-live .names > .names__end { transition: opacity 0.4s ease, transform 0.4s ease; }
+}
+
+/* The greeting moment: on arrival, only the header and the left column show while
+   the names cycle; the middle and right columns fade in afterwards. */
+html.is-greeting .col--mid,
+html.is-greeting .col--right { opacity: 0; }
+body[data-page="home"] .col--mid,
+body[data-page="home"] .col--right,
+body[data-page="home"] .col--left > * { transition: opacity 0.7s ease; }
 
 /* home: hold the discipline list's space while it loads, so the icons above it
-   don't jump. 6 = how many disciplines are in projects/list.json */
+   don't jump. 5 = how many disciplines are in projects/list.json */
 body[data-page="home"] [data-render="disciplines"]:empty {
-  --disciplines: 6;
+  --disciplines: 5;
   min-height: calc(var(--disciplines) * (1.45em + 12px) - 1px);
 }
 
@@ -509,6 +573,9 @@ body[data-page="info"] .section__head h2 { font-weight: var(--info-head-weight);
   /* home greeting: "I'm Faye, 해인, Фаина." on one line */
   .hello { font-size: var(--hello-phone-size); white-space: nowrap; }
   .hello .names { display: inline; }
+  .hello .names > .names__end { display: block; text-align: right; }   /* 입니다. on its own line */
+  /* greeting moment: everything under the greeting waits */
+  html.is-greeting .col--left > :not(.hello) { opacity: 0; }
 
   /* home right column: photo on the right edge, status under it, caption dropped */
   .intro-card__top { flex-direction: column; align-items: flex-end; gap: 12px; }

@@ -34,9 +34,110 @@
   <div class="frame">
 
     <aside class="col col--side col--left">
-      <!-- Three names as an identity stamp. Tweak them in style.css under "Greeting".
-           Stacked on desktop, one line on phones. -->
-      <h1 class="t-display hello">Hello!<br>I'm <span class="names"><span>Faye,</span> <span lang="ko">해인,</span> <span lang="ru">Фаина.</span></span></h1>
+      <!-- Three names as an identity stamp, and the language switch. Tweak the look
+           in style.css under "Greeting". Stacked on desktop, one line on phones.
+           Each "say" line holds all three languages in one spot; only the active one shows. -->
+      <h1 class="t-display hello" data-greeting>
+        <span class="visually-hidden">Hello! I'm</span>
+        <span class="say" aria-hidden="true"><span lang="en">Hello!</span><span lang="ko">안녕하세요!</span><span lang="ru">Привет!</span></span><br>
+        <span class="say say--end" aria-hidden="true"><span lang="en">I'm</span><span lang="ko">저는</span><span lang="ru">Я</span></span>
+        <span class="names" role="group" aria-label="Language"><button type="button" data-lang="en" lang="en" aria-label="Faye: English">Faye,</button> <button type="button" data-lang="ko" lang="ko" aria-label="해인: 한국어">해인,</button> <button type="button" data-lang="ru" lang="ru" aria-label="Фаина: Русский">Фаина<span class="names__dot">.</span></button><span class="names__end" lang="ko" aria-hidden="true">입니다.</span></span>
+      </h1>
+      <script>
+      /* The greeting: hover a name to preview that language, click to choose it.
+         Sits right after the greeting so the right language (and the hidden middle /
+         right columns) are set before the page is first drawn. */
+      (function () {
+        var KEY = "fi-lang";
+        var LANGS = ["en", "ko", "ru"];
+        var h1 = document.querySelector("[data-greeting]");
+        var buttons = Array.prototype.slice.call(h1.querySelectorAll(".names button"));
+        var variants = Array.prototype.slice.call(h1.querySelectorAll(".say > [lang]"));
+
+        function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+        function write(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+        // first visit: the visitor's own browser language, if it's one of the three
+        function detect() {
+          var list = navigator.languages || [navigator.language || "en"];
+          for (var i = 0; i < list.length; i++) {
+            var l = String(list[i]).slice(0, 2).toLowerCase();
+            if (LANGS.indexOf(l) > -1) return l;
+          }
+          return "en";
+        }
+
+        var chosen = LANGS.indexOf(read(KEY)) > -1 ? read(KEY) : detect();
+
+        // what's showing (the chosen language, or the one being previewed)
+        function show(lang) {
+          h1.setAttribute("data-showing", lang);
+          variants.forEach(function (v) { v.classList.toggle("is-on", v.lang === lang); });
+          buttons.forEach(function (b) {
+            b.classList.toggle("is-on", b.getAttribute("data-lang") === lang);
+            b.setAttribute("aria-pressed", b.getAttribute("data-lang") === chosen ? "true" : "false");
+          });
+        }
+        show(chosen);
+        h1.classList.add("is-live");   // transitions only after the first position is set
+
+        var intro = null;
+        function stopIntro() { if (intro) { clearTimeout(intro); intro = null; } }
+
+        buttons.forEach(function (b) {
+          var lang = b.getAttribute("data-lang");
+          // mouse: preview while hovering (touch goes straight to click)
+          b.addEventListener("pointerenter", function (e) { if (e.pointerType === "mouse") { stopIntro(); show(lang); } });
+          b.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") show(chosen); });
+          b.addEventListener("focus", function () { stopIntro(); show(lang); });
+          b.addEventListener("blur", function () { show(chosen); });
+          b.addEventListener("click", function () {
+            stopIntro();
+            chosen = lang;
+            write(KEY, lang);
+            document.documentElement.setAttribute("data-lang", lang);
+            show(lang);
+          });
+        });
+
+        /* The greeting moment: whenever someone ARRIVES (new visit, refresh, typed
+           address), the names roll once through the other two languages and land;
+           then the rest of the page fades in. Coming back to Home from another page
+           of the site skips it (the reel switch already plays there).
+           Any click, key, scroll or hover ends it early. */
+        var FIRST = 700;     // ms before the first change
+        var STEP = 900;      // ms each language stays
+        var SETTLE = 450;    // ms after landing, before the page fades in
+
+        var root = document.documentElement;
+        var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+        var fromSite = false;
+        try { fromSite = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (e) {}
+        var arriving = !(nav && nav.type !== "reload" && fromSite);
+        var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        function reveal() {
+          stopIntro();
+          root.classList.remove("is-greeting");
+          ["wheel", "touchstart", "keydown", "pointerdown"].forEach(function (t) { window.removeEventListener(t, reveal, true); });
+        }
+
+        if (arriving && !calm) {
+          root.classList.add("is-greeting");
+          var steps = LANGS.filter(function (l) { return l !== chosen; }).concat(chosen);
+          var n = 0;
+          var next = function () {
+            show(steps[n]);
+            n += 1;
+            intro = setTimeout(n < steps.length ? next : reveal, n < steps.length ? STEP : SETTLE);
+          };
+          intro = setTimeout(next, FIRST);
+          ["wheel", "touchstart", "keydown", "pointerdown"].forEach(function (t) { window.addEventListener(t, reveal, true); });
+          buttons.forEach(function (b) { b.addEventListener("pointerenter", reveal); });
+          setTimeout(reveal, FIRST + 3 * STEP + SETTLE + 1500);   // safety net: never stay hidden
+        }
+      })();
+      </script>
       <!-- EDIT: your profile links (same as on the Info page). Hidden on phones. -->
       <nav class="icons icons--stack" aria-label="Profiles">
           <a href="https://www.linkedin.com/in/faina-iasen/" aria-label="LinkedIn" target="_blank" rel="noopener">

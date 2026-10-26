@@ -165,7 +165,21 @@
         img.onload = function () { rememberRatio(p, img); };
         img.src = coverUrl(p);
       });
+      preloadAppShots();
     });
+  }
+
+  // the Apps page's previews too. Their list lives on the Apps page itself, so read
+  // it from there (same naming rule as that page: data-shot, or the address's last part)
+  function preloadAppShots() {
+    if (page === "apps" || !window.DOMParser) return;
+    fetch(ROOT + "apps/").then(function (r) { return r.ok ? r.text() : ""; }).then(function (html) {
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      Array.prototype.forEach.call(doc.querySelectorAll("[data-apps] > li > a"), function (a) {
+        var slug = new URL(a.getAttribute("href"), location.href).pathname.replace(/^\/|\/$/g, "");
+        new Image().src = ROOT + "apps/shots/" + (a.getAttribute("data-shot") || slug) + ".jpg";
+      });
+    }).catch(function () { /* not essential */ });
   }
 
   /* ---------- project card ---------- */
@@ -216,10 +230,11 @@
       });
     });
 
+    // phones' one-line version uses the optional "short" name from list.json
     all("[data-render='disciplines-inline']").forEach(function (box) {
       DISCIPLINES.forEach(function (d, n) {
         if (n) box.appendChild(document.createTextNode(" \u00b7 "));
-        box.appendChild(el("a", { href: ROOT + "work/?f=" + d.key, text: d.label }));
+        box.appendChild(el("a", { href: ROOT + "work/?f=" + d.key, text: d.short || d.label }));
       });
     });
 

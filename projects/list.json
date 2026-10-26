@@ -2,7 +2,8 @@
   "disciplines": [
     {
       "key": "identity",
-      "label": "Brand identity"
+      "label": "Brand identity",
+      "short": "Identity"
     },
     {
       "key": "editorial",
@@ -14,11 +15,8 @@
     },
     {
       "key": "web",
-      "label": "Web design"
-    },
-    {
-      "key": "app",
-      "label": "App design"
+      "label": "Web design",
+      "short": "Web"
     },
     {
       "key": "objects",

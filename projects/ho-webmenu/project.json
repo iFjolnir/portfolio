@@ -1,7 +1,7 @@
 {
   "title": "Hideout Web",
   "category": "Digital menu & ordering",
-  "discipline": ["web", "app"],
+  "discipline": "web",
   "year": 2026,
   "selected": true,
   "selection": { "bg": "#e6155a", "ink": "#ffffff" },
