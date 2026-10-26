@@ -1,0 +1,33 @@
+{
+  "title": "Vocab Drill",
+  "category": "Language-learning web app",
+  "discipline": [
+    "app",
+    "web",
+    "objects"
+  ],
+  "year": 2026,
+  "selected": true,
+  "selection": "#4f8383",
+  "client": "Personal project",
+  "service": "UX/UI design, front-end development",
+  "link": {
+    "text": "Live (and free) here",
+    "url": "https://vd.fainaiasen.com"
+  },
+  "intro": "A vocabulary drill app for learning languages, terms, or whatever you choose. Built for my own study and now used by friends too. <span class=\"fade\">Made by a learner, for learners.</span>",
+  "brief": "Intensive language study means thousands of new words, spread across textbooks, classes and notes. Existing apps never matched the way I actually study, so I designed my own: one place to keep every set, practise in different ways, and review at the right time.",
+  "did": [
+    "Words live in separate libraries, with several drill modes and spaced repetition, so each word comes back right before it's forgotten. Lists can be imported and exported, and everything runs in the browser, with no account or server.",
+    "Once friends started using it, it stopped being only mine. I removed the personal copy and added support for more than one interface language, so it works for whoever opens it.",
+    "It's one of a growing set of small tools I design and host at <a href=\"https://apps.fainaiasen.com/\">apps.fainaiasen.com</a>."
+  ],
+  "coverAlt": "Vocab Drill app",
+  "images": [
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg"
+  ]
+}
