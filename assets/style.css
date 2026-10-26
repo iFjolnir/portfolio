@@ -95,6 +95,9 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: calc(var(--bar) + 16px);
+  /* always keep room for the scrollbar, so the columns don't shift sideways
+     when a page grows long enough to scroll (e.g. once projects load) */
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -302,6 +305,13 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
   letter-spacing: var(--hello-ko-tracking);
   position: relative;
   top: var(--hello-ko-shift);
+}
+
+/* home: hold the discipline list's space while it loads, so the icons above it
+   don't jump. 6 = how many disciplines are in projects/list.json */
+body[data-page="home"] [data-render="disciplines"]:empty {
+  --disciplines: 6;
+  min-height: calc(var(--disciplines) * (1.45em + 12px) - 1px);
 }
 
 /* ---------- home portrait ---------- */

@@ -92,42 +92,93 @@
     if (a.getAttribute("data-nav") === page) a.setAttribute("aria-current", "page");
   });
 
-  /* ---------- load the projects (only on pages that show them) ---------- */
+  /* ---------- load the projects ----------
+     The browser keeps a copy of all project data (and each cover's shape), so
+     after the first page every page draws its lists straight away. A fresh copy
+     is still fetched every time; if anything changed, the lists are redrawn. */
 
   var isTemplate = body.getAttribute("data-template") === "project";
   var needsData = isTemplate || document.querySelector("[data-render], [data-count]");
-  if (!needsData) return;
+
+  var STORE = "fi-projects-v1";
+  var RATIO_STORE = "fi-cover-ratios-v1";
+  function readStore(key) { try { return JSON.parse(localStorage.getItem(key)); } catch (e) { return null; } }
+  function writeStore(key, v) { try { localStorage.setItem(key, JSON.stringify(v)); } catch (e) { /* private mode: no copy kept */ } }
+
+  var RATIOS = readStore(RATIO_STORE) || {};   // slug -> cover width / height
+  function rememberRatio(p, img) {
+    if (!img.naturalWidth || !img.naturalHeight) return;
+    var r = +(img.naturalWidth / img.naturalHeight).toFixed(4);
+    if (RATIOS[p.slug] === r) return;
+    RATIOS[p.slug] = r;
+    writeStore(RATIO_STORE, RATIOS);
+  }
+
+  function useData(data) {
+    DISCIPLINES = data.disciplines;
+    PROJECTS = data.projects;
+    renderLists();
+    if (isTemplate) renderProject();
+  }
+
+  var saved = readStore(STORE);
+  var shown = null;   // the data currently on screen, as text
+  if (needsData && saved && saved.projects) {
+    useData(saved);
+    shown = JSON.stringify(saved);
+  }
 
   getJSON(DATA + "list.json")
     .then(function (list) {
-      DISCIPLINES = list.disciplines || [];
       var slugs = list.projects || [];
       return Promise.all(slugs.map(function (slug) {
         return getJSON(DATA + slug + "/project.json")
           .then(function (p) { p.slug = slug; return p; })
           .catch(function (e) { console.error(e.message); return null; }); // one broken project doesn't break the site
-      }));
+      })).then(function (items) {
+        return { disciplines: list.disciplines || [], projects: items.filter(Boolean) };
+      });
     })
-    .then(function (items) {
-      PROJECTS = items.filter(Boolean);
-      renderLists();
-      if (isTemplate) renderProject();
+    .then(function (data) {
+      var fresh = JSON.stringify(data);
+      writeStore(STORE, data);
+      if (fresh !== shown && needsData) {
+        // the project page is filled in once; if its data changed, start over with the new copy
+        if (shown && isTemplate) { location.reload(); return; }
+        useData(data);
+      }
+      DISCIPLINES = data.disciplines;
+      PROJECTS = data.projects;
+      preloadCovers();
     })
     .catch(function (e) {
       console.error(e.message);
-      if (isTemplate) showNotice("Couldn\u2019t load the project list. " + e.message);
+      if (isTemplate && !shown) showNotice("Couldn\u2019t load the project list. " + e.message);
     });
+
+  // fetch every cover in the background, so they're ready on whichever page comes next
+  function preloadCovers() {
+    var later = window.requestIdleCallback || function (fn) { setTimeout(fn, 200); };
+    later(function () {
+      PROJECTS.forEach(function (p) {
+        var img = new Image();
+        img.onload = function () { rememberRatio(p, img); };
+        img.src = coverUrl(p);
+      });
+    });
+  }
 
   /* ---------- project card ---------- */
 
   function card(p, opts) {
     var img = el("img", {
       src: coverUrl(p),
-      alt: p.coverAlt || p.title || "",
-      loading: "lazy",
-      decoding: "async"
+      alt: p.coverAlt || p.title || ""
     });
+    img.addEventListener("load", function () { rememberRatio(p, img); });
     var media = el("div", { "class": "media" + (opts && opts.crop ? " media--4x3" : "") }, [img]);
+    // uncropped covers: hold the picture's shape before it arrives
+    if (!(opts && opts.crop) && RATIOS[p.slug]) media.style.aspectRatio = RATIOS[p.slug];
     var caption = el("div", { "class": "card__caption" }, [
       el("span", null, [
         el("span", { "class": "card__title", text: p.title || p.slug }),
@@ -141,6 +192,10 @@
   /* ---------- lists: home, work page, index ---------- */
 
   function renderLists() {
+    // may run twice (saved copy, then fresh copy), so start from empty boxes
+    all("[data-render='selected'], [data-render='disciplines'], [data-render='disciplines-inline'], " +
+        "[data-render='filters'], [data-render='index']").forEach(function (box) { box.innerHTML = ""; });
+
     all("[data-render='selected']").forEach(function (box) {
       PROJECTS.filter(function (p) { return p.selected; })
         .forEach(function (p) { box.appendChild(el("li", null, [card(p)])); });
