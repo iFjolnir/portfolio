@@ -186,6 +186,15 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 .bar__nav a:not(:last-child)::after { content: ","; color: var(--grey); }
 .bar__nav a + a { margin-left: 0.25em; }
 
+/* "Apps" (opens apps.fainaiasen.com in a new tab): at the far end of the
+   nav on desktop, simply after "Info," on phones */
+.bar__nav { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; }
+@media (max-width: 809px) {
+  .bar__nav { display: block; }
+  .bar__pages a:last-child::after { content: ","; color: var(--grey); }
+  .bar__apps { margin-left: 0.25em; }
+}
+
 .bar__end { display: flex; justify-content: space-between; gap: 1em; }
 .bar__time { color: var(--grey); font-variant-numeric: tabular-nums; }
 .bar__cta { font-weight: var(--weight-strong); }
