@@ -35,6 +35,14 @@
   --selection-bg: #121212;
   --selection-ink: #ffffff;
 
+  /* Page switches: each column slides like a slot-machine reel (phones: the page swipes sideways).
+     Fade only instead: --slide-distance: 0; --slide-fade: 0; */
+  --slide-time: 0.55s;      /* how long one reel takes */
+  --slide-stagger: 0.07s;       /* delay between left, middle and right reels */
+  --slide-ease: cubic-bezier(0.65, 0, 0.25, 1);
+  --slide-distance: 1;          /* how far a reel travels (1 = a full column, 0.3 = a nudge) */
+  --slide-fade: 1;              /* opacity at the far end of the slide (1 = no fade) */
+
   /* ---------- end of tweakers ---------- */
 
   /* colour */
@@ -673,6 +681,86 @@ html.viewer-open { overflow: hidden; }
 @media (max-width: 809px) {
   .viewer__stage { inset: var(--viewer-margin-phone); }
 }
+
+/* ==========================================================================
+   Page switches: slot-machine reels
+   The browser snapshots the old page and slides it out as the new one slides
+   in. Each side column is its own reel; the rest of the screen (the middle) is
+   the third. Home -> Work -> Info spins down, the other way spins up.
+   Browsers without this feature (or with reduced motion on) just switch pages.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+}
+
+/* the header never moves */
+.bar { view-transition-name: bar; }
+::view-transition-group(bar),
+::view-transition-old(bar),
+::view-transition-new(bar) { animation: none; }
+
+/* desktop: the side columns are separate reels (phones: the page is one reel) */
+@media (min-width: 810px) {
+  .col--left  { view-transition-name: reel-left; }
+  .col--right { view-transition-name: reel-right; }
+}
+/* each reel only shows inside its own window */
+::view-transition-group(reel-left),
+::view-transition-group(reel-right) { overflow: clip; }
+
+:root[data-slide]::view-transition-old(root),
+:root[data-slide]::view-transition-new(root),
+:root[data-slide]::view-transition-old(reel-left),
+:root[data-slide]::view-transition-new(reel-left),
+:root[data-slide]::view-transition-old(reel-right),
+:root[data-slide]::view-transition-new(reel-right) {
+  animation-duration: var(--slide-time);
+  animation-timing-function: var(--slide-ease);
+  animation-fill-mode: both;
+  mix-blend-mode: normal;
+  --reel: 100%;   /* the height of one reel window */
+}
+/* the middle reel is the whole screen: crop off the strip behind the header,
+   so old and new meet edge to edge */
+:root[data-slide]::view-transition-old(root),
+:root[data-slide]::view-transition-new(root) {
+  clip-path: inset(var(--bar) 0 0 0);
+  --reel: calc(100% - var(--bar));
+}
+/* left reel first, then the middle, then the right */
+:root[data-slide]::view-transition-old(root),
+:root[data-slide]::view-transition-new(root) { animation-delay: var(--slide-stagger); }
+:root[data-slide]::view-transition-old(reel-right),
+:root[data-slide]::view-transition-new(reel-right) { animation-delay: calc(2 * var(--slide-stagger)); }
+
+:root[data-slide="down"]::view-transition-old(*) { animation-name: reel-out-down; }
+:root[data-slide="down"]::view-transition-new(*) { animation-name: reel-in-down; }
+:root[data-slide="up"]::view-transition-old(*)   { animation-name: reel-out-up; }
+:root[data-slide="up"]::view-transition-new(*)   { animation-name: reel-in-up; }
+/* ...except the header */
+:root[data-slide]::view-transition-old(bar),
+:root[data-slide]::view-transition-new(bar) { animation: none; }
+
+@keyframes reel-out-down { to   { transform: translateY(calc(var(--reel) * var(--slide-distance))); opacity: var(--slide-fade); } }
+@keyframes reel-in-down  { from { transform: translateY(calc(var(--reel) * var(--slide-distance) * -1)); opacity: var(--slide-fade); } }
+@keyframes reel-out-up   { to   { transform: translateY(calc(var(--reel) * var(--slide-distance) * -1)); opacity: var(--slide-fade); } }
+@keyframes reel-in-up    { from { transform: translateY(calc(var(--reel) * var(--slide-distance))); opacity: var(--slide-fade); } }
+
+/* phones: no columns, so the whole page swipes sideways instead.
+   Home -> Work -> Info: the new page comes in from the right; back: from the left */
+@media (max-width: 809px) {
+  :root[data-slide]::view-transition-old(root),
+  :root[data-slide]::view-transition-new(root) { animation-delay: 0s; --reel: 100%; }
+  :root[data-slide="down"]::view-transition-old(root) { animation-name: swipe-out-left; }
+  :root[data-slide="down"]::view-transition-new(root) { animation-name: swipe-in-left; }
+  :root[data-slide="up"]::view-transition-old(root)   { animation-name: swipe-out-right; }
+  :root[data-slide="up"]::view-transition-new(root)   { animation-name: swipe-in-right; }
+}
+@keyframes swipe-out-left  { to   { transform: translateX(calc(var(--reel) * var(--slide-distance) * -1)); opacity: var(--slide-fade); } }
+@keyframes swipe-in-left   { from { transform: translateX(calc(var(--reel) * var(--slide-distance))); opacity: var(--slide-fade); } }
+@keyframes swipe-out-right { to   { transform: translateX(calc(var(--reel) * var(--slide-distance))); opacity: var(--slide-fade); } }
+@keyframes swipe-in-right  { from { transform: translateX(calc(var(--reel) * var(--slide-distance) * -1)); opacity: var(--slide-fade); } }
 
 /* text selection colours (set in the tweakers) */
 ::selection { background: var(--selection-bg); color: var(--selection-ink); }
