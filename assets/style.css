@@ -829,10 +829,11 @@ html.viewer-open { overflow: hidden; }
 @keyframes swipe-out-right { to   { transform: translateX(calc(var(--reel) * var(--slide-distance))); opacity: var(--slide-fade); } }
 @keyframes swipe-in-right  { from { transform: translateX(calc(var(--reel) * var(--slide-distance) * -1)); opacity: var(--slide-fade); } }
 
-/* Home and the Work list: nothing to copy, so no accidental highlighting.
-   (Info and project pages stay selectable.) */
+/* Home, the Work list and Info's side columns: nothing to copy, so no accidental
+   highlighting. (Info's middle column and project pages stay selectable.) */
 body[data-page="home"],
-body[data-page="work"]:not([data-template]) { -webkit-user-select: none; user-select: none; }
+body[data-page="work"]:not([data-template]),
+body[data-page="info"] .col--side { -webkit-user-select: none; user-select: none; }
 
 /* text selection colours (set in the tweakers) */
 ::selection { background: var(--selection-bg); color: var(--selection-ink); }
