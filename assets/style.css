@@ -37,7 +37,7 @@
 
   /* Page switches: each column slides like a slot-machine reel (phones: the page swipes sideways).
      Fade only instead: --slide-distance: 0; --slide-fade: 0; */
-  --slide-time: 0.55s;      /* how long one reel takes */
+  --slide-time: 0.55s;    /* how long one reel takes */
   --slide-stagger: 0.07s;       /* delay between left, middle and right reels */
   --slide-ease: cubic-bezier(0.65, 0, 0.25, 1);
   --slide-distance: 1;          /* how far a reel travels (1 = a full column, 0.3 = a nudge) */
@@ -186,8 +186,7 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 .bar__nav a:not(:last-child)::after { content: ","; color: var(--grey); }
 .bar__nav a + a { margin-left: 0.25em; }
 
-/* "Apps" (opens apps.fainaiasen.com in a new tab): at the far end of the
-   nav on desktop, simply after "Info," on phones */
+/* "Apps": at the far end of the nav on desktop, simply after "Info," on phones */
 .bar__nav { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; }
 @media (max-width: 809px) {
   .bar__nav { display: block; }
@@ -329,6 +328,51 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 body[data-page="home"] [data-render="disciplines"]:empty {
   --disciplines: 6;
   min-height: calc(var(--disciplines) * (1.45em + 12px) - 1px);
+}
+
+/* ---------- apps page: one row per app ---------- */
+
+/* text takes 2/3, the preview 1/3 and sits on the row's bottom hairline;
+   previews alternate right / left */
+.apps { margin-top: 120px; border-top: 1px solid var(--rule); }
+.apps > li { border-bottom: 1px solid var(--rule); }
+.apps a {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "name" "note";
+  column-gap: 20px;
+  padding-top: 14px;
+}
+.apps a.has-shot {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "name shot" "note shot";
+}
+.apps > li:nth-child(even) a.has-shot {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-areas: "shot name" "shot note";
+}
+.apps a:hover { text-decoration: none; }
+.apps a:hover .apps__name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.apps__name { grid-area: name; font-size: var(--size-head); line-height: 1.3; padding-right: 5.5em; }
+.apps__path { grid-area: name; justify-self: end; color: var(--grey); font-size: var(--size-small); line-height: 1.65; }
+.apps__note {
+  grid-area: note;
+  color: var(--grey);
+  font-size: var(--size-small);
+  font-weight: var(--weight-body);
+  margin-top: 2px;
+  padding-bottom: 16px;
+}
+.apps__shot {
+  grid-area: shot;
+  align-self: end;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: contain;
+  object-position: center bottom;
+  margin-top: 8px;
 }
 
 /* ---------- home portrait ---------- */
@@ -595,6 +639,11 @@ body[data-template="project"].is-ready .frame { opacity: 1; transition: opacity 
   body[data-page="info"] .also { display: none; }
   body[data-page="info"] .icons { grid-area: icons; align-self: end; gap: 10px; }
   body[data-page="info"] .icons a { width: 26px; height: 26px; }
+
+  /* Apps: no index; rows a little tighter */
+  body[data-page="apps"] .col--right { display: none; }
+  .apps { margin-top: 80px; }
+  .apps a { column-gap: 14px; }
 
   /* Work list: no index; filters become a plain list beside the title */
   body[data-page="work"]:not([data-template]) .col--right { display: none; }

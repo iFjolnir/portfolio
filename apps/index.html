@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Apps — Faina Iasen</title>
+  <meta name="description" content="Small web tools by Faina Iasen.">
+  <meta property="og:title" content="Apps — Faina Iasen">
+  <meta property="og:description" content="Small web tools by Faina Iasen.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='5' y='5' width='6' height='6' fill='%23121212'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard-std/dist/web/variable/pretendardvariable-std-dynamic-subset.css">
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/transitions.js"></script>
+</head>
+<body data-root="../" data-page="apps">
+  <header class="bar">
+    <a class="bar__name" href="../">Faina Iasen</a>
+    <nav class="bar__nav" aria-label="Main">
+      <span class="bar__pages">
+        <a href="../" data-nav="home">Home</a>
+        <a href="../work/" data-nav="work">Work</a>
+        <a href="../info/" data-nav="info">Info</a>
+      </span>
+      <a class="bar__apps" href="../apps/" data-nav="apps">Apps</a>
+    </nav>
+    <div class="bar__end">
+      <p class="bar__time" data-clock>Busan</p>
+      <a class="bar__cta" href="mailto:hello@fainaiasen.com">Say hello</a>
+    </div>
+  </header>
+
+  <div class="frame">
+
+    <aside class="col col--side col--left">
+      <h1 class="t-display">Apps.</h1>
+      <p class="t-meta">Each one opens in a new tab.</p>
+    </aside>
+
+    <main class="col col--mid">
+      <p class="t-lead prose">Small, single-purpose tools built to solve problems from my own daily life. <span class="fade">Each one runs in your browser and saves your progress on your own device.</span></p>
+
+      <!--
+        TO ADD AN APP: copy one <li> ... </li> block and change:
+          href  = the app's full address, with a slash at the end
+          name  = the title people see
+          note  = a short description (or delete that line)
+
+        FILLED IN AUTOMATICALLY: the address label (/topik, or vd.fainaiasen.com for
+        an app on its own domain), the preview, the index on the right, and "new tab".
+
+        PREVIEWS: apps/shots/<last part of the address>.jpg, 3:4
+          https://apps.fainaiasen.com/topik/  ->  shots/topik.jpg
+        Different file name? Add data-shot:  <a href="https://vd.fainaiasen.com/" data-shot="vocab">
+        Previews alternate right / left. No preview file: the text uses the full width.
+      -->
+      <ul class="apps" data-apps>
+        <li>
+          <a href="https://vd.fainaiasen.com/" data-shot="vocab">
+            <span class="apps__name">Vocab Drill</span>
+            <span class="apps__note">Custom vocabulary decks for any purpose, practised across several drill modes with spaced repetition. A multi-library system keeps decks for class, exams and personal interests separate but close at hand, and import/export makes them easy to share.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://apps.fainaiasen.com/topik/">
+            <span class="apps__name" lang="ko">TOPIK 채점</span>
+            <span class="apps__note">A self-grading companion for TOPIK past papers. Enter your answers, check them against the key, and see your score, without flipping pages and squinting at the answer table.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://apps.fainaiasen.com/wongoji/">
+            <span class="apps__name">Wongoji Sim</span>
+            <span class="apps__note">Manuscript paper in the browser. Paste a draft, set the line length and a goal range, and the grid handles indent, punctuation and box count, then exports the sheet as a PDF or image with an optional title, name and date.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://apps.fainaiasen.com/gram/">
+            <span class="apps__name">Grammar Drill</span>
+            <span class="apps__note">Build custom grammar patterns practice sets across several drill modes, with misses weighted so weak points come back sooner. Sets stay separate in a library or can be pooled into one run.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://apps.fainaiasen.com/essay/">
+            <span class="apps__name">Essay Check</span>
+            <span class="apps__note">Recall and transcription practice for a saved essay. Write from the outline or copy the master text, then check the draft for missing, extra and near-miss words, scored as a percentage that ignores stray commas.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://apps.fainaiasen.com/hanja/">
+            <span class="apps__name">Hanja Recall</span>
+            <span class="apps__note">Sino-Korean morpheme recall. Each card keeps a character, its reading, a gloss. Create sets and practice as cards, a homophone board or a sprint.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://apps.fainaiasen.com/iseeu/">
+            <span class="apps__name">Okay.</span>
+            <span class="apps__note">A button that hands you one dry line at a time. A smoke break companion for bad days.</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://apps.fainaiasen.com/fossilis/">
+            <span class="apps__name">Fossilis Tracker</span>
+            <span class="apps__note">Set tracking for the board game Fossilis. Tap a category to count fossils toward a set of three, hold to undo, and the score updates as sets complete.</span>
+          </a>
+        </li>
+      </ul>
+
+      <footer class="sign-off">
+        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com">Say hello.</a>
+        <div class="sign-off__base t-meta">
+          <span>&copy; 2026 Faina Iasen</span>
+          <span>Busan, South Korea</span>
+        </div>
+      </footer>
+    </main>
+
+    <aside class="col col--side col--right">
+      <div>
+        <div class="section__head" style="justify-content:flex-end; gap:0.5em">
+          <span class="t-small">Index</span><span class="t-meta" data-apps-count></span>
+        </div>
+        <ul class="lines lines--grey t-small" data-apps-index></ul>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Fills in the address labels, previews and the index. It sits here (not in
+       site.js) so everything is in place before the page is first drawn. -->
+  <script>
+  (function () {
+    var links = document.querySelectorAll("[data-apps] > li > a");
+    var index = document.querySelector("[data-apps-index]");
+    var count = document.querySelector("[data-apps-count]");
+
+    Array.prototype.forEach.call(links, function (a) {
+      var url = new URL(a.href);
+      var own = url.hostname === "apps.fainaiasen.com";
+      var slug = url.pathname.replace(/^\/|\/$/g, "");
+      var label = own ? "/" + slug : url.hostname;
+      var name = a.querySelector(".apps__name");
+
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.appendChild(Object.assign(document.createElement("span"), { className: "apps__path", textContent: label }));
+
+      var img = Object.assign(document.createElement("img"), {
+        className: "apps__shot",
+        src: "shots/" + (a.getAttribute("data-shot") || slug) + ".jpg",
+        alt: (name ? name.textContent : label) + " preview",
+        width: 697, height: 929
+      });
+      a.classList.add("has-shot");
+      img.onerror = function () { img.remove(); a.classList.remove("has-shot"); };   // no preview: text goes full width
+      a.appendChild(img);
+
+      var row = document.createElement("a");
+      row.href = a.href; row.target = "_blank"; row.rel = "noopener";
+      row.appendChild(Object.assign(document.createElement("span"), { textContent: name ? name.textContent : label }));
+      row.appendChild(Object.assign(document.createElement("span"), { textContent: label }));
+      if (name && name.lang) row.firstChild.lang = name.lang;
+      var li = document.createElement("li");
+      li.appendChild(row);
+      index.appendChild(li);
+    });
+    count.textContent = "(" + links.length + ")";
+  })();
+  </script>
+  <script src="../assets/site.js"></script>
+</body>
+</html>

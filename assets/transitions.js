@@ -1,7 +1,7 @@
 /* ==========================================================================
    fainaiasen.com — page switches: which way the reels spin
    The animation itself is in style.css ("Page switches"). Pages are ordered
-   Home, Work, a project, Info: going right in that order spins down, going
+   Home, Work, a project, Info, Apps: going right in that order spins down, going
    left spins up. This file sits in <head> so it's listening before the new
    page is first drawn. You shouldn't need to edit this.
    ========================================================================== */
@@ -17,6 +17,7 @@
     if (path.indexOf("/work/project/") > -1) return 1.5;
     if (path.indexOf("/work/") > -1) return 1;
     if (path.indexOf("/info/") > -1) return 2;
+    if (path.indexOf("/apps/") > -1) return 3;
     return 0;
   }
 
@@ -37,8 +38,7 @@
   // new page (also when Back restores a page): pick the direction up before it's drawn
   window.addEventListener("pagereveal", function (e) {
     var slide = "";
-    try { slide = sessionStorage.getItem(KEY) || ""; sessionStorage.removeItem(KEY); } catch (err) { /* plain fade */ }
-    if (!e.viewTransition || !slide) { root.removeAttribute("data-slide"); return; }
+    try { slide = sessionStorage.getItem(KEY) || ""; sessionStorage.removeItem(KEY); } catch (err) { /* plain fade */ }    if (!e.viewTransition || !slide) { root.removeAttribute("data-slide"); return; }
     root.setAttribute("data-slide", slide);
     var done = function () { root.removeAttribute("data-slide"); };
     e.viewTransition.finished.then(done, done);
