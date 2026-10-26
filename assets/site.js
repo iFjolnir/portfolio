@@ -422,10 +422,11 @@
     body.classList.add("is-ready");
   }
 
-  /* ---------- image viewer: tap an image to see it almost full screen ----------
+  /* ---------- image viewer: click an image to see it almost full screen ----------
+     Desktop and tablets only: on phones the images are already full width.
      Arrows / swipe to move between images, × / Esc / swipe down / browser Back to close.
-     The controls sit on top of the picture and turn black or white depending on
-     what's underneath them. */
+     The controls are pinned to the screen edges and turn black or white depending
+     on what's underneath them (the picture, or the light backdrop). */
 
   function setupViewer() {
     var imgs = all("[data-render='images-first'] img, [data-render='images'] img");
@@ -443,16 +444,12 @@
       '<div class="viewer__frame">' +
         '<button class="viewer__close viewer__ctl" type="button" aria-label="Close">' + ICON.close + '</button>' +
         '<button class="viewer__prev viewer__ctl" type="button" aria-label="Previous image">' + ICON.prev + '</button>' +
-        '<p class="viewer__meta viewer__ctl t-small"><span class="viewer__count"></span><span class="viewer__title"></span></p>' +
         '<button class="viewer__next viewer__ctl" type="button" aria-label="Next image">' + ICON.next + '</button>' +
       '</div>';
     document.body.appendChild(box);
 
     var stage = box.querySelector(".viewer__stage");
-    var frame = box.querySelector(".viewer__frame");
     var big = box.querySelector(".viewer__img");
-    var count = box.querySelector(".viewer__count");
-    var title = box.querySelector(".viewer__title");
     var prevBtn = box.querySelector(".viewer__prev");
     var nextBtn = box.querySelector(".viewer__next");
     var closeBtn = box.querySelector(".viewer__close");
@@ -462,20 +459,8 @@
     var canvas = document.createElement("canvas");
     var ctx = canvas.getContext && canvas.getContext("2d", { willReadFrequently: true });
 
-    function captionOf(img) {
-      var fig = img.closest("figure");
-      var t = fig && fig.querySelector(".project-caption__title");
-      return t ? t.textContent : "";
-    }
-
-    // lay the controls over the picture itself, wherever it ends up on screen
-    function placeFrame() {
-      var r = big.getBoundingClientRect();
-      frame.style.left = r.left + "px";
-      frame.style.top = r.top + "px";
-      frame.style.width = r.width + "px";
-      frame.style.height = r.height + "px";
-    }
+    // phones: no viewer (same breakpoint as the phone layout in style.css)
+    var phone = window.matchMedia("(max-width: 809px)");
 
     // read how light the picture is under each control: dark -> white controls
     function setTones() {
@@ -503,7 +488,7 @@
       } catch (e) { /* image can't be read: controls stay black, with their soft halo */ }
     }
 
-    function refresh() { placeFrame(); setTones(); }
+    function refresh() { setTones(); }
     big.addEventListener("load", function () { if (current > -1) refresh(); });
     window.addEventListener("resize", function () { if (current > -1) refresh(); });
 
@@ -512,10 +497,6 @@
       current = i;
       big.src = imgs[i].currentSrc || imgs[i].src;
       big.alt = imgs[i].alt || "";
-      count.textContent = (i + 1) + " / " + imgs.length;
-      var t = captionOf(imgs[i]);
-      title.textContent = t;
-      title.hidden = !t;
       prevBtn.style.visibility = i > 0 ? "visible" : "hidden";
       nextBtn.style.visibility = i < imgs.length - 1 ? "visible" : "hidden";
       if (big.complete && big.naturalWidth) refresh();
@@ -523,6 +504,7 @@
     }
 
     function open(i) {
+      if (phone.matches) return;
       opener = imgs[i];
       box.hidden = false;
       document.documentElement.classList.add("viewer-open");
@@ -551,14 +533,30 @@
       if (current > -1) { pushed = false; hide(); }
     });
 
+    // images are clickable buttons on wider screens, plain images on phones
+    function setMode() {
+      imgs.forEach(function (img) {
+        if (phone.matches) {
+          img.classList.remove("is-zoomable");
+          img.removeAttribute("tabindex");
+          img.removeAttribute("role");
+          img.removeAttribute("aria-label");
+        } else {
+          img.classList.add("is-zoomable");
+          img.setAttribute("tabindex", "0");
+          img.setAttribute("role", "button");
+          img.setAttribute("aria-label", "Enlarge image" + (img.alt ? ": " + img.alt : ""));
+        }
+      });
+      if (phone.matches && current > -1) close();
+    }
+    setMode();
+    if (phone.addEventListener) phone.addEventListener("change", setMode);
+
     imgs.forEach(function (img, i) {
-      img.classList.add("is-zoomable");
-      img.setAttribute("tabindex", "0");
-      img.setAttribute("role", "button");
-      img.setAttribute("aria-label", "Enlarge image" + (img.alt ? ": " + img.alt : ""));
       img.addEventListener("click", function () { open(i); });
       img.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(i); }
+        if ((e.key === "Enter" || e.key === " ") && !phone.matches) { e.preventDefault(); open(i); }
       });
     });
 

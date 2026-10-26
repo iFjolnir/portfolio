@@ -2,7 +2,7 @@
    fainaiasen.com — page switches: which way the reels spin
    The animation itself is in style.css ("Page switches"). Pages are ordered
    Home, Work, a project, Info, Apps: going right in that order spins down, going
-   left spins up. This file sits in <head> so it's listening before the new
+   left spins up. "Next project" rises from underneath (Back: drops in from above). This file sits in <head> so it's listening before the new
    page is first drawn. You shouldn't need to edit this.
    ========================================================================== */
 
@@ -32,7 +32,11 @@
     if (!e.viewTransition) return;
     var to = (e.activation && e.activation.entry && e.activation.entry.url) || lastClicked;
     var a = pageRank(location.href), b = to ? pageRank(to) : a;
-    try { sessionStorage.setItem(KEY, b > a ? "down" : b < a ? "up" : ""); } catch (err) { /* no direction: plain fade */ }
+    var dir = b > a ? "down" : b < a ? "up" : "";
+    // project to project: "Next project" rises from underneath, like scrolling on;
+    // the Back button drops the previous one back in from above
+    if (!dir && a === 1.5) dir = e.activation && e.activation.navigationType === "traverse" ? "down" : "up";
+    try { sessionStorage.setItem(KEY, dir); } catch (err) { /* no direction: plain fade */ }
   });
 
   // new page (also when Back restores a page): pick the direction up before it's drawn

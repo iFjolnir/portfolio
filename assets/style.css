@@ -28,6 +28,7 @@
   /* Full-screen image viewer */
   --viewer-margin: 12px;        /* space around the picture on desktop (0 = edge to edge) */
   --viewer-margin-phone: 0px;   /* same, on phones */
+  --viewer-controls-inset: 8px; /* gap between the screen edge and the arrows / × */
   --viewer-backdrop: rgba(255, 255, 255, 0.97);  /* behind the picture */
 
   /* Text selection (when someone highlights text). Projects can override this
@@ -766,8 +767,8 @@ html.viewer-open { overflow: hidden; }
   -webkit-user-drag: none;
 }
 
-/* the controls: a box laid exactly over the picture */
-.viewer__frame { position: fixed; pointer-events: none; }
+/* the controls: pinned to the screen edges, so they stay put whatever the picture's shape */
+.viewer__frame { position: fixed; inset: var(--viewer-controls-inset); pointer-events: none; }
 .viewer__ctl {
   position: absolute;
   pointer-events: auto;
@@ -793,24 +794,9 @@ html.viewer-open { overflow: hidden; }
 .viewer button svg { width: 22px; height: 22px; }
 .viewer button:hover { opacity: 0.6; }
 
-.viewer__close { top: 2px; right: 2px; }
-.viewer__prev  { bottom: 2px; left: 2px; }
-.viewer__next  { bottom: 2px; right: 2px; }
-.viewer__meta {
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 44px;
-  display: flex;
-  align-items: center;
-  gap: 0.8em;
-  max-width: calc(100% - 110px);
-  white-space: nowrap;
-  overflow: hidden;
-  font-variant-numeric: tabular-nums;
-  pointer-events: none;
-}
-.viewer__title { overflow: hidden; text-overflow: ellipsis; }
+.viewer__close { top: 0; right: 0; }
+.viewer__prev  { top: 50%; left: 0;  transform: translateY(-50%); }
+.viewer__next  { top: 50%; right: 0; transform: translateY(-50%); }
 
 @media (max-width: 809px) {
   .viewer__stage { inset: var(--viewer-margin-phone); }
