@@ -13,6 +13,7 @@
   var DATA = ROOT + "projects/";
   var PROJECTS = [];
   var DISCIPLINES = [];
+  var CURRENT = null;   // the project on the project page
 
   /* ---------- helpers ---------- */
 
@@ -113,10 +114,43 @@
     setInterval(tick, 15000);
   }
 
-  // the language was switched on the page (the names on Home): redo what's built here
+  // the language was switched on the page: redo what's built here
   document.addEventListener("fi:lang", function () {
     if (clocks.length) tick();
     if (PROJECTS.length) renderLists();
+    relangProject();
+  });
+
+  /* ---------- language switcher in the header (desktop) ----------
+     Click the icon to open; pick a language, click elsewhere or press Esc to close. */
+
+  all(".langs").forEach(function (box) {
+    var btn = box.querySelector(".langs__btn"), menu = box.querySelector(".langs__menu");
+    if (!btn || !menu) return;
+    function mark() {
+      all(".langs__menu [data-set-lang]").forEach(function (b) {
+        b.setAttribute("aria-current", b.getAttribute("data-set-lang") === lang() ? "true" : "false");
+      });
+    }
+    function open(on) {
+      menu.hidden = !on;
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+    }
+    mark();
+    // have the other languages ready before anyone picks one, so the switch fades at once
+    var later = window.requestIdleCallback || function (fn) { setTimeout(fn, 1500); };
+    later(function () { if (window.FI_preloadLangs) window.FI_preloadLangs(); });
+    btn.addEventListener("pointerenter", function () { if (window.FI_preloadLangs) window.FI_preloadLangs(); });
+    btn.addEventListener("click", function (e) { e.stopPropagation(); open(menu.hidden); });
+    menu.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-set-lang]");
+      if (!b) return;
+      open(false);
+      if (window.FI_setLang) window.FI_setLang(b.getAttribute("data-set-lang"));
+    });
+    document.addEventListener("click", function (e) { if (!box.contains(e.target)) open(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !menu.hidden) { open(false); btn.focus(); } });
+    document.addEventListener("fi:lang", mark);
   });
 
   /* ---------- nav: mark the current page ---------- */
@@ -388,9 +422,49 @@
       }
     }
 
-    // text fields
+    CURRENT = p;
+    projectText(p);
+    all("[data-field='cover']").forEach(function (img) { img.src = coverUrl(p); });
+
+    // images, full width. Each entry is either a filename ("01.jpg") or an object:
+    //   { "src": "01.jpg", "alt": "…",
+    //     "title": "…", "text": "…" or ["…", "…"], "link": { "text": "…", "url": "…" } }
+    // title / text / link are optional and appear under that image.
+    // The first image goes in its own box (phones show it before the brief).
+    var firstBox = document.querySelector("[data-render='images-first']");
+    var restBox = document.querySelector("[data-render='images']");
+    var n = 0;
+    (p.images || []).forEach(function (item) {
+      var o = typeof item === "string" ? { src: item } : (item || {});
+      if (!o.src) return;
+
+      var kids = [el("img", { src: fileUrl(p, o.src), alt: loc(o.alt) || "", decoding: "async" })];
+      var cap = caption(o);
+      if (cap) kids.push(cap);
+
+      var fig = el("figure", { "class": "project-image" + (kids.length > 1 ? " has-caption" : "") }, kids);
+      fig.__item = o;   // so a language switch can redo its caption
+      var target = (n === 0 && firstBox) ? firstBox : restBox;
+      if (target) target.appendChild(fig);
+      n += 1;
+    });
+
+    // next project
+    all("[data-render='next']").forEach(function (a) {
+      if (PROJECTS.length < 2) { a.hidden = true; return; }
+      a.href = projectUrl(next);
+      var title = a.querySelector(".next__title");
+      if (title) { title.textContent = next.title || next.slug; title.lang = titleLang(next); }
+    });
+
+    setupViewer();
+    body.classList.add("is-ready");
+  }
+
+  // the project's text, in the current language (again on every language switch)
+  function projectText(p) {
     var fields = {
-      title: p.title || slug,          // titles stay English
+      title: p.title || p.slug,        // titles aren't translated
       category: loc(p.category),
       year: p.year,
       client: loc(p.client),
@@ -418,55 +492,32 @@
       n.appendChild(keepEnData(el("a", { href: p.link.url, text: loc(p.link.text) || p.link.url }), p.link.text));
     });
 
-    // cover thumbnail
-    all("[data-field='cover']").forEach(function (img) {
-      img.src = coverUrl(p);
-      img.alt = loc(p.coverAlt) || p.title || "";
-    });
+    all("[data-field='cover']").forEach(function (img) { img.alt = loc(p.coverAlt) || p.title || ""; });
     all("[data-field='title']").forEach(function (n) { n.lang = titleLang(p); });
+  }
 
-    // images, full width. Each entry is either a filename ("01.jpg") or an object:
-    //   { "src": "01.jpg", "alt": "…",
-    //     "title": "…", "text": "…" or ["…", "…"], "link": { "text": "…", "url": "…" } }
-    // title / text / link are optional and appear under that image.
-    // The first image goes in its own box (phones show it before the brief).
-    var firstBox = document.querySelector("[data-render='images-first']");
-    var restBox = document.querySelector("[data-render='images']");
-    var n = 0;
-    (p.images || []).forEach(function (item) {
-      var o = typeof item === "string" ? { src: item } : (item || {});
-      if (!o.src) return;
+  // optional text under an image: title / text / link
+  function caption(o) {
+    if (!(o.title || o.text || (o.link && o.link.url))) return null;
+    var cap = el("figcaption", { "class": "project-caption" });
+    if (o.title) cap.appendChild(keepEnData(el("h3", { "class": "project-caption__title", html: loc(o.title) }), o.title));
+    if (o.text) cap.appendChild(keepEnData(el("div", { "class": "project-caption__text t-body prose", html: paragraphs(o.text) }), o.text));
+    if (o.link && o.link.url) {
+      cap.appendChild(el("p", { "class": "project-caption__link t-small" }, [
+        keepEnData(el("a", { href: o.link.url, text: loc(o.link.text) || o.link.url, target: "_blank", rel: "noopener" }), o.link.text)
+      ]));
+    }
+    return cap;
+  }
 
-      var kids = [el("img", { src: fileUrl(p, o.src), alt: loc(o.alt) || "", decoding: "async" })];
-
-      if (o.title || o.text || (o.link && o.link.url)) {
-        var cap = el("figcaption", { "class": "project-caption" });
-        if (o.title) cap.appendChild(keepEnData(el("h3", { "class": "project-caption__title", html: loc(o.title) }), o.title));
-        if (o.text) cap.appendChild(keepEnData(el("div", { "class": "project-caption__text t-body prose", html: paragraphs(o.text) }), o.text));
-        if (o.link && o.link.url) {
-          cap.appendChild(el("p", { "class": "project-caption__link t-small" }, [
-            keepEnData(el("a", { href: o.link.url, text: loc(o.link.text) || o.link.url, target: "_blank", rel: "noopener" }), o.link.text)
-          ]));
-        }
-        kids.push(cap);
-      }
-
-      var fig = el("figure", { "class": "project-image" + (kids.length > 1 ? " has-caption" : "") }, kids);
-      var target = (n === 0 && firstBox) ? firstBox : restBox;
-      if (target) target.appendChild(fig);
-      n += 1;
+  function relangProject() {
+    if (!CURRENT) return;
+    projectText(CURRENT);
+    all(".project-image").forEach(function (fig) {
+      var o = fig.__item || {}, old = fig.querySelector("figcaption"), cap = caption(o), img = fig.querySelector("img");
+      if (old && cap) fig.replaceChild(cap, old);
+      if (img) img.alt = loc(o.alt) || "";
     });
-
-    // next project
-    all("[data-render='next']").forEach(function (a) {
-      if (PROJECTS.length < 2) { a.hidden = true; return; }
-      a.href = projectUrl(next);
-      var title = a.querySelector(".next__title");
-      if (title) { title.textContent = next.title || next.slug; title.lang = titleLang(next); }
-    });
-
-    setupViewer();
-    body.classList.add("is-ready");
   }
 
   /* ---------- image viewer: click an image to see it almost full screen ----------

@@ -36,6 +36,20 @@
   --selection-bg: #121212;
   --selection-ink: #ffffff;
 
+  /* Language switcher in the header (desktop) */
+  --langs-icon: 20px;           /* size of the 한/A icon */
+  --langs-menu-x: 14px;         /* side padding inside the pop-out */
+
+  /* Switching language on a page: text fades out, swaps, fades back in */
+  --relang-out: 0.15s;          /* fade out */
+  --relang-in: 0.3s;            /* fade back in */
+
+  /* Korean text weight (Pretendard's Hangul reads lighter than its Latin at the
+     same weight). Only affects text that is actually in Korean */
+  --ko-weight-display: 500;     /* page titles: 작업. / 소개. */
+  --ko-weight-lead: 500;        /* big intro sentences: Home, Info, Apps, project intros */
+  --ko-weight-head: 500;        /* section headings (Brief, Experience, Tools…), image captions, Info row titles */
+
   /* Page switches: each column slides like a slot-machine reel (phones: the page swipes sideways).
      Fade only instead: --slide-distance: 0; --slide-fade: 0; */
   --slide-time: 0.55s;    /* how long one reel takes */
@@ -199,7 +213,36 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 
 .bar__end { display: flex; justify-content: space-between; gap: 1em; }
 .bar__time { color: var(--grey); font-variant-numeric: tabular-nums; }
-.bar__cta { font-weight: var(--weight-strong); }
+/* language switcher: the 한/A icon, and a small pop-out under it (as on the Hideout menu) */
+.langs { position: relative; display: flex; align-items: center; }
+.langs__btn {
+  appearance: none; border: 0; background: none; padding: 4px 0; margin: 0;
+  display: flex; color: var(--ink); cursor: pointer;
+}
+.langs__btn svg { width: var(--langs-icon); height: auto; display: block; }
+.langs__btn:hover,
+.langs__btn[aria-expanded="true"] { color: var(--grey); }
+.langs__menu {
+  position: absolute;
+  top: calc(100% + (var(--bar) - 100%) / 2);   /* hangs from the header's bottom line */
+  right: calc(-1 * var(--langs-menu-x));
+  z-index: 20;
+  min-width: 120px;
+  padding: 6px 0;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+.langs__menu button {
+  appearance: none; border: 0; background: none; margin: 0;
+  display: block; width: 100%;
+  padding: 6px var(--langs-menu-x);
+  text-align: left;
+  font: inherit; font-size: var(--size-small); letter-spacing: inherit;
+  color: var(--ink); cursor: pointer;
+}
+.langs__menu button[lang="ko"] { letter-spacing: -0.01em; }
+.langs__menu button:hover { color: var(--grey); }
+.langs__menu button[aria-current="true"] { font-weight: var(--weight-strong); }
 
 /* ---------- three-column frame ---------- */
 
@@ -911,6 +954,27 @@ body[data-page="info"] .col--side { -webkit-user-select: none; user-select: none
 /* first visit in Korean / Russian: hidden for a moment while the translations
    arrive, instead of flashing English (lang.js) */
 html.i18n-pending body { visibility: hidden; }
+/* Switching language on the page: everything that's about to change fades out,
+   swaps while invisible, and fades back in (lang.js). The greeting has its own. */
+html :is([data-i18n], [data-clock], [data-field]:not(img), [data-filter-label], .card__caption,
+  [data-render="disciplines"], [data-render="disciplines-inline"], [data-render="filters"],
+  .project-caption, .apps__note) {
+  transition: opacity var(--relang-in) ease, color 0.2s ease;   /* (keeps the hover colour fade) */
+}
+html.is-relang :is([data-i18n], [data-clock], [data-field]:not(img), [data-filter-label], .card__caption,
+  [data-render="disciplines"], [data-render="disciplines-inline"], [data-render="filters"],
+  .project-caption, .apps__note) {
+  opacity: 0;
+  transition-duration: var(--relang-out);
+}
+
+/* Korean weights (tweakers at the top) */
+:root .t-display[lang="ko"] { font-weight: var(--ko-weight-display); }
+:root .t-lead[lang="ko"] { font-weight: var(--ko-weight-lead); }
+:root .t-head[lang="ko"],
+:root .project-caption__title[lang="ko"],
+:root .rows h3[lang="ko"] { font-weight: var(--ko-weight-head); }
+
 /* Korean: break lines between words, never inside one */
 html:lang(ko) body { word-break: keep-all; overflow-wrap: break-word; }
 

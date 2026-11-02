@@ -100,11 +100,13 @@
       .catch(function () {});
   }
 
-  function setDict(d) {
-    var clean = {};
-    Object.keys(d || {}).forEach(function (k) { if (d[k]) clean[norm(k)] = d[k]; });
-    dict = clean;
+  var dicts = {};   // every language loaded so far, ready to switch to
+  function clean(d) {
+    var out = {};
+    Object.keys(d || {}).forEach(function (k) { if (d[k]) out[norm(k)] = d[k]; });
+    return out;
   }
+  function setDict(d) { dict = dicts[lang] = clean(d); }
 
   /* ---------- first load ---------- */
 
@@ -154,21 +156,62 @@
     });
   }
 
-  /* ---------- switching while on the page (the names on Home) ---------- */
+  /* ---------- switching while on the page ----------
+     The text that changes fades out, swaps while it's invisible (so the new
+     lengths never jolt the layout) and fades back in. Timing: --relang-out and
+     --relang-in in style.css.
+     FI_setLang("ko") switches and remembers the choice;
+     FI_setLang("ko", { remember: false }) only shows it (the greeting's spin on Home). */
 
-  function setLang(l) {
-    if (LANGS.indexOf(l) < 0) return;
+  var target = lang, swapping = null;
+  var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function cssTime(name, fallback) {
+    var v = getComputedStyle(root).getPropertyValue(name).trim(), n = parseFloat(v);
+    return isNaN(n) ? fallback : /ms$/.test(v) ? n : n * 1000;
+  }
+
+  function show(l, d) {
     lang = l;
-    write(KEY, l);
+    dict = d;
     root.lang = l;
     root.setAttribute("data-lang", l);
     MISSING.length = 0;
-    var finish = function () {
-      applyAll();
-      document.dispatchEvent(new CustomEvent("fi:lang", { detail: l }));
-    };
-    if (l === "en") { dict = null; finish(); return; }
-    loadDict(l, function (d) { if (lang === l) { setDict(d); finish(); } });
+    applyAll();
+    document.dispatchEvent(new CustomEvent("fi:lang", { detail: l }));
+  }
+
+  function swap(l, d) {
+    if (calm) { show(l, d); return; }
+    clearTimeout(swapping);
+    root.classList.add("is-relang");
+    swapping = setTimeout(function () {
+      swapping = null;
+      show(l, d);
+      // two frames, so freshly built text starts invisible and fades in too
+      requestAnimationFrame(function () { requestAnimationFrame(function () { root.classList.remove("is-relang"); }); });
+    }, cssTime("--relang-out", 150));
+  }
+
+  function setLang(l, opts) {
+    if (LANGS.indexOf(l) < 0) return;
+    if (!(opts && opts.remember === false)) write(KEY, l);
+    target = l;
+    if (l === lang && !swapping) return;
+    if (l === "en") { swap("en", null); return; }
+    if (dicts[l]) { swap(l, dicts[l]); return; }
+    var first = true;
+    loadDict(l, function (d) {
+      dicts[l] = clean(d);
+      if (target !== l) return;
+      if (first) { first = false; swap(l, dicts[l]); }
+      else if (lang === l) { dict = dicts[l]; applyAll(); document.dispatchEvent(new CustomEvent("fi:lang", { detail: l })); }
+    });
+  }
+
+  // have every language ready, so a switch (or the greeting's spin) needs no waiting
+  function preload() {
+    LANGS.forEach(function (l) { if (l !== "en" && !dicts[l]) loadDict(l, function (d) { dicts[l] = clean(d); }); });
   }
 
   window.FI_LANG = lang;
@@ -177,4 +220,6 @@
   window.FI_markLang = function (node, isEnglish) { markEnglish(node, !!isEnglish); return node; };
   window.FI_lang = function () { return lang; };
   window.FI_setLang = setLang;
+  window.FI_preloadLangs = preload;
+  window.FI_saved = function () { return LANGS.indexOf(read(KEY)) > -1 ? read(KEY) : null; };
 })();
