@@ -44,7 +44,40 @@
   var MISSING = window.FI_MISSING = [];  // English with no translation (for checking)
 
   // the same text always gives the same key, however the HTML is spaced out
-  function norm(s) { return String(s == null ? "" : s).replace(/\s+/g, " ").trim(); }
+  // (a non-breaking space counts as a plain one: see "short words" below)
+  function norm(s) { return String(s == null ? "" : s).replace(/&nbsp;| /g, " ").replace(/\s+/g, " ").trim(); }
+
+  /* ---------- short words never hang at the end of a line ----------
+     A short word is glued to the next one with a non-breaking space:
+     Russian в к с у о и а я, and на по за от до из не; English a, I and &.
+     It's done to the text as it appears on the page (the files stay as they
+     are), before it's drawn, including text that arrives later. */
+  var GLUE = null;
+  try {
+    GLUE = new RegExp("(?<=^|[\\s(«„\"“—–])(в|к|с|у|о|и|а|я|на|по|за|от|до|из|не|a|I|&)[ \\t\\n\\r]+", "gi");
+  } catch (e) { /* very old browser: lines just break as usual */ }
+  var SKIP = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, PRE: 1, CODE: 1 };
+  function glueText(n) {
+    if (!GLUE || !n.parentNode || SKIP[n.parentNode.nodeName]) return;
+    var v = n.data.replace(GLUE, "$1 ");
+    if (v !== n.data) n.data = v;
+  }
+  function glueTree(el) {
+    if (!GLUE || !el || SKIP[el.nodeName]) return;
+    var walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
+    while ((n = walk.nextNode())) glueText(n);
+  }
+  if (GLUE) {
+    new MutationObserver(function (list) {
+      list.forEach(function (m) {
+        if (m.type === "characterData") glueText(m.target);
+        else Array.prototype.forEach.call(m.addedNodes, function (n) {
+          if (n.nodeType === 3) glueText(n); else if (n.nodeType === 1) glueTree(n);
+        });
+      });
+    }).observe(root, { childList: true, subtree: true, characterData: true });
+    document.addEventListener("DOMContentLoaded", function () { glueTree(document.body); });
+  }
 
   // translate one string (English in, English out when there's no translation)
   function t(s) {
@@ -253,6 +286,7 @@
 
     var me = document.startViewTransition(function () {
       show(l, d);
+      glueTree(document.body);   // (so unchanged text compares as unchanged)
       // after: pair the new text with its picture (rebuilt lists get new elements)
       var still = "";
       pieces().forEach(function (el) {

@@ -189,6 +189,11 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 .fade { color: var(--grey); }
 
 .prose { max-width: 36em; }
+
+/* nicer line breaks where the browser can: paragraphs avoid a lonely last word,
+   headings even out their lines. (Short words are also glued to the next one: lang.js) */
+p, li, dd, .t-body, .t-lead, .apps__note { text-wrap: pretty; }
+h1:not(.hello), h2, h3 { text-wrap: balance; }
 .prose p + p { margin-top: 0.9em; }
 
 /* ---------- header bar ---------- */
