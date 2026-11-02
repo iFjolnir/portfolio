@@ -1,32 +1,63 @@
 {
   "title": "Vocab Drill",
-  "category": "Language-learning web app",
-  "discipline": [
-    "web",
-    "objects"
-  ],
+  "category": {
+    "en": "Flashcard web app",
+    "ko": "플래시카드 웹 앱",
+    "ru": "Веб-приложение"
+  },
+  "discipline": ["web", "objects"],
   "year": 2026,
   "selected": true,
   "selection": "#4f8383",
-  "client": "Personal project",
-  "service": "UX/UI design, front-end development",
+  "client": {
+    "en": "Personal project",
+    "ko": "개인 프로젝트",
+    "ru": "Личный проект"
+  },
+  "service": {
+    "en": "UX/UI design, front-end dev",
+    "ko": "UX/UI 디자인, 프론트엔드 개발",
+    "ru": "UX/UI-дизайн, фронтенд"
+  },
   "link": {
-    "text": "Live (and free) here",
+    "text": {
+      "en": "Live (and free) here",
+      "ko": "무료로 사용해 보기",
+      "ru": "Живёт тут (и бесплатно)"
+    },
     "url": "https://vd.fainaiasen.com"
   },
-  "intro": "A vocabulary drill app for learning languages, terms, or whatever you choose. Built for my own study and now used by friends too. <span class=\"fade\">Made by a learner, for learners.</span>",
-  "brief": "Intensive language study means thousands of new words, spread across textbooks, classes and notes. Existing apps never matched the way I actually study, so I designed my own: one place to keep every set, practise in different ways, and review at the right time.",
-  "did": [
-    "Words live in separate libraries, with several drill modes and spaced repetition, so each word comes back right before it's forgotten. Lists can be imported and exported, and everything runs in the browser, with no account or server.",
-    "Once friends started using it, it stopped being only mine. I removed the personal copy and added support for more than one interface language, so it works for whoever opens it.",
-    "It's one of a growing set of small tools I design and host at <a href=\"https://apps.fainaiasen.com/\">apps.fainaiasen.com</a>."
-  ],
-  "coverAlt": "Vocab Drill app",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg",
-    "05.jpg"
-  ]
+  "intro": {
+    "en": "A vocabulary drill app for learning languages, terms, or whatever you choose. Built for my own study and now used by friends too. <span class=\"fade\">Made by a learner, for learners.</span>",
+    "ko": "외국어든 전문 용어든, 외우고 싶은 것은 무엇이든 연습할 수 있는 단어 암기 앱. 제 공부를 위해 만들었는데, 이제는 친구들도 함께 쓰고 있습니다. <span class=\"fade\">학습자가 만든, 학습자를 위한 앱.</span>",
+    "ru": "Тренажёр для запоминания слов — иностранных, профессиональных терминов, да чего угодно. Сделала его для своей учёбы, а теперь им пользуются и друзья. <span class=\"fade\">Сделано зубрящим — для других зубрящих.</span>"
+  },
+  "brief": {
+    "en": "Intensive language study means thousands of new words, spread across textbooks, classes and notes. Existing apps never matched the way I actually study, so I designed my own: one place to keep every set, practise in different ways, and review at the right time.",
+    "ko": "집중 과정으로 언어를 공부하다 보면 교재와 수업, 노트 곳곳에 흩어진 수천 개의 새 단어를 만나게 됩니다. 기존 앱들은 제가 실제로 공부하는 방식과 맞지 않아 직접 만들기로 했습니다. 모든 단어 세트를 한곳에 모아 두고, 여러 방식으로 연습하고, 딱 맞는 때에 복습할 수 있는 앱입니다.",
+    "ru": "Изучение языка — это тысячи новых слов, разбросанных по учебникам, занятиям и конспектам. Ни одно из существующих приложений не подходило под то, как я на самом деле учусь, поэтому я сделала своё: одно место для всех наборов, разные способы тренировки и повторение в нужный момент."
+  },
+  "did": {
+    "en": [
+      "Words live in separate libraries and can be practised in several drill modes, with the ones you miss coming back more often until they stick. Lists can be imported and exported, and everything runs in the browser, with no account or server.",
+      "Once friends started using it, it stopped being only mine. I removed the personal copy and switched the interface to English, so it works for whoever opens it.",
+      "It's one of a growing set of small tools I design and host at <a href=\"https://apps.fainaiasen.com/\">apps.fainaiasen.com</a>."
+    ],
+    "ko": [
+      "단어는 라이브러리별로 나눠 보관하고 여러 연습 모드로 익힐 수 있으며, 틀린 단어는 외워질 때까지 더 자주 나옵니다. 목록은 가져오기·내보내기가 가능하고, 계정이나 서버 없이 모든 기능이 브라우저에서 작동합니다.",
+      "친구들이 쓰기 시작하면서 더 이상 저만의 앱이 아니게 되었습니다. 저에게 맞춰 쓴 문구를 걷어 내고 인터페이스를 영어로 바꿔, 누가 열어도 쓸 수 있게 했습니다.",
+      "<a href=\"https://apps.fainaiasen.com/\">apps.fainaiasen.com</a>에서 직접 디자인하고 운영하는 작은 도구들 가운데 하나이며, 도구는 계속 늘어나고 있습니다."
+    ],
+    "ru": [
+      "Слова хранятся в отдельных библиотеках, тренировать их можно в нескольких режимах, а слова с ошибками попадаются чаще, пока не закрепятся. Списки можно импортировать и экспортировать, а всё работает прямо в браузере — без аккаунта и сервера.",
+      "Когда приложением начали пользоваться друзья, оно перестало быть только моим. Я убрала из интерфейса всё личное и перевела его на английский, чтобы им мог пользоваться любой.",
+      "Это один из небольших инструментов, которые я проектирую и размещаю на <a href=\"https://apps.fainaiasen.com/\">apps.fainaiasen.com</a>, — и их становится всё больше."
+    ]
+  },
+  "coverAlt": {
+    "en": "Vocab Drill app",
+    "ko": "Vocab Drill 앱 화면",
+    "ru": "Приложение Vocab Drill"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"]
 }

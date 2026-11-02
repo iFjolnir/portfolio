@@ -122,8 +122,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hangul looks cramped with Latin-style tracking, so loosen it */
-:lang(ko) { letter-spacing: -0.01em; }
+/* Hangul looks cramped with Latin-style tracking, so loosen it. Only on elements
+   actually holding Korean (lang.js marks each translated piece), never on English
+   that happens to sit on a Korean page */
+[lang="ko"] { letter-spacing: -0.01em; }
 
 h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
@@ -326,7 +328,13 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 /* the stack sits on the "I'm" line: an inline grid's baseline is its first row */
 .hello .names { display: inline-grid; justify-items: start; }
 
-.hello [lang="ko"] {
+/* calibrated: the greeting never takes its spacing from the page's language
+   (only the Korean words inside it have their own, set by the tweakers above) */
+.hello .say,
+.hello .names { letter-spacing: inherit; }
+.hello { word-break: normal; }
+
+.hello [lang="ko"]:not(.visually-hidden) {
   font-weight: var(--hello-ko-weight);
   font-size: calc(1em * var(--hello-ko-scale));
   letter-spacing: var(--hello-ko-tracking);
@@ -858,6 +866,11 @@ html.viewer-open { overflow: hidden; }
 :root[data-slide="down"]::view-transition-new(*) { animation-name: reel-in-down; }
 :root[data-slide="up"]::view-transition-old(*)   { animation-name: reel-out-up; }
 :root[data-slide="up"]::view-transition-new(*)   { animation-name: reel-in-up; }
+/* "Next project" rises from underneath; Back (previous) drops in from above */
+:root[data-slide="next"]::view-transition-old(*) { animation-name: reel-out-up; }
+:root[data-slide="next"]::view-transition-new(*) { animation-name: reel-in-up; }
+:root[data-slide="prev"]::view-transition-old(*) { animation-name: reel-out-down; }
+:root[data-slide="prev"]::view-transition-new(*) { animation-name: reel-in-down; }
 /* ...except the header */
 :root[data-slide]::view-transition-old(bar),
 :root[data-slide]::view-transition-new(bar) { animation: none; }
@@ -876,6 +889,11 @@ html.viewer-open { overflow: hidden; }
   :root[data-slide="down"]::view-transition-new(root) { animation-name: swipe-in-left; }
   :root[data-slide="up"]::view-transition-old(root)   { animation-name: swipe-out-right; }
   :root[data-slide="up"]::view-transition-new(root)   { animation-name: swipe-in-right; }
+  /* "Next project" comes in from the right like any step forward; Back from the left */
+  :root[data-slide="next"]::view-transition-old(root) { animation-name: swipe-out-left; }
+  :root[data-slide="next"]::view-transition-new(root) { animation-name: swipe-in-left; }
+  :root[data-slide="prev"]::view-transition-old(root) { animation-name: swipe-out-right; }
+  :root[data-slide="prev"]::view-transition-new(root) { animation-name: swipe-in-right; }
 }
 @keyframes swipe-out-left  { to   { transform: translateX(calc(var(--reel) * var(--slide-distance) * -1)); opacity: var(--slide-fade); } }
 @keyframes swipe-in-left   { from { transform: translateX(calc(var(--reel) * var(--slide-distance))); opacity: var(--slide-fade); } }
@@ -887,6 +905,14 @@ html.viewer-open { overflow: hidden; }
 body[data-page="home"],
 body[data-page="work"]:not([data-template]),
 body[data-page="info"] .col--side { -webkit-user-select: none; user-select: none; }
+
+/* ---------- languages ---------- */
+
+/* first visit in Korean / Russian: hidden for a moment while the translations
+   arrive, instead of flashing English (lang.js) */
+html.i18n-pending body { visibility: hidden; }
+/* Korean: break lines between words, never inside one */
+html:lang(ko) body { word-break: keep-all; overflow-wrap: break-word; }
 
 /* text selection colours (set in the tweakers) */
 ::selection { background: var(--selection-bg); color: var(--selection-ink); }

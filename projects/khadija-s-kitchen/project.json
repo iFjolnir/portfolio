@@ -1,23 +1,55 @@
 {
   "title": "Khadija's Kitchen",
-  "category": "Brand identity & packaging",
+  "category": {
+    "en": "Brand identity & packaging",
+    "ko": "브랜드 아이덴티티·패키지",
+    "ru": "Айдентика и упаковка"
+  },
   "discipline": ["identity", "print"],
   "year": 2022,
   "selected": true,
-"selection": { "bg": "#a07a58", "ink": "#f4efe6" },
-  "client": "Кухня от Хадижы",
-  "service": "Identity, packaging, menu design",
-  "intro": "A full identity for a small family-run kitchen selling traditional Dagestani food, from the shop sign down to the dumpling boxes. <span class=\"fade\">Clean enough to grow with them, warm enough to still feel like someone's home.</span>",
-  "brief": "A popular local kitchen was expanding its menu and its line of homemade semi-finished foods, and planning a proper storefront. They needed one identity to carry the products, the shop and their social media, clean without losing the warmth of food made by hand. The packaging came with a practical constraint: it had to print cheaply, through the suppliers they already worked with.",
-  "did": [
-    "I built the logo around the idea of home. The name is stacked into a compact, slightly irregular block of letters, with a small house tucked into the Д, set inside a warm circular frame with dumplings resting at its base. Earthy browns and simple, hand-made shapes keep it approachable rather than corporate.",
-    "From there the system rolled out across everything a customer touches: exterior signage, the interior, promotional materials, staff uniforms and the food packaging. For the packaging I designed within what their existing suppliers could print affordably, so the identity had to hold up in flat, simple applications instead of leaning on expensive finishes."
-  ],
-  "coverAlt": "Khadija's Kitchen shop sign",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg"
-  ]
+  "selection": {
+    "bg": "#a07a58",
+    "ink": "#f4efe6"
+  },
+  "client": {
+    "en": "Кухня от Хадижы",
+    "ko": "Кухня от Хадижы (하디자의 부엌)",
+    "ru": "Кухня от Хадижы"
+  },
+  "service": {
+    "en": "Identity, packaging, menu design",
+    "ko": "아이덴티티, 패키지, 메뉴 디자인",
+    "ru": "Айдентика, упаковка, дизайн меню"
+  },
+  "intro": {
+    "en": "A full identity for a small family-run kitchen selling traditional Dagestani food, from the shop sign down to the dumpling boxes. <span class=\"fade\">Clean enough to grow with them, warm enough to still feel like someone's home.</span>",
+    "ko": "가족이 운영하는 작은 다게스탄 전통 음식점을 위한 토털 아이덴티티로, 간판부터 만두 포장 상자까지 모두 작업했습니다. <span class=\"fade\">함께 성장할 수 있을 만큼 깔끔하게, 여전히 누군가의 집처럼 느껴질 만큼 따뜻하게.</span>",
+    "ru": "Полная айдентика для маленькой семейной кухни традиционной дагестанской еды, от вывески до коробок для пельменей. <span class=\"fade\">Чисто — чтобы было куда расти, тепло — чтобы чувствовался дом.</span>"
+  },
+  "brief": {
+    "en": "A popular local kitchen was expanding its menu and its line of homemade ready-to-cook foods, and planning a proper storefront. They needed one identity to carry the products, the shop and their social media, clean without losing the warmth of food made by hand. The packaging came with a practical constraint: it had to print cheaply, through the suppliers they already worked with.",
+    "ko": "지역에서 인기 있던 이 식당은 메뉴와 수제 반조리 식품 라인을 늘리고, 제대로 된 매장도 열 계획이었습니다. 제품과 매장, SNS까지 하나로 아우르는 아이덴티티가 필요했고, 깔끔하면서도 손으로 만든 음식의 따뜻함을 잃지 않아야 했습니다. 패키지에는 현실적인 조건도 있었습니다. 기존 거래처를 통해 저렴하게 인쇄할 수 있어야 했습니다.",
+    "ru": "Популярная местная кухня расширяла меню и линейку домашних полуфабрикатов и готовилась открыть полноценную точку. Им нужна была единая айдентика для продукции, магазина и соцсетей — чистая, но не теряющая тепла еды, приготовленной своими руками. У упаковки было и практическое ограничение: печатать её нужно было недорого, через поставщиков, с которыми они уже работали."
+  },
+  "did": {
+    "en": [
+      "I built the logo around the idea of home. The name is stacked into a compact, slightly irregular block of letters, with a small house tucked into the Д, set inside a warm circular frame with dumplings resting at its base. Earthy browns and simple, hand-made shapes keep it approachable rather than corporate.",
+      "From there the system rolled out across everything a customer touches: exterior signage, the interior, promotional materials, staff uniforms and the food packaging. For the packaging I designed within what their existing suppliers could print affordably, so the identity had to hold up in flat, simple applications instead of leaning on expensive finishes."
+    ],
+    "ko": [
+      "로고는 '집'이라는 개념을 중심으로 만들었습니다. 이름을 살짝 불규칙한 글자 블록으로 촘촘하게 쌓고 Д 안에 작은 집을 숨겨 넣은 뒤, 아랫부분에 만두가 놓인 따뜻한 원형 프레임 안에 담았습니다. 흙빛 브라운 톤과 손으로 그린 듯한 단순한 형태가 기업 같은 딱딱함 대신 친근함을 줍니다.",
+      "이렇게 만든 시스템을 손님의 손길이 닿는 모든 곳으로 확장했습니다. 외부 간판, 인테리어, 홍보물, 직원 유니폼, 식품 패키지까지. 패키지는 기존 거래처가 저렴하게 인쇄할 수 있는 범위 안에서 디자인했기 때문에, 값비싼 후가공에 기대지 않고 단순한 평면 인쇄에서도 아이덴티티가 살아 있어야 했습니다."
+    ],
+    "ru": [
+      "В основу логотипа легла идея дома. Название собрано в компактный, слегка неровный блок букв, в букве Д спрятан маленький домик, и всё это заключено в рамку из скалки.",
+      "Дальше система распространилась на всё, с чем соприкасается покупатель: наружную вывеску, интерьер, рекламные материалы, форму персонала и упаковку. Упаковку я проектировала в рамках того, что их поставщики могли недорого напечатать, поэтому айдентика должна была работать в простой плоской печати, без опоры на дорогую постпечатную обработку."
+    ]
+  },
+  "coverAlt": {
+    "en": "Khadija's Kitchen shop sign",
+    "ko": "Khadija's Kitchen 매장 간판",
+    "ru": "Вывеска магазина «Кухня от Хадижы»"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg"]
 }

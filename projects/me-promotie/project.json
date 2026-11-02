@@ -1,22 +1,49 @@
 {
   "title": "Start-up branding",
-  "category": "Identity",
+  "category": {
+    "en": "Identity",
+    "ko": "아이덴티티",
+    "ru": "Айдентика"
+  },
   "discipline": "identity",
   "year": 2022,
   "selected": false,
   "selection": "#855f54",
-  "client": "ME Huizenpromotie",
-  "service": "Identity",
-  "intro": "Brand identity for a company filming and editing promotional video for real estate agencies, built around the founder's initials. <span class=\"fade\">A newcomer that needed to look like it already belonged.</span>",
-  "brief": "As a start-up pitching to large, established agencies, the company needed to look professional but approachable from day one. The founder also wanted his initials, ME, in both the company name and the brand.",
-  "did": [
-    "I built the mark from the founder's initials, turning the m into arches that read as doorways or windows: a quiet nod to the properties the company films. The shape around it doubles as a frame, so footage of an interior can sit inside the logo and the brand becomes a literal view into a space."
-  ],
-  "coverAlt": "ME Huizenpromotie logo framing an interior photo",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg"
-  ]
+  "client": {
+    "en": "ME Huizenpromotie",
+    "ko": "ME Huizenpromotie",
+    "ru": "ME Huizenpromotie"
+  },
+  "service": {
+    "en": "Identity",
+    "ko": "아이덴티티",
+    "ru": "Айдентика"
+  },
+  "intro": {
+    "en": "Brand identity for a company filming and editing promotional videos for real estate agencies, built around the founder's initials. <span class=\"fade\">A newcomer that needed to look like it already belonged.</span>",
+    "ko": "부동산 중개업체를 위한 홍보 영상을 촬영·편집하는 회사의 브랜드 아이덴티티 디자인. <span class=\"fade\">신생 회사지만, 처음부터 업계에 자리 잡은 듯 보여야 했습니다.</span>",
+    "ru": "Айдентика для компании, которая снимает и монтирует рекламные ролики для агентств недвижимости. <span class=\"fade\">Новичок, которому нужно было выглядеть так, будто он давно в деле.</span>"
+  },
+  "brief": {
+    "en": "As a start-up pitching to large, established agencies, the company needed to look professional but approachable from day one. The founder also wanted his initials, ME, in both the company name and the brand.",
+    "ko": "크고 자리 잡은 중개업체들을 상대로 영업해야 하는 스타트업이었기에, 첫날부터 전문적이면서도 친근해 보여야 했습니다. 창업자는 자신의 이니셜인 ME를 회사 이름과 브랜드 모두에 담고 싶어 했습니다.",
+    "ru": "Стартапу, который выходит на крупные, давно работающие агентства, с первого дня нужно было выглядеть профессионально, но при этом открыто. Кроме того, основатель хотел, чтобы его инициалы, ME, были и в названии компании, и в айдентике."
+  },
+  "did": {
+    "en": [
+      "I built the mark from the founder's initials, turning the m into arches that read as doorways or windows: a quiet nod to the properties the company films. The shape around it doubles as a frame, so footage of an interior can sit inside the logo and the brand becomes a literal view into a space."
+    ],
+    "ko": [
+      "창업자의 이니셜로 심볼을 만들고, m을 문이나 창문처럼 읽히는 아치 형태로 바꿨습니다. 회사가 촬영하는 공간을 은근히 가리키는 장치입니다. 심볼을 감싸는 형태는 프레임 역할도 해서, 실내 영상을 로고 안에 넣으면 브랜드 자체가 말 그대로 공간을 들여다보는 창이 됩니다."
+    ],
+    "ru": [
+      "Инициалы превратились в арки, которые читаются как двери или окна — тихий намёк на объекты, которые снимает компания. Форма вокруг знака работает и как рамка: внутрь логотипа можно поместить кадры интерьера, и бренд буквально становится окном в пространство."
+    ]
+  },
+  "coverAlt": {
+    "en": "ME Huizenpromotie logo framing an interior photo",
+    "ko": "실내 사진을 담은 ME Huizenpromotie 로고",
+    "ru": "Логотип ME Huizenpromotie с фотографией интерьера внутри"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg"]
 }

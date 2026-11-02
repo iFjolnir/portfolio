@@ -1,24 +1,58 @@
 {
   "title": "KREOLA",
-  "category": "Packaging system",
+  "category": {
+    "en": "Packaging system",
+    "ko": "패키지 시스템",
+    "ru": "Система упаковки"
+  },
   "discipline": ["identity", "print"],
   "year": 2021,
   "selected": true,
-  "selection": { "bg": "#f1e8d7", "ink": "#53271e" },
-  "client": "KREOLA chocolate workshop",
-  "service": "Identity, packaging, die-lines, prepress",
-  "intro": "Identity and packaging for a small luxury chocolatier making handmade truffles and bars from premium chocolate, sold through chain stores. <span class=\"fade\">Twenty-plus flavours, one tile pattern holding them all together.</span>",
-  "brief": "After a few years on plain kraft packaging with a logo sticker, KREOLA was moving into chain retail. It needed a full identity and production-ready packaging for several product lines: premium and handmade at once, and able to hold its own on a shelf of bigger brands.",
-  "did": [
-    "Developed together with Monica Ramilison.",
-    "The client chose a modern art deco direction, which we built into a modular tile pattern, each tile nodding to chocolate and its ingredients. Every flavour gets its own colour, so the pattern stays constant while the range stays easy to tell apart.",
-    "The real test was scale: several packaging types, each with a custom die-line, across more than twenty flavours. Every piece had to match the supplied copy exactly and meet retail labelling regulations, so ingredient panels, nutrition data, barcodes and certification marks were designed into the layout rather than squeezed in at the end."
-  ],
-  "coverAlt": "KREOLA truffle box",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg"
-  ]
+  "selection": {
+    "bg": "#f1e8d7",
+    "ink": "#53271e"
+  },
+  "client": {
+    "en": "KREOLA chocolate workshop",
+    "ko": "KREOLA 초콜릿 공방",
+    "ru": "Шоколадная мастерская KREOLA"
+  },
+  "service": {
+    "en": "Identity, packaging, die-lines, prepress",
+    "ko": "아이덴티티, 패키지, 칼선, 프리프레스",
+    "ru": "Айдентика, упаковка, развёртки, допечатная подготовка"
+  },
+  "intro": {
+    "en": "Identity and packaging for a small luxury chocolatier making handmade truffles and bars from premium chocolate, sold through chain stores. <span class=\"fade\">Twenty-plus flavours, one tile pattern holding them all together.</span>",
+    "ko": "프리미엄 초콜릿으로 수제 트러플과 바를 만들어 체인 매장에 선보이는 작은 럭셔리 쇼콜라티에의 아이덴티티와 패키지. <span class=\"fade\">스무 가지가 넘는 맛을 하나의 타일 패턴으로.</span>",
+    "ru": "Айдентика и упаковка для небольшой премиальной шоколадной мастерской: трюфели и плитки ручной работы из шоколада высшего качества, которые продаются в сетевых магазинах. <span class=\"fade\">Больше двадцати вкусов — и один модульный орнамент, который держит их вместе.</span>"
+  },
+  "brief": {
+    "en": "After a few years on plain kraft packaging with a logo sticker, KREOLA was moving into chain retail. It needed a full identity and production-ready packaging for several product lines: premium and handmade at once, and able to hold its own on a shelf of bigger brands.",
+    "ko": "KREOLA는 몇 년간 로고 스티커를 붙인 무지 크라프트 포장을 써 오다가 체인 유통에 진출하게 되었습니다. 여러 제품 라인을 위한 완전한 아이덴티티와 바로 생산할 수 있는 패키지가 필요했고, 프리미엄과 수제의 느낌을 함께 담아 더 큰 브랜드들 사이 진열대에서도 존재감을 지켜야 했습니다.",
+    "ru": "В KREOLA несколько лет обходились простой крафтовой упаковкой с наклейкой-логотипом, но перед выходом в сетевую розницу им нужна была полноценная айдентика и готовая к производству упаковка для нескольких линеек, но чтобы в ней одновременно чувствовались премиальность и деликантость ручной работы."
+  },
+  "did": {
+    "en": [
+      "Developed together with Monica Ramilison.",
+      "The client chose a modern art deco direction, which we built into a modular tile pattern, each tile nodding to chocolate and its ingredients. Every flavour gets its own colour, so the pattern stays constant while each flavour is easy to tell apart.",
+      "The real test was scale: several packaging types, each with a custom die-line, across more than twenty flavours. Every piece had to match the supplied copy exactly and meet retail labelling regulations, so ingredient panels, nutrition data, barcodes and certification marks were designed into the layout rather than squeezed in at the end."
+    ],
+    "ko": [
+      "Monica Ramilison과 공동 작업.",
+      "클라이언트가 고른 모던 아르데코 방향을 모듈형 타일 패턴으로 발전시켰고, 타일마다 초콜릿과 그 재료에서 따온 모티프를 담았습니다. 맛마다 고유한 색을 부여해, 패턴은 그대로 유지하면서도 맛을 쉽게 구분할 수 있게 했습니다.",
+      "진짜 시험대는 규모였습니다. 스무 가지가 넘는 맛에 여러 패키지 유형이 있었고, 유형마다 칼선을 따로 만들어야 했습니다. 모든 패키지는 전달받은 문구와 정확히 일치하고 식품 표시 규정도 지켜야 했기에, 원재료 표기와 영양 정보, 바코드, 인증 마크를 마지막에 끼워 넣지 않고 처음부터 레이아웃에 포함해 디자인했습니다."
+    ],
+    "ru": [
+      "Совместно с Моникой Рамилисон.",
+      "Клиент выбрал направление современного ар-деко, и мы развили его в модульный орнамент из плиток, каждая из которых отсылает к шоколаду и его ингредиентам. У каждого вкуса свой цвет: орнамент остаётся неизменным, а вкусы легко различить.",
+      "Настоящей проверкой стал масштаб: несколько типов упаковки, у каждого своя развёртка, и всё это на двадцать с лишним вкусов. Каждый элемент должен был точно соответствовать предоставленным текстам и требованиям к маркировке, поэтому состав, пищевая ценность, штрихкоды и знаки сертификации закладывались в макет с самого начала."
+    ]
+  },
+  "coverAlt": {
+    "en": "KREOLA truffle box",
+    "ko": "KREOLA 트러플 상자",
+    "ru": "Коробка трюфелей KREOLA"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg"]
 }

@@ -1,23 +1,54 @@
 {
   "title": "Monthly Specials",
-  "category": "Menus & event posters",
+  "category": {
+    "en": "Menus & event posters",
+    "ko": "메뉴·이벤트 포스터",
+    "ru": "Меню и афиши"
+  },
   "discipline": ["print", "editorial"],
   "year": 2026,
   "selected": false,
-  "client": "Hideout",
-  "service": "Menu & poster design, typography, layout",
-  "intro": "Ongoing design for an international bar in Busan: a new specials menu every month, plus posters for its events. <span class=\"fade\">One visual voice, a different theme every time.</span>",
-  "brief": "Hideout's owners create new signature cocktails every month, each around a different theme: a flavour, a mood or a technique. Alongside them, the bar runs special events of every kind. Each piece needs to feel distinct and bring its theme forward, while clearly belonging to the same bar, and the menus need both an English and a Korean version.",
-  "did": [
-    "I treat it all as one series with a consistent structure, type hierarchy and voice, so guests recognise Hideout at a glance. Everything around that core shifts to fit the month or the event.",
-    "Each menu is laid out twice. Korean and English differ a lot in length and rhythm, so each version is rebalanced instead of just translated in place.",
-    "There's no budget for a studio shoot every time, so the drinks are photographed on a phone at the bar, then reworked in Photoshop with AI-assisted editing until they hold up as menu imagery."
-  ],
-  "coverAlt": "Hideout specials menus and event posters",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "cover.jpg"
-  ]
+  "client": {
+    "en": "Hideout",
+    "ko": "Hideout",
+    "ru": "Hideout"
+  },
+  "service": {
+    "en": "Menu & poster design, layout",
+    "ko": "메뉴·포스터 디자인, 레이아웃",
+    "ru": "Дизайн меню и афиш, вёрстка"
+  },
+  "intro": {
+    "en": "Ongoing design for an international bar in Busan: a new specials menu every month, plus posters for its events. <span class=\"fade\">One visual voice, a different theme every time.</span>",
+    "ko": "부산의 한 인터내셔널 바와 함께하는 장기 작업으로, 매달 바뀌는 스페셜 메뉴와 각종 이벤트 포스터를 디자인합니다. <span class=\"fade\">목소리는 하나, 테마는 매번 새롭게.</span>",
+    "ru": "Постоянная работа для интернационального бара в Пусане: каждый месяц — новое меню специальных коктейлей, а ещё афиши к мероприятиям. <span class=\"fade\">Один визуальный голос — и каждый раз новая тема.</span>"
+  },
+  "brief": {
+    "en": "Every month, Hideout's owners create new signature cocktails, each built around a theme: a flavour, a mood or a technique. The bar also runs events of every kind. Each piece has to feel distinct and carry its theme while clearly belonging to the same bar, and every menu needs an English and a Korean version.",
+    "ko": "Hideout의 오너들은 매달 새로운 테마로 시그니처 칵테일을 선보입니다. 테마는 맛일 때도, 분위기나 기법일 때도 있습니다. 여기에 온갖 종류의 이벤트도 열립니다. 작업물 하나하나가 저마다의 개성으로 테마를 살리면서도 한눈에 같은 바의 것으로 보여야 하고, 메뉴는 영어판과 한국어판이 모두 필요합니다.",
+    "ru": "Каждый месяц владельцы Hideout придумывают новые авторские коктейли, каждый раз на свою тему — вкус, настроение или технику. Кроме того, в баре проходят самые разные мероприятия. Каждая работа должна быть особенной и раскрывать свою тему, но при этом явно принадлежать одному бару, а каждому меню нужны английская и корейская версии."
+  },
+  "did": {
+    "en": [
+      "I treat it all as one series with a consistent structure, type hierarchy and voice, so guests recognise Hideout at a glance. Everything around that core shifts to fit the month or the event.",
+      "Each menu is laid out twice. Korean and English differ a lot in length and rhythm, so each version gets its own balance rather than having the translation dropped into the English layout.",
+      "There's no budget for a studio shoot every month, so the owners photograph the drinks on a phone at the bar and send them over. I rework each shot in Photoshop with AI-assisted editing until it holds up as menu imagery."
+      ],
+    "ko": [
+      "모든 작업을 하나의 시리즈로 보고 구조와 서체 위계, 톤을 일관되게 유지해, 손님이 한눈에 Hideout임을 알아볼 수 있게 합니다. 그 중심을 제외한 나머지는 그달의 테마나 이벤트에 맞춰 자유롭게 바뀝니다.",
+      "메뉴는 두 번씩 레이아웃합니다. 한국어와 영어는 글의 길이도 리듬도 크게 달라서, 번역문을 그대로 앉히지 않고 언어마다 균형을 새로 잡습니다.",
+      "매달 스튜디오 촬영을 할 예산은 없어서, 오너들이 바에서 휴대폰으로 찍은 음료 사진을 보내 주면 제가 Photoshop과 AI 보정 도구로 메뉴에 쓸 수 있는 수준까지 다듬습니다."
+    ],
+    "ru": [
+      "Я веду всё это как одну серию с единой структурой, типографической иерархией и интонацией, чтобы гости сразу узнавали Hideout. Всё остальное вокруг этого ядра меняется под месяц или событие.",
+      "Каждое меню я верстаю дважды. Корейский и английский сильно отличаются по длине и ритму, поэтому каждая версия собирается заново, а не просто переводится поверх английской.",
+      "Бюджета на студийную съёмку каждый месяц нет, поэтому владельцы снимают напитки на телефон прямо в баре и присылают мне снимки, а я дорабатываю их в Photoshop с помощью ИИ-инструментов, пока они не будут смотреться как полноценные фото для меню."
+    ]
+  },
+  "coverAlt": {
+    "en": "Hideout specials menus and event posters",
+    "ko": "Hideout 스페셜 메뉴와 이벤트 포스터",
+    "ru": "Меню специальных коктейлей и афиши Hideout"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "cover.jpg"]
 }

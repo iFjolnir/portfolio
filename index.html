@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Faina Iasen — Graphic designer</title>
+  <title data-i18n>Faina Iasen — Graphic designer</title>
   <meta name="description" content="Graphic designer and design educator based in Busan.">
   <meta property="og:title" content="Faina Iasen — Graphic designer">
   <meta property="og:description" content="Graphic designer and design educator based in Busan.">
@@ -12,22 +12,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard-std/dist/web/variable/pretendardvariable-std-dynamic-subset.css">
   <link rel="stylesheet" href="./assets/style.css">
+  <script src="./assets/lang.js"></script>
   <script src="./assets/transitions.js"></script>
 </head>
 <body data-root="./" data-page="home">
   <header class="bar">
     <a class="bar__name" href="./">Faina Iasen</a>
-    <nav class="bar__nav" aria-label="Main">
+    <nav class="bar__nav" aria-label="Main" data-i18n-attr="aria-label">
       <span class="bar__pages">
-        <a href="./" data-nav="home">Home</a>
-        <a href="./work/" data-nav="work">Work</a>
-        <a href="./info/" data-nav="info">Info</a>
+        <a href="./" data-nav="home" data-i18n>Home</a>
+        <a href="./work/" data-nav="work" data-i18n>Work</a>
+        <a href="./info/" data-nav="info" data-i18n>Info</a>
       </span>
-      <a class="bar__apps" href="./apps/" data-nav="apps">Apps</a>
+      <a class="bar__apps" href="./apps/" data-nav="apps" data-i18n>Apps</a>
     </nav>
     <div class="bar__end">
       <p class="bar__time" data-clock>Busan</p>
-      <a class="bar__cta" href="mailto:hello@fainaiasen.com">Say hello</a>
+      <a class="bar__cta" href="mailto:hello@fainaiasen.com" data-i18n>Say hello</a>
     </div>
   </header>
 
@@ -38,10 +39,10 @@
            in style.css under "Greeting". Stacked on desktop, one line on phones.
            Each "say" line holds all three languages in one spot; only the active one shows. -->
       <h1 class="t-display hello" data-greeting>
-        <span class="visually-hidden">Hello! I'm</span>
+        <span class="visually-hidden" data-i18n>Hello! I'm</span>
         <span class="say" aria-hidden="true"><span lang="en">Hello!</span><span lang="ko">안녕하세요!</span><span lang="ru">Привет!</span></span><br>
         <span class="say say--end" aria-hidden="true"><span lang="en">I'm</span><span lang="ko">저는</span><span lang="ru">Я</span></span>
-        <span class="names" role="group" aria-label="Language"><button type="button" data-lang="en" lang="en" aria-label="Faye: English">Faye,</button> <button type="button" data-lang="ko" lang="ko" aria-label="해인: 한국어">해인,</button> <button type="button" data-lang="ru" lang="ru" aria-label="Фаина: Русский">Фаина<span class="names__dot">.</span></button><span class="names__end" lang="ko" aria-hidden="true">입니다.</span></span>
+        <span class="names" role="group" aria-label="Language" data-i18n-attr="aria-label"><button type="button" data-lang="en" lang="en" aria-label="Faye: English">Faye,</button> <button type="button" data-lang="ko" lang="ko" aria-label="해인: 한국어">해인,</button> <button type="button" data-lang="ru" lang="ru" aria-label="Фаина: Русский">Фаина<span class="names__dot">.</span></button><span class="names__end" lang="ko" aria-hidden="true">입니다.</span></span>
       </h1>
       <script>
       /* The greeting: hover a name to preview that language, click to choose it.
@@ -67,7 +68,8 @@
           return "en";
         }
 
-        var chosen = LANGS.indexOf(read(KEY)) > -1 ? read(KEY) : detect();
+        // lang.js (in <head>) has already worked out the language: ?lang=, saved choice or browser
+        var chosen = window.FI_LANG || (LANGS.indexOf(read(KEY)) > -1 ? read(KEY) : detect());
 
         // what's showing (the chosen language, or the one being previewed)
         function show(lang) {
@@ -94,8 +96,8 @@
           b.addEventListener("click", function () {
             stopIntro();
             chosen = lang;
-            write(KEY, lang);
-            document.documentElement.setAttribute("data-lang", lang);
+            if (window.FI_setLang) window.FI_setLang(lang);   // switches the whole site (lang.js)
+            else write(KEY, lang);
             show(lang);
           });
         });
@@ -139,7 +141,7 @@
       })();
       </script>
       <!-- EDIT: your profile links (same as on the Info page). Hidden on phones. -->
-      <nav class="icons icons--stack" aria-label="Profiles">
+      <nav class="icons icons--stack" aria-label="Profiles" data-i18n-attr="aria-label">
           <a href="https://www.linkedin.com/in/faina-iasen/" aria-label="LinkedIn" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="7.6" cy="7.7" r="1.25" fill="currentColor"/><path d="M7.6 10.6v6.8M11.4 17.4v-6.8M11.4 13.6c0-1.9 1.2-3.1 2.8-3.1s2.5 1 2.5 3v3.9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
           </a>
@@ -148,30 +150,30 @@
           </a>
       </nav>
       <!-- Disciplines come from projects/list.json and link to the filtered work page -->
-      <ul class="lines t-body ink" data-render="disciplines" aria-label="Disciplines"></ul>
+      <ul class="lines t-body ink" data-render="disciplines" aria-label="Disciplines" data-i18n-attr="aria-label"></ul>
       <!-- phones: the same disciplines as one line -->
       <p class="t-small disciplines-inline" data-render="disciplines-inline"></p>
     </aside>
 
     <main class="col col--mid">
       <!-- EDIT: your intro. The part inside <span class="fade"> is the grey half. -->
-      <p class="t-lead prose">A graphic designer and design educator, now based in Busan <span class="fade">&mdash; making identities, publications, websites and objects, and lately small web tools for learning Korean.</span></p>
+      <p class="t-lead prose" data-i18n>A graphic designer and design educator, now based in Busan <span class="fade">&mdash; making identities, publications, websites and objects, and lately small web tools for learning Korean.</span></p>
 
       <section class="section" aria-labelledby="work-head">
         <div class="section__head">
-          <h2 class="t-head" id="work-head">Selected work</h2>
+          <h2 class="t-head" id="work-head" data-i18n>Selected work</h2>
           <span class="t-meta" data-count="selected"></span>
         </div>
         <ul class="work-list" data-render="selected"></ul>
         <noscript><p class="t-body">Turn on JavaScript to see the project list.</p></noscript>
-        <p class="t-small" style="margin-top:24px"><a href="./work/">See all work</a></p>
+        <p class="t-small" style="margin-top:24px"><a href="./work/" data-i18n>See all work</a></p>
       </section>
 
       <footer class="sign-off">
-        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com">Say hello.</a>
+        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com" data-i18n>Say hello.</a>
         <div class="sign-off__base t-meta">
           <span>&copy; 2026 Faina Iasen</span>
-          <span>Busan, South Korea</span>
+          <span data-i18n>Busan, South Korea</span>
         </div>
       </footer>
     </main>
@@ -180,13 +182,13 @@
       <div class="intro-card">
         <div class="intro-card__top">
           <!-- EDIT: "status--on" = green marker. Remove that class (or the whole line) when you're not taking work. -->
-          <p class="status status--on">Available for freelance</p>
+          <p class="status status--on" data-i18n>Available for freelance</p>
           <div class="media media--3x4 portrait">
-            <img src="./assets/img/portrait.jpg" alt="Portrait of Faina Iasen">
+            <img src="./assets/img/portrait.jpg" alt="Portrait of Faina Iasen" data-i18n-attr="alt">
           </div>
         </div>
         <!-- desktop only -->
-        <p class="t-small intro-card__caption">Graphic designer<br>Based in Busan<br><span class="grey">Designing since 2018</span></p>
+        <p class="t-small intro-card__caption" data-i18n>Graphic designer<br>Based in Busan<br><span class="grey">Designing since 2018</span></p>
       </div>
       <div class="t-small contact">
         <a href="mailto:hello@fainaiasen.com">hello@fainaiasen.com</a>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Work — Faina Iasen</title>
+  <title data-i18n>Work — Faina Iasen</title>
   <meta name="description" content="Graphic designer and design educator based in Busan.">
   <meta property="og:title" content="Work — Faina Iasen">
   <meta property="og:description" content="Graphic designer and design educator based in Busan.">
@@ -12,30 +12,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard-std/dist/web/variable/pretendardvariable-std-dynamic-subset.css">
   <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/lang.js"></script>
   <script src="../assets/transitions.js"></script>
 </head>
 <body data-root="../" data-page="work">
   <header class="bar">
     <a class="bar__name" href="../">Faina Iasen</a>
-    <nav class="bar__nav" aria-label="Main">
+    <nav class="bar__nav" aria-label="Main" data-i18n-attr="aria-label">
       <span class="bar__pages">
-        <a href="../" data-nav="home">Home</a>
-        <a href="../work/" data-nav="work">Work</a>
-        <a href="../info/" data-nav="info">Info</a>
+        <a href="../" data-nav="home" data-i18n>Home</a>
+        <a href="../work/" data-nav="work" data-i18n>Work</a>
+        <a href="../info/" data-nav="info" data-i18n>Info</a>
       </span>
-      <a class="bar__apps" href="../apps/" data-nav="apps">Apps</a>
+      <a class="bar__apps" href="../apps/" data-nav="apps" data-i18n>Apps</a>
     </nav>
     <div class="bar__end">
       <p class="bar__time" data-clock>Busan</p>
-      <a class="bar__cta" href="mailto:hello@fainaiasen.com">Say hello</a>
+      <a class="bar__cta" href="mailto:hello@fainaiasen.com" data-i18n>Say hello</a>
     </div>
   </header>
 
   <div class="frame">
 
     <aside class="col col--side col--left">
-      <h1 class="t-display">Work.</h1>
-      <nav aria-label="Filter by discipline">
+      <h1 class="t-display" data-i18n>Work.</h1>
+      <nav aria-label="Filter by discipline" data-i18n-attr="aria-label">
         <ul class="lines lines--grey t-body" data-render="filters"></ul>
       </nav>
     </aside>
@@ -48,10 +49,10 @@
       <noscript><p class="t-body">Turn on JavaScript to see the project list.</p></noscript>
 
       <footer class="sign-off">
-        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com">Say hello.</a>
+        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com" data-i18n>Say hello.</a>
         <div class="sign-off__base t-meta">
           <span>&copy; 2026 Faina Iasen</span>
-          <span>Busan, South Korea</span>
+          <span data-i18n>Busan, South Korea</span>
         </div>
       </footer>
     </main>
@@ -60,11 +61,11 @@
       <div>
         <!-- the (13) is filled in automatically; the number here only holds its place while loading -->
         <div class="section__head" style="justify-content:flex-end; gap:0.5em">
-          <span class="t-small">Index</span><span class="t-meta" data-count="all">(13)</span>
+          <span class="t-small" data-i18n>Index</span><span class="t-meta" data-count="all">(13)</span>
         </div>
         <ul class="lines lines--grey t-small" data-render="index"></ul>
       </div>
-      <p class="t-meta">Click a discipline on the left to narrow the list.</p>
+      <p class="t-meta" data-i18n>Click a discipline to narrow the list.</p>
     </aside>
 
   </div>

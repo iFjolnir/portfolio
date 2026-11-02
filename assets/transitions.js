@@ -35,7 +35,8 @@
     var dir = b > a ? "down" : b < a ? "up" : "";
     // project to project: "Next project" rises from underneath, like scrolling on;
     // the Back button drops the previous one back in from above
-    if (!dir && a === 1.5) dir = e.activation && e.activation.navigationType === "traverse" ? "down" : "up";
+    // (its own direction, because phones swipe it in from the right like any "forward")
+    if (!dir && a === 1.5) dir = e.activation && e.activation.navigationType === "traverse" ? "prev" : "next";
     try { sessionStorage.setItem(KEY, dir); } catch (err) { /* no direction: plain fade */ }
   });
 

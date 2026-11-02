@@ -1,35 +1,87 @@
 {
   "title": "Example project",
-  "category": "Brand identity",
+  "category": {
+    "en": "Brand identity",
+    "ko": "",
+    "ru": ""
+  },
   "discipline": "identity",
   "year": 2026,
   "selected": true,
-  "client": "Client name",
-  "service": "Identity, print",
+  "client": {
+    "en": "Client name",
+    "ko": "",
+    "ru": ""
+  },
+  "service": {
+    "en": "Identity, print",
+    "ko": "",
+    "ru": ""
+  },
   "link": {
-    "text": "example.com",
+    "text": {
+      "en": "example.com",
+      "ko": "",
+      "ru": ""
+    },
     "url": "https://example.com/"
   },
-  "intro": "One or two sentences about the project: what it was, who it was for, <span class=\"fade\">and the idea that holds it together.</span>",
-  "brief": "What the client needed, and any constraints worth knowing about.",
-  "did": [
-    "Your approach and the decisions that shaped the result.",
-    "A second paragraph, if you need one."
-  ],
-  "coverAlt": "Example project cover",
+  "intro": {
+    "en": "One or two sentences about the project: what it was, who it was for, <span class=\"fade\">and the idea that holds it together.</span>",
+    "ko": "",
+    "ru": ""
+  },
+  "brief": {
+    "en": "What the client needed, and any constraints worth knowing about.",
+    "ko": "",
+    "ru": ""
+  },
+  "did": {
+    "en": [
+      "Your approach and the decisions that shaped the result.",
+      "A second paragraph, if you need one."
+    ],
+    "ko": [],
+    "ru": []
+  },
+  "coverAlt": {
+    "en": "Example project cover",
+    "ko": "",
+    "ru": ""
+  },
   "images": [
     "01.jpg",
     {
       "src": "02.jpg",
-      "alt": "A tall image, to show heights follow each picture"
+      "alt": {
+        "en": "A tall image, to show heights follow each picture",
+        "ko": "",
+        "ru": ""
+      }
     },
     {
       "src": "03.jpg",
-      "alt": "Example with text",
-      "title": "Optional title under an image",
-      "text": "Any image can carry a title, a short text and a link. Leave them out and it's just the picture.",
+      "alt": {
+        "en": "Example with text",
+        "ko": "",
+        "ru": ""
+      },
+      "title": {
+        "en": "Optional title under an image",
+        "ko": "",
+        "ru": ""
+      },
+      "text": {
+        "en": "Any image can carry a title, a short text and a link. Leave them out and it's just the picture.",
+        "ko": "",
+        "ru": ""
+      },
       "link": {
-        "text": "Optional link",
+        "text": {
+          "en": "Optional link",
+          "ko": "",
+          "ru": ""
+        },
         "url": "https://example.com/"
       }
     }

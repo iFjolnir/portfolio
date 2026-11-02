@@ -1,26 +1,55 @@
 {
   "title": "Sweet Sorceress",
-  "category": "Brand identity & packaging",
+  "category": {
+    "en": "Identity & packaging",
+    "ko": "아이덴티티·패키지",
+    "ru": "Айдентика и упаковка"
+  },
   "discipline": ["identity", "print"],
   "year": 2020,
   "selected": false,
   "selection": "#c5cb73",
-  "client": "Sweet Sorceress",
-  "service": "Identity, packaging, illustration",
-  "intro": "Identity and packaging for a small US confectioner making premium, fully handmade chocolate-covered dragée. <span class=\"fade\">A little bit of magic, built to be assembled at a kitchen table.</span>",
-  "brief": "Everything at Sweet Sorceress was made by hand, packaging included, so a handful of people had to be able to assemble it quickly without driving up costs. The labels had to meet US food regulations across more than twenty flavour combinations, and the owner wanted the brand to feel whimsical: a little magical every time you treat yourself.",
-  "did": [
-    "Developed together with Monica Ramilison.",
-    "The identity is built to feel personal and a little playful instead of polished and corporate. Each flavour has its own illustration of its main ingredients, so the label tells you what's inside at a glance, with room left for the US nutrition panel, recycling marks and barcode.",
-    "The client chose stock clear jars they could buy in bulk, letting the colour of the dragée do part of the work. Everything else lives on gloss labels: quick to apply by hand, and safe from chocolate-covered fingers. For assortments, a plain kraft bag with a seal keeps the same character on an even smaller budget."
-  ],
-  "coverAlt": "Sweet Sorceress dragée jars",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg",
-    "05.jpg",
-    "06.jpg"
-  ]
+  "client": {
+    "en": "Sweet Sorceress",
+    "ko": "Sweet Sorceress",
+    "ru": "Sweet Sorceress"
+  },
+  "service": {
+    "en": "Identity, packaging, illustration",
+    "ko": "아이덴티티, 패키지, 일러스트레이션",
+    "ru": "Айдентика, упаковка, иллюстрация"
+  },
+  "intro": {
+    "en": "Identity and packaging for a small US confectioner making premium, fully handmade chocolate-covered dragées. <span class=\"fade\">A little bit of magic, built to be assembled at a kitchen table.</span>",
+    "ko": "100% 수작업으로 프리미엄 초콜릿 드라제를 만드는 미국의 작은 제과 공방을 위한 아이덴티티와 패키지. <span class=\"fade\">약간의 마법을, 부엌 식탁에서 조립할 수 있게.</span>",
+    "ru": "Айдентика и упаковка для небольшой американской кондитерской, которая полностью вручную делает премиальное драже в шоколаде. <span class=\"fade\">Немного волшебства — с расчётом на сборку за кухонным столом.</span>"
+  },
+  "brief": {
+    "en": "Everything at Sweet Sorceress was made by hand, packaging included, so a handful of people had to be able to assemble it quickly without driving up costs. The labels had to meet US food regulations across more than twenty flavour combinations, and the owner wanted the brand to feel whimsical: a little magical every time you treat yourself.",
+    "ko": "Sweet Sorceress는 포장까지 모든 것을 손으로 만들었기 때문에, 작은 팀이 비용을 늘리지 않고도 빠르게 조립할 수 있어야 했습니다. 라벨은 스무 가지가 넘는 맛 조합 모두 미국 식품 규정을 충족해야 했고, 오너는 브랜드가 동화처럼 느껴지길 원했습니다. 작은 간식 하나에도 마법 같은 순간이 깃들도록.",
+    "ru": "В Sweet Sorceress всё делали вручную, включая упаковку, поэтому её должна была быстро собирать небольшая команда — и без роста расходов. Этикетки должны были соответствовать американским требованиям, а владельцы хотели, чтобы бренд был немного сказочным: чтобы каждое лакомство казалось чуточку волшебным."
+  },
+  "did": {
+    "en": [
+      "Developed together with Monica Ramilison.",
+      "The identity is built to feel personal and a little playful instead of polished and corporate. Each flavour has its own illustration of its main ingredients, so the label tells you what's inside at a glance, with room left for the US nutrition panel, recycling marks and barcode.",
+      "The client chose stock clear jars they could buy in bulk, letting the colour of the dragées do part of the work. Everything else lives on gloss labels: quick to apply by hand, and safe from chocolate-covered fingers. For assortments, a plain kraft bag with a seal keeps the same character on an even smaller budget."
+    ],
+    "ko": [
+      "Monica Ramilison과 공동 작업.",
+      "아이덴티티는 매끈하고 기업적인 느낌 대신, 개인적이고 살짝 장난기 있는 분위기로 만들었습니다. 맛마다 주재료를 그린 일러스트가 있어 라벨만 봐도 무엇이 들었는지 한눈에 알 수 있고, 미국식 영양 정보 표와 재활용 마크, 바코드가 들어갈 자리도 남겨 두었습니다.",
+      "클라이언트는 대량으로 구매할 수 있는 기성품 투명 병을 골랐고, 덕분에 드라제의 색 자체가 디자인의 일부가 됩니다. 나머지는 모두 유광 라벨에 담았습니다. 손으로 빠르게 붙일 수 있고, 초콜릿 묻은 손가락에도 끄떡없습니다. 모둠 제품은 실링 스티커를 붙인 크라프트 봉투로, 더 적은 예산에서도 같은 분위기를 유지합니다."
+    ],
+    "ru": [
+      "Совместно с Моникой Рамилисон.",
+      "Айдентика задумана личной и немного озорной. У каждого вкуса своя иллюстрация с основными ингредиентами, так что этикетка с первого взгляда говорит, что внутри — и при этом остаётся место для таблицы пищевой ценности, знаков переработки и штрихкода.",
+      "Клиент выбрал стандартные прозрачные банки, которые можно закупать оптом, — часть работы делает сам цвет драже. Всё остальное — на глянцевых этикетках: их быстро клеить вручную, и им не страшны пальцы в шоколаде. Для ассорти — простой крафтовый пакет с наклейкой-пломбой: тот же характер при ещё меньшем бюджете."
+    ]
+  },
+  "coverAlt": {
+    "en": "Sweet Sorceress dragée jars",
+    "ko": "Sweet Sorceress 드라제 병",
+    "ru": "Банки с драже Sweet Sorceress"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg"]
 }

@@ -2,25 +2,53 @@
   "disciplines": [
     {
       "key": "identity",
-      "label": "Brand identity",
-      "short": "Identity"
+      "label": {
+        "en": "Brand identity",
+        "ko": "브랜드 아이덴티티",
+        "ru": "Айдентика"
+      },
+      "short": {
+        "en": "Identity",
+        "ko": "아이덴티티",
+        "ru": "Айдентика"
+      }
     },
     {
       "key": "editorial",
-      "label": "Editorial"
+      "label": {
+        "en": "Editorial",
+        "ko": "편집 디자인",
+        "ru": "Принт"
+      }
     },
     {
       "key": "print",
-      "label": "Print"
+      "label": {
+        "en": "Print",
+        "ko": "인쇄",
+        "ru": "Полиграфия"
+      }
     },
     {
       "key": "web",
-      "label": "Web design",
-      "short": "Web"
+      "label": {
+        "en": "Web design",
+        "ko": "웹 디자인",
+        "ru": "Веб-дизайн"
+      },
+      "short": {
+        "en": "Web",
+        "ko": "웹",
+        "ru": "Веб"
+      }
     },
     {
       "key": "objects",
-      "label": "Product design"
+      "label": {
+        "en": "Product design",
+        "ko": "제품 디자인",
+        "ru": "Промышленный дизайн"
+      }
     }
   ],
   "projects": [
@@ -28,8 +56,9 @@
     "ho-webmenu",
     "ho-menus",
     "vocab-drill",
-    "book-covers",
+    "topik-sheet",
     "ho-specials",
+    "book-covers",
     "khadija-s-kitchen",
     "me-promotie",
     "streamer",

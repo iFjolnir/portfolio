@@ -1,28 +1,66 @@
 {
   "title": "Hideout Web",
-  "category": "Digital menu & ordering",
+  "category": {
+    "en": "Digital menu & ordering",
+    "ko": "디지털 메뉴·주문",
+    "ru": "Веб-меню"
+  },
   "discipline": "web",
   "year": 2026,
   "selected": true,
-  "selection": { "bg": "#e6155a", "ink": "#ffffff" },
-  "client": "Hideout",
-  "service": "UI/UX, front-end development<br>photography and editing",
+  "selection": {
+    "bg": "#e6155a",
+    "ink": "#ffffff"
+  },
+  "client": {
+    "en": "Hideout",
+    "ko": "Hideout",
+    "ru": "Hideout"
+  },
+  "service": {
+    "en": "UI/UX, front-end dev<br>photography and editing",
+    "ko": "UI/UX, 프론트엔드 개발, 사진 촬영·보정",
+    "ru": "UI/UX, фронтенд<br>фотосъёмка и обработка"
+  },
   "link": {
-    "text": "Live demo",
+    "text": {
+      "en": "Live demo",
+      "ko": "데모 보기",
+      "ru": "Открыть демо"
+    },
     "url": "https://apps.fainaiasen.com/hideout-menu/"
   },
-  "intro": "A mobile web menu for an international bar in Busan that opens from a QR code at the table. <span class=\"fade\">Designed around how the bar actually runs, for the people ordering and the people pouring.</span>",
-  "brief": "On any given night, Hideout's guests come from all over the globe. The goal wasn't just to put the menu on a phone, but to improve ordering for both sides of the bar: easier for guests to browse, clearer for staff to take orders from, and simple to update without a designer every time a cocktail changes.",
-  "did": [
-    "I designed the full experience, from structure and interaction to visual style, and shot the drink photography myself. Guests can discover drinks in a swipeable carousel or use a compact list when they already know what they want, and switch the whole menu between English, Korean and Spanish.",
-    "Guests build their order on their own phone, and the waiter view always shows it in English, so staff can read it at a glance on a busy night.",
-    "The menu, specials and events live in simple data files apart from the design, so the bar can change prices or announce an event without touching the layout."
-  ],
-  "coverAlt": "Hideout web menu on a phone",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg"
-  ]
+  "intro": {
+    "en": "A mobile web menu for an international bar in Busan that opens from a QR code at the table. <span class=\"fade\">Designed around how the bar actually runs, for the people ordering and the people pouring.</span>",
+    "ko": "테이블 위 QR 코드로 바로 여는, 부산의 한 인터내셔널 바를 위한 모바일 웹 메뉴. <span class=\"fade\">바가 실제로 돌아가는 방식에 맞춰, 주문하는 손님도 술을 내는 바텐더도 편하도록 설계했습니다.</span>",
+    "ru": "Мобильное веб-меню для интернационального бара в Пусане: гости открывают его по QR-коду прямо за столиком. <span class=\"fade\">Спроектировано под то, как бар работает на самом деле, — для тех, кто заказывает, и для тех, кто наливает.</span>"
+  },
+  "brief": {
+    "en": "On any given night, Hideout's guests come from all over the globe. The goal wasn't just to put the menu on a phone, but to improve ordering for both sides of the bar: easier for guests to browse, clearer for staff to take orders from, and simple to update without a designer every time a cocktail changes.",
+    "ko": "하이드아웃에는 매일 밤 세계 각국에서 온 손님들이 모입니다. 목표는 단순히 메뉴를 휴대폰 화면으로 옮기는 것이 아니라, 바 카운터 양쪽 모두의 주문 경험을 개선하는 것이었습니다. 손님은 더 편하게 메뉴를 둘러보고, 직원은 더 쉽게 주문을 받고, 칵테일이 바뀔 때마다 디자이너를 부르지 않아도 바에서 직접 수정할 수 있어야 했습니다.",
+    "ru": "В Hideout в любой вечер собираются гости со всего света. Задача была не просто перенести меню в телефон, а сделать заказ удобнее по обе стороны барной стойки: гостям — проще выбирать, персоналу — понятнее принимать заказы, а обновлять меню — легко и без дизайнера каждый раз, когда меняется коктейль."
+  },
+  "did": {
+    "en": [
+      "I designed the full experience, from structure and interaction to visual style, and shot the drink photography myself. Guests can discover drinks in a swipeable carousel or use a compact list when they already know what they want, and switch the whole menu between English, Korean and Spanish.",
+      "Guests build their order on their own phone, and the waiter view always shows it in English, so staff can read it at a glance on a busy night.",
+      "The menu, specials and events live in simple data files apart from the design, so the bar can change prices or announce an event without touching the layout."
+    ],
+    "ko": [
+      "구조와 인터랙션부터 비주얼 스타일까지 전체 경험을 디자인했고, 음료 사진도 직접 촬영했습니다. 손님은 스와이프 캐러셀로 메뉴를 구경하거나, 마실 것을 이미 정했다면 간단한 목록에서 바로 고를 수 있으며, 메뉴 전체를 영어·한국어·스페인어로 바꿔 볼 수 있습니다.",
+      "손님은 자기 휴대폰에서 주문을 담고, 직원 화면에는 주문이 항상 영어로 표시되어 바쁜 밤에도 한눈에 확인할 수 있습니다.",
+      "메뉴와 스페셜, 이벤트 정보는 디자인과 분리된 간단한 데이터 파일로 관리해, 레이아웃을 건드리지 않고도 바에서 직접 가격을 바꾸거나 이벤트를 공지할 수 있습니다."
+    ],
+    "ru": [
+      "Я разработала интерфейс целиком — от структуры и взаимодействия до визуального стиля — и сама сняла фото напитков. Гости могут листать напитки в карусели или открыть компактный список, если уже знают, чего хотят; а всё меню переключается между английским, корейским и испанским.",
+      "Гость собирает заказ на своём телефоне, а у официанта он всегда отображается на английском, так что даже в самый разгар вечера его можно прочитать с одного взгляда.",
+      "Меню, спецпредложения и события хранятся в простых текстовых файлах отдельно от дизайна, так что бар может поменять цены или анонсировать мероприятие, не трогая вёрстку."
+    ]
+  },
+  "coverAlt": {
+    "en": "Hideout web menu on a phone",
+    "ko": "스마트폰 화면 속 Hideout 웹 메뉴",
+    "ru": "Веб-меню Hideout на экране смартфона"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg"]
 }

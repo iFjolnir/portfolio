@@ -41,7 +41,38 @@
   }
   function labelFor(key) {
     var d = DISCIPLINES.filter(function (x) { return x.key === key; })[0];
-    return d ? d.label : key;
+    return d ? loc(d.label) : key;
+  }
+
+  /* ---------- languages ----------
+     Site-wide text: t("English") looks it up in assets/i18n/ko.json / ru.json (lang.js).
+     Projects and list.json carry their own languages: a field is either plain
+     English ("Brand identity") or { "en": "…", "ko": "…", "ru": "…" }; an empty or
+     missing language shows the English. Paragraph lists work the same way:
+     { "en": ["…", "…"], "ko": ["…", "…"] }, filled paragraph by paragraph. */
+
+  function t(s) { return window.FI_t ? window.FI_t(s) : s; }
+  function lang() { return window.FI_lang ? window.FI_lang() : "en"; }
+
+  function isLangs(v) { return v && typeof v === "object" && !Array.isArray(v) && "en" in v; }
+  function english(v) { return isLangs(v) ? v.en : v; }
+  // a project / list field in the current language (English where it's missing)
+  function loc(v) {
+    if (!isLangs(v)) return v;
+    var x = v[lang()], e = v.en;
+    if (Array.isArray(e)) return e.map(function (s, i) { return (Array.isArray(x) && x[i]) || s; });
+    return x || e;
+  }
+
+  // text still in English on a Korean / Russian page is marked English (keeps
+  // English spacing, read as English); translated text is marked with its language
+  function markLang(node, isEnglish) { return window.FI_markLang ? window.FI_markLang(node, isEnglish) : node; }
+  // titles aren't translated: English, unless written in Hangul (TOPIK 채점)
+  function titleLang(p) { return /[가-힣]/.test(p.title || "") ? "ko" : "en"; }
+  function keepEn(node, s) { return markLang(node, lang() !== "en" && t(s) === s); }            // site-wide text
+  function keepEnData(node, v) {                                                                 // project / list fields
+    if (Array.isArray(english(v))) { node.removeAttribute("lang"); return node; }              // paragraphs mark themselves
+    return markLang(node, lang() !== "en" && JSON.stringify(loc(v)) === JSON.stringify(english(v)));
   }
 
   // black or white text, whichever reads better on a given hex colour
@@ -65,25 +96,28 @@
 
   /* ---------- Busan clock ---------- */
 
+  // "Busan, 9:02 pm" / "부산, 오후 9:02" / "Пусан, 21:02"
   var clocks = all("[data-clock]");
-  if (clocks.length) {
-    var fmt;
+  var tick = function () {
+    var l = lang(), time;
     try {
-      fmt = new Intl.DateTimeFormat("en-GB", {
-        timeZone: "Asia/Seoul", hour: "numeric", minute: "2-digit", hour12: true
-      });
-    } catch (e) { fmt = null; }
-
-    var tick = function () {
-      if (!fmt) return;
-      var t = fmt.format(new Date()).replace(/\s?([ap])\.?m\.?/i, function (_, a) {
-        return " " + a.toLowerCase() + "m";
-      });
-      clocks.forEach(function (c) { c.textContent = "Busan, " + t; });
-    };
+      time = new Intl.DateTimeFormat(l === "ko" ? "ko-KR" : l === "ru" ? "ru-RU" : "en-GB", {
+        timeZone: "Asia/Seoul", hour: "numeric", minute: "2-digit", hour12: l !== "ru"
+      }).format(new Date());
+    } catch (e) { return; }
+    if (l === "en") time = time.replace(/\s?([ap])\.?m\.?/i, function (_, a) { return " " + a.toLowerCase() + "m"; });
+    clocks.forEach(function (c) { c.textContent = t("Busan") + ", " + time; });
+  };
+  if (clocks.length) {
     tick();
     setInterval(tick, 15000);
   }
+
+  // the language was switched on the page (the names on Home): redo what's built here
+  document.addEventListener("fi:lang", function () {
+    if (clocks.length) tick();
+    if (PROJECTS.length) renderLists();
+  });
 
   /* ---------- nav: mark the current page ---------- */
 
@@ -187,7 +221,7 @@
   function card(p, opts) {
     var img = el("img", {
       src: coverUrl(p),
-      alt: p.coverAlt || p.title || ""
+      alt: loc(p.coverAlt) || p.title || ""
     });
     img.addEventListener("load", function () { rememberRatio(p, img); });
     var media = el("div", { "class": "media" + (opts && opts.crop ? " media--4x3" : "") }, [img]);
@@ -195,8 +229,8 @@
     if (!(opts && opts.crop) && RATIOS[p.slug]) media.style.aspectRatio = RATIOS[p.slug];
     var caption = el("div", { "class": "card__caption" }, [
       el("span", null, [
-        el("span", { "class": "card__title", text: p.title || p.slug }),
-        el("span", { "class": "card__cat", text: p.category || "" })
+        el("span", { "class": "card__title", lang: titleLang(p), text: p.title || p.slug }),   // titles aren't translated
+        keepEnData(el("span", { "class": "card__cat", text: loc(p.category) || "" }), p.category)
       ]),
       el("span", { "class": "card__year", text: shortYear(p.year) })
     ]);
@@ -225,7 +259,7 @@
     all("[data-render='disciplines']").forEach(function (box) {
       DISCIPLINES.forEach(function (d) {
         box.appendChild(el("li", null, [
-          el("a", { href: ROOT + "work/?f=" + d.key, text: d.label })
+          keepEnData(el("a", { href: ROOT + "work/?f=" + d.key, text: loc(d.label) }), d.label)
         ]));
       });
     });
@@ -234,7 +268,10 @@
     all("[data-render='disciplines-inline']").forEach(function (box) {
       DISCIPLINES.forEach(function (d, n) {
         if (n) box.appendChild(document.createTextNode(" \u00b7 "));
-        box.appendChild(el("a", { href: ROOT + "work/?f=" + d.key, text: d.short || d.label }));
+        // short name not translated yet but the full one is: use the translated full name
+        var useLabel = !d.short || (lang() !== "en" && !(isLangs(d.short) && d.short[lang()]) && isLangs(d.label) && d.label[lang()]);
+        var name = useLabel ? d.label : d.short;
+        box.appendChild(keepEnData(el("a", { href: ROOT + "work/?f=" + d.key, text: loc(name) }), name));
       });
     });
 
@@ -248,7 +285,7 @@
           ? PROJECTS.length
           : PROJECTS.filter(function (p) { return inDiscipline(p, o.key); }).length;
         var a = el("a", { href: o.key === "all" ? "./" : "?f=" + o.key, "data-filter": o.key }, [
-          el("span", { text: o.label }),
+          (o.key === "all" ? keepEn(el("span", { text: t(o.label) }), o.label) : keepEnData(el("span", { text: loc(o.label) }), o.label)),
           el("span", { text: String(count) })
         ]);
         a.addEventListener("click", function (e) {
@@ -265,7 +302,7 @@
         indexBox.appendChild(el("li", null, [
           el("a", { href: projectUrl(p) }, [
             el("span", { "class": "ink", text: shortYear(p.year) }),
-            el("span", { text: p.title || p.slug })
+            el("span", { lang: titleLang(p), text: p.title || p.slug })
           ])
         ]));
       });
@@ -282,13 +319,15 @@
       if (grid) {
         grid.innerHTML = "";
         list.forEach(function (p) { grid.appendChild(el("li", null, [card(p, { crop: true })])); });
-        if (!list.length) grid.appendChild(el("li", { "class": "empty", text: "Nothing in this category yet." }));
+        if (!list.length) grid.appendChild(keepEn(el("li", { "class": "empty", text: t("Nothing in this category yet.") }), "Nothing in this category yet."));
       }
       all("[data-render='filters'] a").forEach(function (a) {
         a.setAttribute("aria-current", a.getAttribute("data-filter") === f ? "true" : "false");
       });
       all("[data-filter-label]").forEach(function (n) {
-        n.textContent = f === "all" ? "All work" : labelFor(f);
+        n.textContent = f === "all" ? t("All work") : labelFor(f);
+        var d = DISCIPLINES.filter(function (x) { return x.key === f; })[0];
+        if (f === "all") keepEn(n, "All work"); else if (d) keepEnData(n, d.label);
       });
     }
 
@@ -308,10 +347,15 @@
     body.classList.add("is-ready");
   }
 
-  // brief / did: a string, or a list of strings (one paragraph each)
+  // brief / did: a string, or a list of strings (one paragraph each), in any language.
+  // Half-translated lists: each paragraph still in English is marked as English
   function paragraphs(v) {
-    if (Array.isArray(v)) return v.map(function (t) { return "<p>" + t + "</p>"; }).join("");
-    return v || "";
+    var out = loc(v), en = english(v), l = lang();
+    if (Array.isArray(out)) return out.map(function (s, i) {
+      var still = l !== "en" && Array.isArray(en) && s === en[i];
+      return (still ? '<p lang="en">' : l !== "en" ? '<p lang="' + l + '">' : "<p>") + s + "</p>";
+    }).join("");
+    return out || "";
   }
 
   function renderProject() {
@@ -346,21 +390,23 @@
 
     // text fields
     var fields = {
-      title: p.title || slug,
-      category: p.category,
+      title: p.title || slug,          // titles stay English
+      category: loc(p.category),
       year: p.year,
-      client: p.client,
-      service: p.service,
-      intro: p.intro,
+      client: loc(p.client),
+      service: loc(p.service),
+      intro: loc(p.intro),
       brief: paragraphs(p.brief),
       did: paragraphs(p.did)
     };
+    var source = { category: p.category, client: p.client, service: p.service, intro: p.intro, brief: p.brief, did: p.did };
     Object.keys(fields).forEach(function (k) {
       all("[data-field='" + k + "']").forEach(function (n) {
         var v = fields[k];
         var row = n.closest("[data-optional]");   // fact rows / sections with no value get hidden
         if (v == null || v === "") { if (row) row.hidden = true; return; }
         n.innerHTML = v;
+        if (k in source) keepEnData(n, source[k]);
       });
     });
 
@@ -369,14 +415,15 @@
       var row = n.closest("[data-optional]");
       if (!p.link || !p.link.url) { if (row) row.hidden = true; return; }
       n.innerHTML = "";
-      n.appendChild(el("a", { href: p.link.url, text: p.link.text || p.link.url }));
+      n.appendChild(keepEnData(el("a", { href: p.link.url, text: loc(p.link.text) || p.link.url }), p.link.text));
     });
 
     // cover thumbnail
     all("[data-field='cover']").forEach(function (img) {
       img.src = coverUrl(p);
-      img.alt = p.coverAlt || p.title || "";
+      img.alt = loc(p.coverAlt) || p.title || "";
     });
+    all("[data-field='title']").forEach(function (n) { n.lang = titleLang(p); });
 
     // images, full width. Each entry is either a filename ("01.jpg") or an object:
     //   { "src": "01.jpg", "alt": "…",
@@ -390,15 +437,15 @@
       var o = typeof item === "string" ? { src: item } : (item || {});
       if (!o.src) return;
 
-      var kids = [el("img", { src: fileUrl(p, o.src), alt: o.alt || "", decoding: "async" })];
+      var kids = [el("img", { src: fileUrl(p, o.src), alt: loc(o.alt) || "", decoding: "async" })];
 
       if (o.title || o.text || (o.link && o.link.url)) {
         var cap = el("figcaption", { "class": "project-caption" });
-        if (o.title) cap.appendChild(el("h3", { "class": "project-caption__title", html: o.title }));
-        if (o.text) cap.appendChild(el("div", { "class": "project-caption__text t-body prose", html: paragraphs(o.text) }));
+        if (o.title) cap.appendChild(keepEnData(el("h3", { "class": "project-caption__title", html: loc(o.title) }), o.title));
+        if (o.text) cap.appendChild(keepEnData(el("div", { "class": "project-caption__text t-body prose", html: paragraphs(o.text) }), o.text));
         if (o.link && o.link.url) {
           cap.appendChild(el("p", { "class": "project-caption__link t-small" }, [
-            el("a", { href: o.link.url, text: o.link.text || o.link.url, target: "_blank", rel: "noopener" })
+            keepEnData(el("a", { href: o.link.url, text: loc(o.link.text) || o.link.url, target: "_blank", rel: "noopener" }), o.link.text)
           ]));
         }
         kids.push(cap);
@@ -414,8 +461,8 @@
     all("[data-render='next']").forEach(function (a) {
       if (PROJECTS.length < 2) { a.hidden = true; return; }
       a.href = projectUrl(next);
-      var t = a.querySelector(".next__title");
-      if (t) t.textContent = next.title || next.slug;
+      var title = a.querySelector(".next__title");
+      if (title) { title.textContent = next.title || next.slug; title.lang = titleLang(next); }
     });
 
     setupViewer();
@@ -438,13 +485,13 @@
       next:  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>'
     };
 
-    var box = el("div", { "class": "viewer", role: "dialog", "aria-modal": "true", "aria-label": "Image viewer", hidden: "" });
+    var box = el("div", { "class": "viewer", role: "dialog", "aria-modal": "true", "aria-label": t("Image viewer"), hidden: "" });
     box.innerHTML =
       '<div class="viewer__stage"><img class="viewer__img" alt=""></div>' +
       '<div class="viewer__frame">' +
-        '<button class="viewer__close viewer__ctl" type="button" aria-label="Close">' + ICON.close + '</button>' +
-        '<button class="viewer__prev viewer__ctl" type="button" aria-label="Previous image">' + ICON.prev + '</button>' +
-        '<button class="viewer__next viewer__ctl" type="button" aria-label="Next image">' + ICON.next + '</button>' +
+        '<button class="viewer__close viewer__ctl" type="button" aria-label="' + t("Close") + '">' + ICON.close + '</button>' +
+        '<button class="viewer__prev viewer__ctl" type="button" aria-label="' + t("Previous image") + '">' + ICON.prev + '</button>' +
+        '<button class="viewer__next viewer__ctl" type="button" aria-label="' + t("Next image") + '">' + ICON.next + '</button>' +
       '</div>';
     document.body.appendChild(box);
 
@@ -545,7 +592,7 @@
           img.classList.add("is-zoomable");
           img.setAttribute("tabindex", "0");
           img.setAttribute("role", "button");
-          img.setAttribute("aria-label", "Enlarge image" + (img.alt ? ": " + img.alt : ""));
+          img.setAttribute("aria-label", t("Enlarge image") + (img.alt ? ": " + img.alt : ""));
         }
       });
       if (phone.matches && current > -1) close();

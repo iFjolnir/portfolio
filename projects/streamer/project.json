@@ -1,25 +1,55 @@
 {
   "title": "Twitch Streamer",
-  "category": "Brand identity",
+  "category": {
+    "en": "Brand identity",
+    "ko": "브랜드 아이덴티티",
+    "ru": "Айдентика"
+  },
   "discipline": "identity",
   "year": 2021,
   "selected": false,
   "selection": "#7e5cb0",
-  "client": "Tristan (TYAVA69)",
-  "service": "Identity, merch, 3D stream scenes<br>emotes, subscriber badges",
-  "intro": "A complete identity for a Twitch channel on its way to becoming a full-time job, from the logo to the emotes to fully 3D stream scenes. <span class=\"fade\">Retro-futurist nostalgia, built to feel sleek rather than dated.</span>",
-  "brief": "Tristan wanted a style rooted in his love of retro-futurism and vintage games, flexible enough to stretch from stream assets to merch. His initials, TYA, had to be in the logo, but not too obviously.",
-  "did": [
-    "The logo runs through all three initials in a single continuous stroke. Turned vertical, it becomes a second, compact mark, and a motif taken from its curve ties the rest of the system together.",
-    "Because the channel lives on its community, much of the work went into what viewers carry around in chat. The subscriber badges grow from a single honeycomb cell to a full hive, so loyalty is something you can watch evolve, and the emotes give regulars a shared language of inside jokes and a reason to subscribe.",
-    "The starting, intermission and ending stream scenes combine 3D modelling with graphic design, so switching between games and activities feels smooth instead of abrupt."
-  ],
-  "coverAlt": "TYAVA69 stream scenes",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg",
-    "05.jpg"
-  ]
+  "client": {
+    "en": "Tristan (TYAVA69)",
+    "ko": "트리스탄 (TYAVA69)",
+    "ru": "Тристан (TYAVA69)"
+  },
+  "service": {
+    "en": "Identity, merch, 3D stream scenes<br>emotes, subscriber badges",
+    "ko": "아이덴티티, 굿즈, 3D 방송 화면<br>이모티콘, 구독자 배지",
+    "ru": "Айдентика, 3D-сцены для стримов<br>мерч, эмоуты, значки подписчиков"
+  },
+  "intro": {
+    "en": "A complete identity for a Twitch channel on its way to becoming a full-time job, from the logo to the emotes to fully 3D stream scenes. <span class=\"fade\">Retro-futurist nostalgia, built to feel sleek rather than dated.</span>",
+    "ko": "본업이 되어 가던 한 트위치 채널을 위한 토털 아이덴티티로, 로고부터 이모티콘, 풀 3D 방송 화면까지 작업했습니다. <span class=\"fade\">레트로 퓨처리즘의 향수를, 낡지 않고 세련되게.</span>",
+    "ru": "Полная айдентика для Twitch-канала, который как раз превращался в основную работу, — от логотипа и эмоутов до полностью трёхмерных сцен для стрима. <span class=\"fade\">Ностальгия по ретрофутуризму — но стильная, а не устаревшая.</span>"
+  },
+  "brief": {
+    "en": "Tristan wanted a style rooted in his love of retro-futurism and vintage games, flexible enough to stretch from stream assets to merch. His initials, TYA, had to be in the logo, but not too obviously.",
+    "ko": "트리스탄은 레트로 퓨처리즘과 고전 게임에 대한 애정이 묻어나는 스타일을 원했고, 방송 에셋부터 굿즈까지 두루 쓸 수 있을 만큼 유연해야 했습니다. 이니셜 TYA는 로고에 들어가야 하지만, 너무 드러나서는 안 됐습니다.",
+    "ru": "Тристан хотел стиль, в котором чувствовалась бы его любовь к ретрофутуризму и старым играм, — достаточно гибкий, чтобы работать и в оформлении стрима, и на мерче. Его инициалы, TYA, должны были быть в логотипе, но не слишком явно."
+  },
+  "did": {
+    "en": [
+      "The logo runs through all three initials in a single continuous stroke. Turned vertical, it becomes a second, compact mark, and a motif taken from its curve ties the rest of the system together.",
+      "Because the channel lives on its community, much of the work went into what viewers carry around in chat. The subscriber badges grow from a single honeycomb cell to a full hive, so viewers can watch their loyalty grow, and the emotes give regulars a shared language of inside jokes and a reason to subscribe.",
+      "The starting, intermission and ending stream scenes combine 3D modelling with graphic design, so switching between games and activities feels smooth instead of abrupt."
+    ],
+    "ko": [
+      "로고는 세 이니셜을 하나의 끊김 없는 선으로 이어 그렸습니다. 세로로 세우면 또 하나의 컴팩트한 심볼이 되고, 곡선에서 따온 모티프가 시스템 전체를 하나로 묶어 줍니다.",
+      "채널은 커뮤니티로 유지되기 때문에, 시청자들이 채팅에서 늘 쓰는 요소에 많은 공을 들였습니다. 구독자 배지는 벌집 한 칸에서 시작해 온전한 벌집으로 자라나, 구독 기간이 쌓이는 모습을 눈으로 볼 수 있습니다. 이모티콘은 단골 시청자들끼리만 통하는 농담의 공용어가 되고, 구독할 이유가 되기도 합니다.",
+      "방송 시작, 휴식, 종료 화면은 3D 모델링과 그래픽 디자인을 결합해, 게임이나 콘텐츠를 바꿀 때도 흐름이 끊기지 않고 자연스럽게 넘어갑니다."
+    ],
+    "ru": [
+      "Логотип проходит через все три инициала одной непрерывной линией. В вертикальном положении он превращается во второй, компактный знак, а мотив, взятый из его изгиба, связывает всю остальную систему.",
+      "Канал держится на сообществе, поэтому большая часть работы ушла на то, чем зрители пользуются в чате. Значки подписчиков вырастают из одной ячейки сот в целый улей — можно буквально видеть, как растёт верность каналу — а эмоуты дают постоянным зрителям общий язык внутренних шуток и лишний повод подписаться.",
+      "Сцены начала, перерыва и конца стрима сочетают 3D-моделирование и графический дизайн, так что переходы между играми и активностями получаются плавными, а не резкими."
+    ]
+  },
+  "coverAlt": {
+    "en": "TYAVA69 stream scenes",
+    "ko": "TYAVA69 방송 화면",
+    "ru": "Сцены стрима TYAVA69"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"]
 }

@@ -1,29 +1,59 @@
 {
   "title": "Tanovo",
-  "category": "Brand identity",
+  "category": {
+    "en": "Brand identity",
+    "ko": "브랜드 아이덴티티",
+    "ru": "Айдентика"
+  },
   "discipline": ["identity", "web"],
   "year": 2026,
   "selected": true,
   "selection": "#e7cfa0",
-  "client": "Tanovo",
-  "service": "Identity, web launch assets",
+  "client": {
+    "en": "Tanovo",
+    "ko": "Tanovo",
+    "ru": "Tanovo"
+  },
+  "service": {
+    "en": "Identity, web launch assets",
+    "ko": "아이덴티티, 런칭용 웹 에셋",
+    "ru": "Айдентика, веб-материалы к запуску"
+  },
   "link": {
     "text": "tanovo.ca",
     "url": "https://tanovo.ca/"
   },
-  "intro": "Brand identity for Tanovo, a Canadian platform where models, photographers and other creatives find each other, plan shoots and build their portfolios. <span class=\"fade\">A logo, a colourway, and everything a new app needs to go live.</span>",
-  "brief": "Tanovo was about to launch on the App Store and Google Play and needed an identity that works on a home screen: recognisable at any size, on any background. Two things were fixed from the start: the logo had to combine the letter T, a dot and an arch, and the navy and gold palette was already trademarked.",
-  "did": [
-    "I explored nine directions and presented each as a real app icon in home-screen mockups, so the client could choose in context.",
-    "The final mark is built on a consistent construction grid and stays legible down to favicon size. Alongside it: a Noto Sans wordmark, horizontal and vertical lockups, and versions for dark, light and single-colour use.",
-    "The handover was a full launch package, from splash screens and store-ready icons to a colour system with developer tokens, documented in a branding guide so the team can find any file without asking."
-  ],
-  "coverAlt": "Tanovo app icon on a phone home screen",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg",
-    "05.jpg"
-  ]
+  "intro": {
+    "en": "Brand identity for Tanovo, a Canadian platform where models, photographers and other creatives find each other, plan shoots and build their portfolios. <span class=\"fade\">A logo, a colourway, and everything a new app needs to go live.</span>",
+    "ko": "모델과 사진가를 비롯한 크리에이터들이 서로를 찾고, 함께 촬영을 기획하며, 포트폴리오를 쌓아 가는 캐나다 플랫폼 Tanovo의 브랜드 아이덴티티. <span class=\"fade\">로고와 컬러 시스템, 그리고 새 앱 출시에 필요한 모든 것.</span>",
+    "ru": "Айдентика для Tanovo — канадской платформы, где модели, фотографы и люди других творческих профессий находят друг друга, планируют съёмки и собирают портфолио. <span class=\"fade\">Логотип, фирменные цвета и всё, что нужно новому приложению для запуска.</span>"
+  },
+  "brief": {
+    "en": "Tanovo was about to launch on the App Store and Google Play and needed an identity that works on a home screen: recognisable at any size, on any background. Two things were fixed from the start: the logo had to combine the letter T, a dot and an arch, and the navy and gold palette was already trademarked.",
+    "ko": "Tanovo는 App Store와 Google Play 출시를 앞두고, 홈 화면에서 제 역할을 하는 아이덴티티가 필요했습니다. 어떤 크기에서도, 어떤 배경 위에서도 한눈에 알아볼 수 있어야 했습니다. 처음부터 정해진 조건도 두 가지 있었습니다. 로고에 알파벳 T와 점, 아치를 함께 담아야 했고, 네이비와 골드 팔레트는 이미 상표로 등록되어 있었습니다.",
+    "ru": "Tanovo готовились к запуску в App Store и Google Play, и им нужна была айдентика, которая работает на экране смартфона, узнаётся в любом размере и на любом фоне. Два условия были заданы с самого начала: в логотипе должны сочетаться буква T, точка и арка, а палитра из синего и золотого уже была зарегистрирована как товарный знак."
+  },
+  "did": {
+    "en": [
+      "I explored nine directions and presented each as a real app icon in home-screen mockups, so the client could choose in context.",
+      "The final mark is built on a consistent construction grid and stays legible down to favicon size. Alongside it: a Noto Sans wordmark, horizontal and vertical lockups, and versions for dark, light and single-colour use.",
+      "The handover was a full launch package, from splash screens and store-ready icons to a colour system with developer tokens, documented in a branding guide so the team can find any file without asking."
+    ],
+    "ko": [
+      "아홉 가지 방향을 탐색하고, 클라이언트가 실제 사용 환경에서 비교해 고를 수 있도록 각 시안을 홈 화면 목업 속 앱 아이콘으로 제안했습니다.",
+      "최종 심볼은 일관된 그리드를 바탕으로 설계해 파비콘 크기까지 줄여도 또렷하게 읽힙니다. 여기에 Noto Sans 워드마크, 가로형·세로형 시그니처, 다크·라이트·단색 버전을 함께 만들었습니다.",
+      "최종 전달물은 출시에 필요한 모든 것을 담은 패키지였습니다. 스플래시 화면과 스토어용 아이콘부터 개발용 토큰을 갖춘 컬러 시스템까지 브랜드 가이드에 정리해, 팀이 따로 묻지 않아도 필요한 파일을 바로 찾을 수 있게 했습니다."
+    ],
+    "ru": [
+      "Я проработала девять направлений и презентовала их в мокапах, чтобы клиентмог сделать выбор в реальном контексте.",
+      "Финальный знак построен по единой модульной сетке и читается даже в размере фавикона. К нему идут горизонтальная и вертикальную компоновки с Noto Sans, а также тёмная, светлая и однотонная версии иконки.",
+      "Клиенту я передала полный пакет для запуска: от сплеш-экранов и иконок, готовых к публикации в сторах, до цветовой системы с токенами для разработчиков. Всё собрано в брендбуке, чтобы команда могла найти нужный файлв любое вемя."
+    ]
+  },
+  "coverAlt": {
+    "en": "Tanovo app icon on a phone home screen",
+    "ko": "스마트폰 홈 화면 속 Tanovo 앱 아이콘",
+    "ru": "Иконка приложения Tanovo на главном экране смартфона"
+  },
+  "images": ["01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"]
 }

@@ -1,26 +1,55 @@
 {
   "title": "Unera",
-  "category": "Brand identity",
+  "category": {
+    "en": "Brand identity",
+    "ko": "브랜드 아이덴티티",
+    "ru": "Айдентика"
+  },
   "discipline": ["identity", "print"],
   "year": 2021,
   "selected": true,
   "selection": "#dccfe2",
-  "client": "Unera",
-  "service": "Identity, stationery",
-  "intro": "Brand identity and stationery for an educational social network start-up entering a crowded online-learning market. <span class=\"fade\">Five letters, five shapes, and a palette everyone can read.</span>",
-  "brief": "Unera was entering a crowded online-education market and needed to stand out: minimal but memorable, youthful but relatable to an older audience, and clearly apart from the big corporations. The palette had to work for people with colour blindness, and the identity had to hold up in print and at exhibitions as well as on screen.",
-  "did": [
-    "Developed together with Monica Ramilison.",
-    "We reduced each letter of the name to a simple geometric form. In a row they spell the wordmark, stacked they form a monogram, and repeated they build a pattern, so one small set of shapes does the work of the whole system.",
-    "Each colour stays distinct across every type of colour blindness, keeping the shapes readable for everyone. From there we set up the core stationery, ready for the heavy correspondence the company had planned."
-  ],
-  "coverAlt": "Unera poster",
-  "images": [
-    "01.jpg",
-    "02.jpg",
-    "03.jpg",
-    "04.jpg",
-    "06.jpg",
-    "05.jpg"
-  ]
+  "client": {
+    "en": "Unera",
+    "ko": "Unera",
+    "ru": "Unera"
+  },
+  "service": {
+    "en": "Identity, stationery",
+    "ko": "아이덴티티, 서식류 디자인",
+    "ru": "Айдентика, деловая полиграфия"
+  },
+  "intro": {
+    "en": "Brand identity and stationery for an educational social network start-up entering a crowded online-learning market. <span class=\"fade\">Five letters, five shapes, and a palette everyone can read.</span>",
+    "ko": "포화 상태의 온라인 교육 시장에 뛰어든 교육 SNS 스타트업의 브랜드 아이덴티티와 서식류. <span class=\"fade\">다섯 글자, 다섯 도형, 그리고 누구나 구별할 수 있는 팔레트.</span>",
+    "ru": "Айдентика и деловая полиграфия для стартапа — образовательной социальной сети, выходящей на переполненный рынок онлайн-обучения. <span class=\"fade\">Пять букв, пять форм и палитра, которую различит каждый.</span>"
+  },
+  "brief": {
+    "en": "To stand out, Unera needed an identity that was minimal but memorable, youthful but relatable to an older audience, and clearly apart from the big corporations. The palette had to work for people with colour blindness, and the identity had to hold up in print and at exhibitions as well as on screen.",
+    "ko": "눈에 띄기 위해 Unera에는 미니멀하지만 기억에 남고, 젊으면서도 윗세대에게 거리감이 없으며, 대기업들과는 확실히 다른 아이덴티티가 필요했습니다. 팔레트는 색각 이상이 있는 사람도 구별할 수 있어야 했고, 화면뿐 아니라 인쇄물과 전시에서도 제 역할을 해야 했습니다.",
+    "ru": "Чтобы выделиться, в Unera искали айдентику минималистичную, но запоминающуюся, молодую, но понятную и людям постарше, и явно непохожую на крупные корпорации. Палитра должна была работать для людей с дальтонизмом, а айдентика — одинаково хорошо смотреться на экране, в печати и на выставках."
+  },
+  "did": {
+    "en": [
+      "Developed together with Monica Ramilison.",
+      "We reduced each letter of the name to a simple geometric form. In a row they spell the wordmark, stacked they form a monogram, and repeated they build a pattern, so one small set of shapes does the work of the whole system.",
+      "Each colour stays distinct across every type of colour blindness, keeping the shapes readable for everyone. From there we set up the core stationery, ready for the heavy correspondence the company had planned."
+    ],
+    "ko": [
+      "Monica Ramilison과 공동 작업.",
+      "이름의 글자 하나하나를 단순한 기하학적 도형으로 줄였습니다. 나란히 놓으면 워드마크가 되고, 쌓으면 모노그램이, 반복하면 패턴이 됩니다. 몇 안 되는 도형이 시스템 전체의 역할을 해내는 셈입니다.",
+      "모든 색은 어떤 유형의 색각 이상에서도 서로 구별되어, 누구나 도형을 알아볼 수 있습니다. 여기에 회사가 계획한 활발한 대외 서신 업무에 바로 쓸 수 있도록 기본 서식류를 갖췄습니다."
+    ],
+    "ru": [
+      "Совместно с Моникой Рамилисон.",
+      "Каждую букву названия мы свели к простой геометрической форме. В строку они складываются в шрифтовой логотип, в столбик — в монограмму, а в повторе образуют паттерн: один небольшой набор форм выполняет работу всей системы.",
+      "Все цвета остаются различимыми при любом типе дальтонизма, так что формы читаются всеми. Затем мы подготовили базовую деловую полиграфию — под активную переписку, которую планировала компания."
+    ]
+  },
+  "coverAlt": {
+    "en": "Unera poster",
+    "ko": "Unera 포스터",
+    "ru": "Постер Unera"
+  },
+  "images": ["02.jpg", "03.jpg", "04.jpg", "06.jpg", "05.jpg"]
 }

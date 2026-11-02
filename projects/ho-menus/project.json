@@ -1,18 +1,52 @@
 {
   "title": "Hideout Menu",
-  "category": "Redesign",
+  "category": {
+    "en": "Redesign",
+    "ko": "리디자인",
+    "ru": "Редизайн"
+  },
   "discipline": ["print", "editorial"],
   "year": 2026,
   "selected": true,
-  "client": "Hideout",
-  "service": "Menu design, collage, photography",
-  "intro": "A redesign of the drinks and food menus for an international cocktail bar in Busan. <span class=\"fade\">From a quick-drink dive bar towards a place worth staying for.</span>",
-  "brief": "Hideout's old menus were rough, black laminated A5 sheets that suited an underground bar. As the bar grew, it wanted to feel more elevated, encourage guests to try its cocktails instead of defaulting to the usual, and present its food as a real part of the experience.",
-  "did": [
-    "For the drinks menu, I made a surreal collage for each section, built around the bartenders' favourite drink from that section. The aim was playful but elevated: something that makes guests curious enough to order something new.",
-    "The food got its own menu, printed large and kept clean, so the dishes could carry it, supporting the bar's shift from a quick drink towards a fuller night out."
-  ],
-  "coverAlt": "Hideout drinks and food menus",
+  "client": {
+    "en": "Hideout",
+    "ko": "Hideout",
+    "ru": "Hideout"
+  },
+  "service": {
+    "en": "Menu design, collage, photography",
+    "ko": "메뉴 디자인, 콜라주, 사진 촬영",
+    "ru": "Дизайн меню, коллаж, фотосъёмка"
+  },
+  "intro": {
+    "en": "A redesign of the drinks and food menus for an international cocktail bar in Busan. <span class=\"fade\">From a quick-drink dive bar towards a place worth staying for.</span>",
+    "ko": "칵테일 바를 위한 음료 메뉴와 음식 메뉴 리디자인. <span class=\"fade\">가볍게 한잔하고 나가는 다이브 바에서, 오래 머물고 싶은 공간으로.</span>",
+    "ru": "Редизайн меню напитков и кухни для интернационального коктейль-бара в Пусане. <span class=\"fade\">От бара, куда заходят пропустить стаканчик — к месту, где хочется задержаться.</span>"
+  },
+  "brief": {
+    "en": "Hideout's old menus were rough, black laminated A5 sheets that suited an underground bar. As the bar grew, it wanted to feel more elevated, encourage guests to try its cocktails instead of defaulting to the usual, and present its food as a real part of the experience.",
+    "ko": "Hideout의 기존 메뉴판은 투박한 검은색 A5 코팅지였습니다. 언더그라운드 바에는 잘 어울렸지만, 바가 성장하면서 좀 더 세련된 분위기가 필요해졌습니다. 손님들이 늘 마시던 술 대신 칵테일에 도전해 보게 하고, 음식도 이곳에서 보내는 시간의 일부로 제대로 보여 주고 싶어 했습니다.",
+    "ru": "Старое меню Hideout вполне подходило андерграундному бару. Но бар рос, и в Hideout захотели подняться на ступень выше: чтобы гости пробовали разные коктейли, а не заказывали привычное, и чтобы еда стала полноценной частью вечера."
+  },
+  "did": {
+    "en": [
+      "For the drinks menu, I made a surreal collage for each section, built around the bartenders' favourite drink from that section. The aim was playful but elevated: something that makes guests curious enough to order something new.",
+      "The food got its own menu, printed large and kept clean, so the dishes could carry it, supporting the bar's shift from a quick drink towards a fuller night out."
+    ],
+    "ko": [
+      "음료 메뉴에는 섹션마다 초현실적인 콜라주를 만들었고, 각 콜라주는 그 섹션에서 바텐더들이 가장 좋아하는 음료를 중심으로 구성했습니다. 위트 있으면서도 고급스럽게, 손님이 호기심에 새로운 음료를 주문해 보고 싶어지도록 하는 것이 목표였습니다.",
+      "음식은 별도의 메뉴로 분리해 큼직하게 인쇄하고 디자인은 최대한 덜어 내, 요리 자체가 주인공이 되도록 했습니다. 가볍게 한잔하는 곳에서 저녁 시간을 온전히 보내는 곳으로 바뀌어 가는 바의 방향을 뒷받침하는 작업이었습니다."
+    ],
+    "ru": [
+      "Для барного меню я сделала по сюрреалистичному коллажу на каждый раздел — в центре каждого любимый напиток барменов из этого раздела. Хотелось игриво, но со вкусом: так, чтобы гостю стало любопытно и он заказал что-нибудь новое.",
+      "Для еды я сделала отдельное меню — крупного формата и без лишнего, чтобы говорили сами блюда. Так меню поддержало перемену в самом баре: от «зайти на один бокал» к полноценному вечеру."
+    ]
+  },
+  "coverAlt": {
+    "en": "Hideout drinks and food menus",
+    "ko": "Hideout 음료·음식 메뉴판",
+    "ru": "Меню напитков и кухни Hideout"
+  },
   "images": [
     "flip.jpg",
     "pages.jpg",
@@ -21,7 +55,11 @@
     "cover.jpg",
     {
       "src": "tests.jpg",
-      "text": "Other directions before final decision"
+      "text": {
+        "en": "Other directions before final decision",
+        "ko": "최종 결정 전 검토한 다른 시안들",
+        "ru": "Другие направления до выбора финального"
+      }
     }
   ]
 }

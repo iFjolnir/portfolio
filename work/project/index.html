@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/packages/pretendard-std/dist/web/variable/pretendardvariable-std-dynamic-subset.css">
   <link rel="stylesheet" href="../../assets/style.css">
+  <script src="../../assets/lang.js"></script>
   <script src="../../assets/transitions.js"></script>
 </head>
 <!--
@@ -22,17 +23,17 @@
 <body data-root="../../" data-page="work" data-template="project">
   <header class="bar">
     <a class="bar__name" href="../../">Faina Iasen</a>
-    <nav class="bar__nav" aria-label="Main">
+    <nav class="bar__nav" aria-label="Main" data-i18n-attr="aria-label">
       <span class="bar__pages">
-        <a href="../../" data-nav="home">Home</a>
-        <a href="../../work/" data-nav="work">Work</a>
-        <a href="../../info/" data-nav="info">Info</a>
+        <a href="../../" data-nav="home" data-i18n>Home</a>
+        <a href="../../work/" data-nav="work" data-i18n>Work</a>
+        <a href="../../info/" data-nav="info" data-i18n>Info</a>
       </span>
-      <a class="bar__apps" href="../../apps/" data-nav="apps">Apps</a>
+      <a class="bar__apps" href="../../apps/" data-nav="apps" data-i18n>Apps</a>
     </nav>
     <div class="bar__end">
       <p class="bar__time" data-clock>Busan</p>
-      <a class="bar__cta" href="mailto:hello@fainaiasen.com">Say hello</a>
+      <a class="bar__cta" href="mailto:hello@fainaiasen.com" data-i18n>Say hello</a>
     </div>
   </header>
 
@@ -46,10 +47,10 @@
         <figcaption class="t-small grey" data-field="category"></figcaption>
       </figure>
       <dl class="lines facts t-small">
-        <div data-optional><dt>Year</dt><dd data-field="year"></dd></div>
-        <div data-optional><dt>Client</dt><dd data-field="client"></dd></div>
-        <div data-optional><dt>Service</dt><dd data-field="service"></dd></div>
-        <div data-optional><dt>Live</dt><dd data-field="link"></dd></div>
+        <div data-optional><dt data-i18n>Year</dt><dd data-field="year"></dd></div>
+        <div data-optional><dt data-i18n>Client</dt><dd data-field="client"></dd></div>
+        <div data-optional><dt data-i18n>Service</dt><dd data-field="service"></dd></div>
+        <div data-optional><dt data-i18n>Live</dt><dd data-field="link"></dd></div>
       </dl>
     </aside>
 
@@ -64,15 +65,15 @@
 
         <!-- phones only: next project at the end of the images -->
         <a class="next next--phone" data-render="next" href="../">
-          <span class="t-small grey">Next project</span>
+          <span class="t-small grey" data-i18n>Next project</span>
           <span class="next__title t-lead"></span>
         </a>
 
       <footer class="sign-off">
-        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com">Say hello.</a>
+        <a class="sign-off__link t-statement" href="mailto:hello@fainaiasen.com" data-i18n>Say hello.</a>
         <div class="sign-off__base t-meta">
           <span>&copy; 2026 Faina Iasen</span>
-          <span>Busan, South Korea</span>
+          <span data-i18n>Busan, South Korea</span>
         </div>
       </footer>
       </div>
@@ -82,16 +83,16 @@
     <aside class="col col--side col--right">
       <div class="project-notes">
         <section data-optional>
-          <h2 class="t-head">Brief</h2>
+          <h2 class="t-head" data-i18n>Brief</h2>
           <div class="t-body prose" data-field="brief"></div>
         </section>
         <section data-optional>
-          <h2 class="t-head">What I did</h2>
+          <h2 class="t-head" data-i18n>What I did</h2>
           <div class="t-body prose" data-field="did"></div>
         </section>
       </div>
       <a class="next-side" data-render="next" href="../">
-        <span class="t-head ink">Next project</span>
+        <span class="t-head ink" data-i18n>Next project</span>
         <span class="next__title t-small grey"></span>
       </a>
     </aside>

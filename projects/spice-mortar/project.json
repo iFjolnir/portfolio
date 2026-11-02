@@ -1,41 +1,99 @@
 {
   "title": "Spice + Mortar",
-  "category": "Modular storage system",
+  "category": {
+    "en": "Modular storage system",
+    "ko": "모듈형 수납 시스템",
+    "ru": "Модульное хранение"
+  },
   "discipline": "objects",
   "year": 2020,
   "selected": false,
   "selection": "#212121",
-  "client": "Graduation project<br>BA (Hons) Product Design",
-  "service": "Product design, prototyping, packaging",
-  "intro": "A modular spice storage system, designed as my graduation project. <span class=\"fade\">Small details, big changes.</span>",
-  "brief": "Spices travel halfway around the world to reach our kitchens, then end up in storage full of small, everyday irritations. The aim was a system that removes them quietly: easy to reach and use with one hand, compact on the wall, and flexible enough to suit any kitchen and any cook.",
-  "did": [
-    "Through rounds of prototyping and user testing, the spice unit became a slim container that works with one hand and guides itself back into place. For crushing, I chose a mortar over a mill, so a single module works for every spice and keeps the cook involved in the process.",
-    "The system follows what I call limited customisation: enough choice to fit any kitchen, not so much that it overwhelms the buyer or complicates production."
-  ],
-  "coverAlt": "Spice + Mortar spice storage system",
+  "client": {
+    "en": "Graduation project<br>BA (Hons) Product Design",
+    "ko": "졸업 작품<br>BA (Hons) Product Design",
+    "ru": "Дипломный проект<br>BA (Hons) Product Design"
+  },
+  "service": {
+    "en": "Product design, prototyping, packaging",
+    "ko": "제품 디자인, 프로토타이핑, 패키지",
+    "ru": "Промышленный дизайн<br>прототипирование, упаковка"
+  },
+  "intro": {
+    "en": "A modular spice storage system, designed as my graduation project. <span class=\"fade\">Small details, big changes.</span>",
+    "ko": "졸업 작품으로 디자인한 모듈형 향신료 수납 시스템. <span class=\"fade\">작은 디테일, 큰 변화.</span>",
+    "ru": "Модульная система хранения специй — мой дипломный проект. <span class=\"fade\">Маленькие детали, большие перемены.</span>"
+  },
+  "brief": {
+    "en": "Spices travel halfway around the world to reach our kitchens, then end up in storage full of small, everyday irritations. The aim was a system that removes them quietly: easy to reach and use with one hand, compact on the wall, and flexible enough to suit any kitchen and any cook.",
+    "ko": "향신료는 지구 반대편에서 우리 부엌까지 먼 길을 오지만, 정작 도착한 뒤에는 자잘한 불편함투성이인 수납 공간에 놓이게 됩니다. 목표는 그 불편함을 조용히 없애는 시스템이었습니다. 한 손으로 쉽게 꺼내 쓸 수 있고, 벽에 콤팩트하게 자리 잡으며, 어떤 부엌에도, 누가 요리하든 맞출 수 있을 만큼 유연하게.",
+    "ru": "Специи проделывают путь через полмира, чтобы попасть к нам на кухню, а дома их ждёт хранение, полное мелких повседневных раздражителей. Задача была создать систему, которая тихо их устраняет: специи легко достать и использовать одной рукой, на стене система занимает мало места и подстраивается под любую кухню и любого, кто готовит."
+  },
+  "did": {
+    "en": [
+      "Through rounds of prototyping and user testing, the spice unit became a slim container that works with one hand and guides itself back into place. For crushing, I chose a mortar over a mill, so a single module works for every spice and the cook stays involved in the process.",
+      "The system follows what I call limited customisation: enough choice to fit any kitchen, not so much that it overwhelms the buyer or complicates production."
+    ],
+    "ko": [
+      "여러 차례의 프로토타이핑과 사용자 테스트를 거쳐, 향신료 용기는 한 손으로 쓸 수 있고 제자리로 자연스럽게 미끄러져 들어가는 슬림한 형태가 되었습니다. 분쇄 도구로는 그라인더 대신 절구를 택해, 모듈 하나로 모든 향신료를 다룰 수 있고 요리하는 사람도 과정에 직접 참여하게 했습니다.",
+      "시스템은 제가 '제한된 커스터마이징'이라 부르는 원칙을 따릅니다. 어떤 부엌에도 맞출 수 있을 만큼 선택지는 주되, 구매자를 혼란스럽게 하거나 생산을 복잡하게 만들 만큼 많지는 않게."
+    ],
+    "ru": [
+      "После нескольких раундов прототипирования и пользовательского тестирования контейнер для специй стал узким, удобным для одной руки и сам встаёт обратно на место. Для измельчения я выбрала ступку, а не мельницу: так один модуль подходит для любых специй, а сам процесс остаётся в руках того, кто готовит.",
+      "Система построена на принципе, который я называю ограниченной кастомизацией: выбора достаточно, чтобы подойти любой кухне, но не так много, чтобы покупатель растерялся, а производство усложнилось."
+    ]
+  },
+  "coverAlt": {
+    "en": "Spice + Mortar spice storage system",
+    "ko": "Spice + Mortar 향신료 수납 시스템",
+    "ru": "Система хранения специй Spice + Mortar"
+  },
   "images": [
     "01.jpg",
     "shot.jpg",
     {
       "src": "folds.jpg",
-      "text": "I tested more than ten versions of containers and lids, and testers unanimously chose the sliding lid. As it slides open, the shaker opening closes itself."
+      "text": {
+        "en": "I tested more than ten versions of containers and lids, and testers unanimously chose the sliding lid. As it slides open, the shaker opening closes itself.",
+        "ko": "용기와 뚜껑을 열 가지 넘게 시험했고, 테스트 참가자들은 만장일치로 슬라이딩 뚜껑을 골랐습니다. 뚜껑을 밀어 열면 셰이커 구멍이 저절로 닫힙니다.",
+        "ru": "Я протестировала больше десяти вариантов контейнеров и крышек, и участники тестирования единогласно выбрали сдвижную крышку. Когда она сдвигается, отверстия для посыпания закрываются сами."
+      }
     },
     {
       "src": "full.jpg",
-      "title": "Packaging & branding",
-      "text": "Nothing printed, everything embossed. The gilded part of the logo shows what's inside, and every box opens the same way: push, and it slides out."
+      "title": {
+        "en": "Packaging & branding",
+        "ko": "패키지·브랜딩",
+        "ru": "Упаковка и брендинг"
+      },
+      "text": {
+        "en": "Nothing printed, everything embossed. The gilded part of the logo shows what's inside, and every box opens the same way: push, and it slides out.",
+        "ko": "인쇄 없이 모두 엠보싱으로. 로고의 금박 부분이 안에 든 것을 알려 주고, 모든 상자는 같은 방식으로 열립니다. 살짝 밀면 미끄러져 나옵니다.",
+        "ru": "Никакой печати — только тиснение. Золочёная часть логотипа показывает, что внутри, а каждая коробка открывается одинаково: нажмите — и она выезжает."
+      }
     },
     "spice.jpg",
     "mortar.jpg",
     {
       "src": "app.jpg",
-      "title": "Configurator",
-      "text": "The configurator guides the buyer through a four-step process, and generates a code for every set-up that can be shared or reordered."
+      "title": {
+        "en": "Configurator",
+        "ko": "컨피규레이터",
+        "ru": "Конфигуратор"
+      },
+      "text": {
+        "en": "The configurator guides the buyer through a four-step process and generates a code for every set-up that can be shared or reordered.",
+        "ko": "컨피규레이터는 구매자를 네 단계로 안내하고, 구성마다 공유하거나 재주문할 수 있는 코드를 만들어 줍니다.",
+        "ru": "Конфигуратор проводит покупателя через четыре шага и для каждой сборки генерирует код, которым можно поделиться или по которому можно сделать повторный заказ."
+      }
     },
     {
       "src": "posters.jpg",
-      "title": "Exhibition posters"
+      "title": {
+        "en": "Exhibition posters",
+        "ko": "전시 포스터",
+        "ru": "Постеры для выставки"
+      }
     },
     "07.jpg"
   ]

@@ -1,46 +1,122 @@
 {
-  "title": "Web novel covers",
-  "category": "Book covers",
+  "title": "Web novels",
+  "category": {
+    "en": "Book covers",
+    "ko": "책 표지",
+    "ru": "Обложки книг"
+  },
   "discipline": "editorial",
-  "year": 2026,
+  "year": 2025,
   "selected": true,
-  "service": "Cover design",
-  "intro": "Covers for a collection of original web novels, from a lonely lighthouse to an archaeological dig in Laos. <span class=\"fade\">Each one hints at the story without giving it away.</span>",
-  "brief": "Six very different stories, each needing a cover that sets its genre and mood at a glance, without revealing what happens inside.",
-  "did": [
-    "Every cover as its own piece, built around a single nod to the story's subject: enough to draw a reader in, never enough to spoil the plot."
-  ],
-  "coverAlt": "Web novel covers",
+  "service": {
+    "en": "Cover design",
+    "ko": "표지 디자인",
+    "ru": "Дизайн обложек"
+  },
+  "intro": {
+    "en": "Covers for a collection of original web novels, from a lonely lighthouse to an archaeological dig in Laos. <span class=\"fade\">Each one hints at the story without giving it away.</span>",
+    "ko": "외로운 등대부터 라오스의 발굴 현장까지, 창작 웹소설 여러 편의 표지. <span class=\"fade\">이야기를 넌지시 암시할 뿐, 결말은 들키지 않게.</span>",
+    "ru": "Обложки для серии веб-новелл — от одинокого маяка до археологических раскопок в Лаосе. <span class=\"fade\">Каждая намекает на историю, но ничего не выдаёт.</span>"
+  },
+  "brief": {
+    "en": "Six very different stories, each needing a cover that sets its genre and mood at a glance, without revealing what happens inside.",
+    "ko": "서로 전혀 다른 여섯 편의 이야기. 표지마다 장르와 분위기를 한눈에 전하되, 속 내용은 드러내지 않아야 했습니다.",
+    "ru": "Шесть совершенно разных историй, и каждой нужна обложка, которая с первого взгляда передаёт жанр и настроение, но не раскрывает, что произойдёт внутри."
+  },
+  "did": {
+    "en": [
+      "Each cover is its own piece, built around a single nod to the story's subject: enough to draw a reader in, never enough to spoil the plot."
+    ],
+    "ko": [
+      "표지 하나하나를 독립된 작품으로 접근하고, 이야기의 소재를 슬쩍 가리키는 단 하나의 요소를 중심에 두었습니다. 독자의 눈길을 끌기엔 충분하되, 스포일러가 되지는 않을 만큼만."
+    ],
+    "ru": [
+      "Каждая обложка построена вокруг одного намёка на тему истории: достаточно, чтобы зацепить читателя, но никогда не настолько, чтобы выдать сюжет."
+    ]
+  },
+  "coverAlt": {
+    "en": "Web novel covers",
+    "ko": "웹소설 표지들",
+    "ru": "Обложки веб-новелл"
+  },
   "images": [
     {
       "src": "01.jpg",
-      "title": "Ultramarine Blue",
-      "text": "A priest in a small Irish town questions his calling, and the way out of the clergy. Ongoing since 2025."
+      "title": {
+        "en": "Ultramarine Blue",
+        "ko": "Ultramarine Blue (군청)",
+        "ru": "Ultramarine Blue (Ультрамарин)"
+      },
+      "text": {
+        "en": "A priest in a small Irish town questions his calling, then finds his way out of the clergy and into lay life. Ongoing since 2025.",
+        "ko": "아일랜드 작은 마을의 한 신부가 자신의 소명에 의문을 품고, 사제직을 내려놓은 뒤 평신도의 삶으로 걸어 나가는 이야기. 2025년부터 연재 중.",
+        "ru": "Священник из маленького ирландского городка сомневается в своём призвании, а затем уходит из духовенства в мирскую жизнь. Публикуется с 2025 года."
+      }
     },
     {
       "src": "02.jpg",
-      "title": "11 Degrees",
-      "text": "A mystery that unfolds when the archive of a 400-year-old estate floods just as it goes up for sale, and a paper conservator is called in to salvage it."
+      "title": {
+        "en": "11 Degrees",
+        "ko": "11 Degrees (11도)",
+        "ru": "11 Degrees (11 градусов)"
+      },
+      "text": {
+        "en": "A mystery that unfolds when the archive of a 400-year-old estate floods just as it goes up for sale, and a paper conservator is called in to salvage it.",
+        "ko": "400년 된 저택이 매물로 나온 바로 그때 기록 보관실이 물에 잠기고, 이를 복구하기 위해 지류 보존 전문가가 불려 오면서 시작되는 미스터리.",
+        "ru": "Детективная история, которая начинается, когда архив 400-летнего поместья затапливает как раз накануне продажи, и на спасение документов вызывают реставратора бумаги."
+      }
     },
     {
       "src": "03.jpg",
-      "title": "Raking Light",
-      "text": "Racing the end of the season, a crew on a dig in Laos uncovers what could be ancient writing."
+      "title": {
+        "en": "Raking Light",
+        "ko": "Raking Light (사광)",
+        "ru": "Raking Light (Скользящий свет)"
+      },
+      "text": {
+        "en": "Racing the end of the season, a crew on a dig in Laos uncovers what could be ancient writing.",
+        "ko": "시즌 종료를 앞두고 시간에 쫓기던 라오스 발굴 팀이 고대 문자일지도 모르는 흔적을 찾아내는 이야기.",
+        "ru": "Сезон раскопок в Лаосе подходит к концу, и в гонке со временем команда археологов находит то, что может оказаться древней письменностью."
+      }
     },
     {
       "src": "04.jpg",
-      "title": "Magpie's Tail",
-      "text": "A spy thriller about a network smuggling documents through small bookshops."
+      "title": {
+        "en": "Magpie's Tail",
+        "ko": "Magpie's Tail (까치 꼬리)",
+        "ru": "Magpie's Tail (Сорочий хвост)"
+      },
+      "text": {
+        "en": "A spy thriller about a network smuggling documents through small bookshops.",
+        "ko": "작은 서점들을 통해 문서를 몰래 실어 나르는 조직을 다룬 스파이 스릴러.",
+        "ru": "Шпионский триллер о сети, которая переправляет документы через маленькие книжные магазины."
+      }
     },
     {
       "src": "05.jpg",
-      "title": "7 Seconds",
-      "text": "A short story: solitude on one of the last manned lighthouses on the Irish coast, interrupted by a shipwreck."
+      "title": {
+        "en": "7 Seconds",
+        "ko": "7 Seconds (7초)",
+        "ru": "7 Seconds (7 секунд)"
+      },
+      "text": {
+        "en": "A short story about solitude on one of the last manned lighthouses on the Irish coast, interrupted by a shipwreck.",
+        "ko": "단편. 아일랜드 해안에 몇 남지 않은 유인 등대, 그곳의 고요한 고독이 한 척의 난파선으로 깨지는 이야기.",
+        "ru": "Одиночество на одном из последних ирландских маяков, где ещё живёт смотритель, прерывает кораблекрушение."
+      }
     },
     {
       "src": "06.jpg",
-      "title": "Unlikely Roommates",
-      "text": "Slice of life: two people forced to share a home after a flat floods."
+      "title": {
+        "en": "Unlikely Roommates",
+        "ko": "Unlikely Roommates (뜻밖의 룸메이트)",
+        "ru": "Unlikely Roommates (Соседи поневоле)"
+      },
+      "text": {
+        "en": "Slice of life. Two people forced to share a home after a flat floods.",
+        "ko": "일상물. 집이 물에 잠기는 바람에 한집에 살게 된 두 사람의 이야기.",
+        "ru": "Двое вынуждены жить под одной крышей после потопа в квартире."
+      }
     }
   ]
 }
