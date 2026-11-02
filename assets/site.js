@@ -122,7 +122,9 @@
   });
 
   /* ---------- language switcher in the header (desktop) ----------
-     Click the icon to open; pick a language, click elsewhere or press Esc to close. */
+     With a mouse it opens on hover and closes a moment after the pointer leaves;
+     clicking (touch screens, keyboard) opens it too. Pick a language, click
+     elsewhere or press Esc to close. */
 
   all(".langs").forEach(function (box) {
     var btn = box.querySelector(".langs__btn"), menu = box.querySelector(".langs__menu");
@@ -141,7 +143,24 @@
     var later = window.requestIdleCallback || function (fn) { setTimeout(fn, 1500); };
     later(function () { if (window.FI_preloadLangs) window.FI_preloadLangs(); });
     btn.addEventListener("pointerenter", function () { if (window.FI_preloadLangs) window.FI_preloadLangs(); });
-    btn.addEventListener("click", function (e) { e.stopPropagation(); open(menu.hidden); });
+
+    // hover (mouse only): open on the way in, close shortly after leaving the icon and the list
+    var closing = null, hovered = false;
+    box.addEventListener("pointerenter", function (e) {
+      if (e.pointerType !== "mouse") return;
+      clearTimeout(closing); hovered = true; open(true);
+    });
+    box.addEventListener("pointerleave", function (e) {
+      if (e.pointerType !== "mouse") return;
+      clearTimeout(closing);
+      closing = setTimeout(function () { hovered = false; open(false); }, 250);
+    });
+
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      if (hovered && !menu.hidden) return;   // already open from hovering: a click shouldn't close it
+      open(menu.hidden);
+    });
     menu.addEventListener("click", function (e) {
       var b = e.target.closest("[data-set-lang]");
       if (!b) return;

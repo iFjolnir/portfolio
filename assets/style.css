@@ -40,15 +40,19 @@
   --langs-icon: 20px;           /* size of the 한/A icon */
   --langs-menu-x: 14px;         /* side padding inside the pop-out */
 
-  /* Switching language on a page: text fades out, swaps, fades back in */
-  --relang-out: 0.15s;          /* fade out */
-  --relang-in: 0.3s;            /* fade back in */
+  /* Switching language on a page: the old text sinks and fades while the new rises
+     and fades in, like the greeting */
+  --relang-time: 0.06s;          /* how long the switch takes (the greeting uses 0.4s) */
+  --relang-slide: 0;         /* how far text travels, as a share of its size (0.18 = the greeting; 0 = plain crossfade) */
+  /* browsers that can't crossfade (older Firefox): a quick fade out and back in instead */
+  --relang-out: 0.15s;
+  --relang-in: 0.3s;
 
   /* Korean text weight (Pretendard's Hangul reads lighter than its Latin at the
      same weight). Only affects text that is actually in Korean */
-  --ko-weight-display: 500;     /* page titles: 작업. / 소개. */
-  --ko-weight-lead: 500;        /* big intro sentences: Home, Info, Apps, project intros */
-  --ko-weight-head: 500;        /* section headings (Brief, Experience, Tools…), image captions, Info row titles */
+  --ko-weight-display: 600;     /* page titles: 작업. / 소개. */
+  --ko-weight-lead: 600;        /* big intro sentences: Home, Info, Apps, project intros */
+  --ko-weight-head: 600;        /* section headings (Brief, Experience, Tools…), image captions, Info row titles */
 
   /* Page switches: each column slides like a slot-machine reel (phones: the page swipes sideways).
      Fade only instead: --slide-distance: 0; --slide-fade: 0; */
@@ -211,7 +215,7 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
   .bar__apps { margin-left: 0.25em; }
 }
 
-.bar__end { display: flex; justify-content: space-between; gap: 1em; }
+.bar__end { display: flex; justify-content: space-between; align-items: center; gap: 1em; }
 .bar__time { color: var(--grey); font-variant-numeric: tabular-nums; }
 /* language switcher: the 한/A icon, and a small pop-out under it (as on the Hideout menu) */
 .langs { position: relative; display: flex; align-items: center; }
@@ -232,6 +236,9 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
   background: var(--paper);
   border: 1px solid var(--rule);
 }
+/* an invisible bridge over the small gap between the icon and the list, so moving
+   the mouse down to it doesn't count as leaving */
+.langs__menu::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 14px; }
 .langs__menu button {
   appearance: none; border: 0; background: none; margin: 0;
   display: block; width: 100%;
@@ -967,6 +974,11 @@ html.is-relang :is([data-i18n], [data-clock], [data-field]:not(img), [data-filte
   opacity: 0;
   transition-duration: var(--relang-out);
 }
+
+/* the crossfade's movement (lang.js sets --fi-shift per piece, from its text size):
+   the old text sinks as it fades out, the new rises into place, like the greeting */
+@keyframes fi-out { to   { opacity: 0; transform: translateY(var(--fi-shift, 0px)); } }
+@keyframes fi-in  { from { opacity: 0; transform: translateY(var(--fi-shift, 0px)); } }
 
 /* Korean weights (tweakers at the top) */
 :root .t-display[lang="ko"] { font-weight: var(--ko-weight-display); }

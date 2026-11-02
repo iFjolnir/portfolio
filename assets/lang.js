@@ -181,8 +181,92 @@
     document.dispatchEvent(new CustomEvent("fi:lang", { detail: l }));
   }
 
+  /* The crossfade: the browser takes a picture of each piece of text that's about
+     to change, then the old picture sinks and fades while the new text rises and
+     fades in, like the greeting (--relang-time, --relang-slide in style.css).
+     Pieces are matched by their place on the page, so lists that get rebuilt
+     (cards, filters) still pair up; text that stays the same doesn't move. */
+
+  var LIVE = "[data-i18n], [data-clock], [data-field]:not(img), [data-filter-label], .card__caption, " +
+             "[data-render='disciplines'], [data-render='disciplines-inline'], [data-render='filters'], " +
+             ".project-caption, .apps__note";
+  var named = [], sheet = null, running = null;
+
+  function placeOf(el) {
+    var path = [];
+    for (; el && el !== document.body; el = el.parentElement) {
+      var i = 0, s = el;
+      while ((s = s.previousElementSibling)) i++;
+      path.unshift(i);
+    }
+    return path.join(".");
+  }
+  function pieces() {
+    var list = Array.prototype.filter.call(document.querySelectorAll(LIVE), function (el) {
+      return el.offsetParent !== null && !el.closest("[hidden], .hello, .visually-hidden");
+    });
+    return list.filter(function (el) { return !list.some(function (o) { return o !== el && o.contains(el); }); });
+  }
+  function onScreen(el) {
+    var r = el.getBoundingClientRect();
+    return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth;
+  }
+  function nameIt(el, name) { el.style.viewTransitionName = name; named.push(el); }
+  function unnameAll() { named.forEach(function (el) { el.style.viewTransitionName = ""; }); named = []; }
+
+  function crossfade(l, d) {
+    if (running) { try { running.skipTransition(); } catch (e) {} }
+    unnameAll();
+    var slide = parseFloat(getComputedStyle(root).getPropertyValue("--relang-slide")) || 0;
+    var places = {}, css = "", n = 0;
+
+    // before: picture every piece of text on screen
+    pieces().forEach(function (el) {
+      if (!onScreen(el)) return;
+      var name = "fi-t" + (n++), cs = getComputedStyle(el);
+      places[placeOf(el)] = { name: name, html: el.innerHTML };
+      nameIt(el, name);
+      var shift = el.querySelector("img") ? 0 : parseFloat(cs.fontSize) * slide;
+      var right = /right|end/.test(cs.textAlign) || (el.closest(".col--right, .bar__end") && cs.textAlign !== "left");
+      // each picture at its own size (never stretched), anchored on the side the text is aligned to
+      var box = "--fi-shift:" + shift.toFixed(1) + "px;inline-size:auto;block-size:auto;" +
+                (right ? "inset-inline-start:auto;inset-inline-end:0;" : "");
+      css += "::view-transition-group(" + name + "){animation-duration:var(--relang-time)}" +
+             "::view-transition-old(" + name + "){" + box + "animation:fi-out var(--relang-time) ease both}" +
+             "::view-transition-new(" + name + "){" + box + "animation:fi-in var(--relang-time) ease both}";
+    });
+    // the greeting has its own animation: show it live, never crossfaded with itself
+    var hello = document.querySelector(".hello");
+    if (hello) {
+      nameIt(hello, "fi-hello");
+      css += "::view-transition-group(fi-hello),::view-transition-new(fi-hello){animation:none}::view-transition-old(fi-hello){display:none}";
+    }
+
+    if (!sheet) { sheet = document.createElement("style"); document.head.appendChild(sheet); }
+    sheet.textContent = css;
+
+    var me = document.startViewTransition(function () {
+      show(l, d);
+      // after: pair the new text with its picture (rebuilt lists get new elements)
+      var still = "";
+      pieces().forEach(function (el) {
+        var p = places[placeOf(el)];
+        if (!p) return;
+        if (el.style.viewTransitionName !== p.name) nameIt(el, p.name);
+        if (el.innerHTML === p.html) still += "::view-transition-old(" + p.name + "){display:none}::view-transition-new(" + p.name + "){animation:none}";
+      });
+      sheet.textContent += still;
+    });
+    running = me;
+    // tidy up afterwards, unless a newer switch has already taken over
+    function done() { if (running !== me) return; unnameAll(); sheet.textContent = ""; running = null; }
+    me.finished.then(done, done);
+  }
+
   function swap(l, d) {
     if (calm) { show(l, d); return; }
+    if (document.startViewTransition && !document.hidden) { crossfade(l, d); return; }
+    // browsers without the crossfade: fade out, swap, fade back in
     clearTimeout(swapping);
     root.classList.add("is-relang");
     swapping = setTimeout(function () {
