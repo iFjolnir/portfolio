@@ -48,6 +48,11 @@
         "en": "Product design",
         "ko": "제품 디자인",
         "ru": "Промышленный дизайн"
+      },
+      "short": {
+        "en": "Product design",
+        "ko": "",
+        "ru": "Промдизайн"
       }
     }
   ],

@@ -172,6 +172,103 @@
     document.addEventListener("fi:lang", mark);
   });
 
+  /* ---------- phones: the menu ----------
+     Four squares in the header, one per page (this one black). Tap for the panel;
+     close with the ×, a tap outside, Esc or the phone's Back gesture. On Home the
+     greeting calls FI_menuMorph() at the end: the page names fold into the squares. */
+
+  (function () {
+    var root = document.documentElement;
+    var btn = document.querySelector(".menu-btn"), menu = document.getElementById("menu"), veil = document.querySelector(".menu-veil");
+    if (!btn || !menu || !veil) return;
+    var ORDER = ["home", "work", "info", "apps"];
+    var here = ORDER.indexOf(body.getAttribute("data-page"));   // a project page counts as Work; 404: none
+    var dots = btn.querySelectorAll(".menu-btn__dots i");
+    var phone = window.matchMedia("(max-width: 809px)");
+    var calm = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function cssVar(n) { return getComputedStyle(root).getPropertyValue(n).trim(); }
+    function ms(n, fallback) { var v = cssVar(n), x = parseFloat(v); return isNaN(x) ? fallback : /ms$/.test(v) ? x : x * 1000; }
+
+    if (here > -1) dots[here].classList.add("is-here");
+    menu.querySelectorAll("[data-nav]").forEach(function (a) {
+      if (ORDER[here] === a.getAttribute("data-nav")) a.setAttribute("aria-current", "page");
+    });
+
+    // opening and closing
+    var pushed = false;
+    function setOpen(on, fromHistory) {
+      if (on === root.classList.contains("menu-open")) return;
+      btn.setAttribute("aria-expanded", on ? "true" : "false");
+      if (on) {
+        menu.hidden = veil.hidden = false;
+        void menu.offsetWidth;                            // start off-screen, then slide in
+        root.classList.add("menu-open");
+        // so the phone's Back gesture closes the menu instead of leaving the page
+        try { history.pushState({ menu: true }, ""); pushed = true; } catch (e) { pushed = false; }
+      } else {
+        root.classList.remove("menu-open");
+        setTimeout(function () { if (!root.classList.contains("menu-open")) menu.hidden = veil.hidden = true; }, ms("--menu-time", 350));
+        if (pushed && !fromHistory) { pushed = false; history.back(); }
+      }
+    }
+    btn.addEventListener("click", function () { setOpen(!root.classList.contains("menu-open")); });
+    veil.addEventListener("click", function () { setOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setOpen(false); });
+    window.addEventListener("popstate", function () { if (root.classList.contains("menu-open")) { pushed = false; setOpen(false, true); } });
+    // going to a page: close straight away, so the page switch doesn't carry the menu along
+    menu.querySelectorAll(".menu__pages a").forEach(function (a) {
+      a.addEventListener("click", function () { root.classList.remove("menu-open"); menu.hidden = veil.hidden = true; btn.setAttribute("aria-expanded", "false"); });
+    });
+    if (phone.addEventListener) phone.addEventListener("change", function () { if (!phone.matches) setOpen(false); });
+
+    // the languages at the bottom (the menu stays open, so you see the page change)
+    function markLangs() {
+      menu.querySelectorAll("[data-set-lang]").forEach(function (b) { b.setAttribute("aria-current", b.getAttribute("data-set-lang") === lang() ? "true" : "false"); });
+    }
+    markLangs();
+    document.addEventListener("fi:lang", markLangs);
+    menu.querySelector(".menu__langs").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-set-lang]");
+      if (b && window.FI_setLang) window.FI_setLang(b.getAttribute("data-set-lang"));
+    });
+
+    // Home, end of the greeting: each page name condenses into its square
+    var morphed = false;
+    window.FI_menuMorph = function () {
+      if (morphed || !phone.matches || calm) return;
+      morphed = true;
+      var words = Array.prototype.slice.call(document.querySelectorAll(".bar__nav a"));
+      if (words.length !== dots.length) return;
+      var T = ms("--morph-time", 500), STAGGER = ms("--morph-stagger", 50);
+      var dim = parseFloat(cssVar("--menu-dot-dim")) || 0.2, ink = getComputedStyle(body).color;
+      root.classList.add("is-morphing");
+      var bits = [];
+      words.forEach(function (a, i) {
+        var range = document.createRange(); range.selectNodeContents(a);
+        var r = range.getBoundingClientRect(), d = dots[i].getBoundingClientRect();
+        var cs = getComputedStyle(a), h = parseFloat(cs.fontSize) * 0.62, top = r.top + (r.height - h) / 2;
+        var bit = document.createElement("div");
+        bit.style.cssText = "position:fixed;z-index:11;pointer-events:none;transform-origin:0 0;" +
+          "left:" + r.left + "px;top:" + top + "px;width:" + r.width + "px;height:" + h + "px;background:" + cs.color + ";opacity:0";
+        body.appendChild(bit);
+        bits.push(bit);
+        var delay = (words.length - 1 - i) * STAGGER;    // the right-most word goes first, the rest follow
+        var move = "translate(" + (d.left - r.left) + "px," + (d.top - top) + "px) scale(" + (d.width / r.width) + "," + (d.height / h) + ")";
+        a.animate([{ opacity: 1 }, { opacity: 0 }], { duration: T * 0.3, delay: delay, fill: "forwards", easing: "ease" });
+        bit.animate([
+          { opacity: 0, transform: "none", backgroundColor: cs.color, offset: 0 },
+          { opacity: 1, transform: "none", backgroundColor: cs.color, offset: 0.3 },
+          { opacity: i === here ? 1 : dim, transform: move, backgroundColor: ink, offset: 1 }
+        ], { duration: T, delay: delay, fill: "forwards", easing: "cubic-bezier(0.65, 0, 0.25, 1)" });
+      });
+      setTimeout(function () {
+        root.classList.remove("is-morphing");
+        bits.forEach(function (b) { b.remove(); });
+        words.forEach(function (a) { a.getAnimations().forEach(function (x) { x.cancel(); }); });
+      }, T + STAGGER * (words.length - 1) + 30);
+    };
+  })();
+
   /* ---------- nav: mark the current page ---------- */
 
   var page = body.getAttribute("data-page");

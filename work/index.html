@@ -37,7 +37,28 @@
         </nav>
       </div>
     </div>
+    <!-- phones: four squares, one per page (this one black). Tap for the menu. -->
+    <button class="menu-btn" type="button" aria-label="Menu" data-i18n-attr="aria-label" aria-expanded="false" aria-controls="menu">
+      <span class="menu-btn__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <svg class="menu-btn__x" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    </button>
   </header>
+
+  <!-- phones: the menu -->
+  <div class="menu-veil" hidden></div>
+  <nav class="menu" id="menu" aria-label="Menu" data-i18n-attr="aria-label" hidden>
+    <ul class="menu__pages">
+      <li><a href="../" data-nav="home" data-i18n>Home</a></li>
+      <li><a href="../work/" data-nav="work" data-i18n>Work</a></li>
+      <li><a href="../info/" data-nav="info" data-i18n>Info</a></li>
+      <li><a href="../apps/" data-nav="apps" data-i18n>Apps</a></li>
+    </ul>
+    <p class="menu__langs">
+      <button type="button" data-set-lang="en" lang="en">English</button>
+      <button type="button" data-set-lang="ko" lang="ko">한국어</button>
+      <button type="button" data-set-lang="ru" lang="ru">Русский</button>
+    </p>
+  </nav>
 
   <div class="frame">
 

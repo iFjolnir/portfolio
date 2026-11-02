@@ -36,6 +36,15 @@
   --selection-bg: #121212;
   --selection-ink: #ffffff;
 
+  /* Phones: the menu (four squares in the header, one per page) */
+  --menu-dot: 6px;              /* size of each square (same as "Available for freelance") */
+  --menu-dot-gap: 5px;          /* space between the squares */
+  --menu-dot-dim: 0.2;          /* opacity of the squares that aren't this page */
+  --menu-width: min(300px, 78vw);
+  --menu-time: 0.35s;           /* the panel sliding in / out */
+  --morph-time: 0.5s;           /* Home, end of the greeting: the words turning into the squares */
+  --morph-stagger: 0.05s;       /* delay between one word and the next */
+
   /* Language switcher in the header (desktop) */
   --langs-icon: 20px;           /* size of the 한/A icon */
   --langs-menu-x: 14px;         /* side padding inside the pop-out */
@@ -250,6 +259,82 @@ a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-under
 .langs__menu button[lang="ko"] { letter-spacing: -0.01em; }
 .langs__menu button:hover { color: var(--grey); }
 .langs__menu button[aria-current="true"] { font-weight: var(--weight-strong); }
+
+/* ---------- phones: the menu ----------
+   The header becomes "Faina Iasen" + four squares (one per page, this one black).
+   Tap them for the panel; they turn into a thin × while it's open. On Home, during
+   the greeting, the page names show instead and fold into the squares at the end
+   (site.js), with the name arriving as they fold. */
+
+.menu-btn, .menu, .menu-veil { display: none; }
+
+@media (max-width: 809px) {
+  .bar__nav { display: none; }
+  /* the greeting: the page names take the whole header; the name waits */
+  html.is-greeting .bar__nav,
+  html.is-morphing .bar__nav { display: block; grid-column: 1 / -1; }
+  html.is-greeting .bar__name,
+  html.is-morphing .bar__name { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+  html.is-greeting .bar__name { opacity: 0; }
+  html.is-morphing .bar__name { opacity: 1; transition: opacity var(--morph-time) ease; }
+
+  .menu-btn {
+    display: grid; place-items: center;
+    position: absolute; top: 0; right: 0;
+    height: var(--bar); min-width: 44px; padding: 0 var(--pad);
+    appearance: none; border: 0; background: none; margin: 0;
+    color: var(--ink); cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .menu-btn > * { grid-area: 1 / 1; transition: opacity 0.2s ease, transform 0.25s ease; }
+  .menu-btn__dots { display: flex; gap: var(--menu-dot-gap); }
+  .menu-btn__dots i { display: block; width: var(--menu-dot); height: var(--menu-dot); background: var(--ink); opacity: var(--menu-dot-dim); }
+  .menu-btn__dots i.is-here { opacity: 1; }
+  .menu-btn__x { width: 22px; height: 22px; opacity: 0; transform: rotate(-45deg) scale(0.6); }
+  .menu-btn[aria-expanded="true"] .menu-btn__dots { opacity: 0; transform: scale(0.6); }
+  .menu-btn[aria-expanded="true"] .menu-btn__x { opacity: 1; transform: none; }
+  html.is-greeting .menu-btn,
+  html.is-morphing .menu-btn__dots { visibility: hidden; }  /* the words are still on their way */
+
+  /* the panel, from the right, the page peeking out on the left */
+  .menu-veil {
+    display: block; position: fixed; inset: var(--bar) 0 0 0; z-index: 9;
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 0; transition: opacity var(--menu-time) ease;
+  }
+  .menu {
+    display: flex; flex-direction: column; justify-content: space-between;
+    position: fixed; top: var(--bar); right: 0; bottom: 0; z-index: 9;
+    width: var(--menu-width);
+    padding: var(--top) var(--pad) calc(var(--pad) + env(safe-area-inset-bottom));
+    background: var(--paper);
+    border-left: 1px solid var(--rule);
+    transform: translateX(100%);
+    transition: transform var(--menu-time) cubic-bezier(0.65, 0, 0.25, 1);
+    overscroll-behavior: contain;
+  }
+  html.menu-open { overflow: hidden; }
+  html.menu-open .menu { transform: none; }
+  html.menu-open .menu-veil { opacity: 1; }
+
+  .menu__pages { border-top: 1px solid var(--rule); }
+  .menu__pages li { border-bottom: 1px solid var(--rule); }
+  .menu__pages a {
+    display: block; padding: 10px 0 12px;
+    font-size: var(--size-lead); line-height: 1.12; letter-spacing: -0.04em;
+    color: var(--grey);
+  }
+  .menu__pages a[aria-current="page"] { color: var(--ink); }
+  .menu__pages a:hover { text-decoration: none; color: var(--ink); }
+
+  .menu__langs { display: flex; gap: 1em; font-size: var(--size-small); }
+  .menu__langs button {
+    appearance: none; border: 0; background: none; margin: 0; padding: 8px 0;
+    font: inherit; letter-spacing: inherit; color: var(--grey); cursor: pointer;
+  }
+  .menu__langs button[lang="ko"] { letter-spacing: -0.01em; }
+  .menu__langs button[aria-current="true"] { color: var(--ink); font-weight: var(--weight-strong); }
+}
 
 /* ---------- three-column frame ---------- */
 
@@ -742,7 +827,7 @@ body[data-template="project"].is-ready .frame { opacity: 1; transition: opacity 
 
   /* Home: disciplines as a single line instead of the ruled list */
   body[data-page="home"] [data-render="disciplines"] { display: none; }
-  body[data-page="home"] .disciplines-inline { display: block; opacity: var(--m-disciplines-dim); }
+  body[data-page="home"] .disciplines-inline { display: block; color: var(--grey); opacity: var(--m-disciplines-dim); }
 
   /* Work: the filter list already says which category is showing */
   body[data-page="work"]:not([data-template]) .col--mid > .section__head { display: none; }

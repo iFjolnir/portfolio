@@ -207,9 +207,15 @@
     });
     return list.filter(function (el) { return !list.some(function (o) { return o !== el && o.contains(el); }); });
   }
+  // on screen AND actually visible there: text under the phone menu, its veil or the
+  // fixed header is left out, or its crossfade would be drawn on top of them
   function onScreen(el) {
     var r = el.getBoundingClientRect();
-    return r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth;
+    if (!(r.width > 0 && r.height > 0 && r.bottom > 0 && r.top < innerHeight && r.right > 0 && r.left < innerWidth)) return false;
+    var x = Math.min(Math.max(r.left + r.width / 2, 0), innerWidth - 1);
+    var y = Math.min(Math.max(r.top + r.height / 2, 0), innerHeight - 1);
+    var hit = document.elementFromPoint(x, y);
+    return !!hit && (hit === el || el.contains(hit));
   }
   function nameIt(el, name) { el.style.viewTransitionName = name; named.push(el); }
   function unnameAll() { named.forEach(function (el) { el.style.viewTransitionName = ""; }); named = []; }
@@ -237,7 +243,7 @@
     });
     // the greeting has its own animation: show it live, never crossfaded with itself
     var hello = document.querySelector(".hello");
-    if (hello) {
+    if (hello && onScreen(hello)) {
       nameIt(hello, "fi-hello");
       css += "::view-transition-group(fi-hello),::view-transition-new(fi-hello){animation:none}::view-transition-old(fi-hello){display:none}";
     }
